@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Posts on My New Hugo Site</title>
-    <link>https://wingclearwing.github.io/post/</link>
-    <description>Recent content in Posts on My New Hugo Site</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate></lastBuildDate>
-    <atom:link href="https://wingclearwing.github.io/post/index.xml" rel="self" type="application/rss+xml" />
-  </channel>
+    <channel>
+        <title>Posts on 演示站点</title>
+        <link>https://windclearing.github.io/post/</link>
+        <description>Recent content in Posts on 演示站点</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>Example Person</copyright>
+        <lastBuildDate>Thu, 06 Feb 2025 15:14:09 +0800</lastBuildDate><atom:link href="https://windclearing.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Test</title>
+        <link>https://windclearing.github.io/p/test/</link>
+        <pubDate>Thu, 06 Feb 2025 15:14:09 +0800</pubDate>
+        
+        <guid>https://windclearing.github.io/p/test/</guid>
+        <description></description>
+        </item>
+        
+    </channel>
 </rss>

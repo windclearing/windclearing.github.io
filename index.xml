@@ -13,7 +13,15 @@
         <pubDate>Mon, 10 Feb 2025 15:37:31 +0800</pubDate>
         
         <guid>https://windclearing.github.io/p/hello-world/</guid>
-        <description>&lt;p&gt;风澈的第一篇个人博客！&lt;/p&gt;
+        <description>&lt;p&gt;&lt;strong&gt;风澈&lt;/strong&gt;的第一篇个人博客！&lt;/p&gt;
+&lt;p&gt;完全不会写blog呢~~~&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;博客更新笔记&#34;&gt;博客更新笔记
+&lt;/h2&gt;&lt;p&gt;内容更改之后，首先用powershell打开blog文件夹，键入 &lt;strong&gt;hugo&lt;/strong&gt; 命令，然后对public文件夹进行
+&lt;strong&gt;git add .&lt;/strong&gt;
+和
+&lt;strong&gt;git commit -m &amp;ldquo;起一个commit名字&amp;rdquo;&lt;/strong&gt; ，再进行 &lt;strong&gt;git push&lt;/strong&gt; 操作，耐心等一分钟，就可以在网站上面看到更新！&lt;/p&gt;
+&lt;p&gt;其他的操作尚在学习当中，目前完全不了解&lt;strong&gt;qwq&lt;/strong&gt;&lt;/p&gt;
 </description>
         </item>
         

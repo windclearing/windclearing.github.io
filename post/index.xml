@@ -24,6 +24,24 @@
 &lt;p&gt;其他的操作尚在学习当中，目前完全不了解&lt;strong&gt;qwq&lt;/strong&gt;&lt;/p&gt;
 </description>
         </item>
+        <item>
+        <title>尝试开第二页</title>
+        <link>https://windclearing.github.io/p/%E5%B0%9D%E8%AF%95%E5%BC%80%E7%AC%AC%E4%BA%8C%E9%A1%B5/</link>
+        <pubDate>Mon, 10 Feb 2025 15:37:31 +0800</pubDate>
+        
+        <guid>https://windclearing.github.io/p/%E5%B0%9D%E8%AF%95%E5%BC%80%E7%AC%AC%E4%BA%8C%E9%A1%B5/</guid>
+        <description>&lt;h1 id=&#34;通过数字看看区别1&#34;&gt;通过数字看看区别1
+&lt;/h1&gt;&lt;h2 id=&#34;2&#34;&gt;2
+&lt;/h2&gt;&lt;h3 id=&#34;3&#34;&gt;3
+&lt;/h3&gt;&lt;h4 id=&#34;4&#34;&gt;4
+&lt;/h4&gt;&lt;h5 id=&#34;5&#34;&gt;5
+&lt;/h5&gt;&lt;hr&gt;
+&lt;p&gt;尝试使用数学公式
+#定理 设 $X_1,X_2,&amp;hellip;$ 是独立同分布的随机变量序列,  且 $E(X_i)=\mu$, $D(X_i)=\sigma^2&amp;gt;0, i=1,2,,&amp;hellip;$, 则对任意的实数 $x$, 有 $\lim_{n\to\infty}P{\frac{\sum_{i=1}^nX_i-E(\sum_{i=1}^nX_i)}{\sqrt{D(\sum_{i=1}^nX_i)}}\le x} =\lim_{n\to\infty} P{\frac{\sum_{i=1}^nX_i-n\mu}{\sigma\sqrt n} \le x} = \int_{-\infty}^x\frac1{\sqrt{2\pi}}e^{-\frac{t^2}2}dt=\Phi(x)$.&lt;/p&gt;
+&lt;p&gt;看看视觉效果&lt;/p&gt;
+&lt;p&gt;这个是通过复制文件夹生成的，看看可不可行？&lt;/p&gt;
+</description>
+        </item>
         
     </channel>
 </rss>

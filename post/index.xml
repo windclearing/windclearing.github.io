@@ -2,53 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Posts on 风澈</title>
-        <link>http://localhost:1313/post/</link>
+        <link>https://windclearing.github.io/post/</link>
         <description>Recent content in Posts on 风澈</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Example Person</copyright>
-        <lastBuildDate>Wed, 19 Feb 2025 21:06:33 +0800</lastBuildDate><atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Kotlin学习</title>
-        <link>http://localhost:1313/p/kotlin%E5%AD%A6%E4%B9%A0/</link>
-        <pubDate>Wed, 19 Feb 2025 21:06:33 +0800</pubDate>
-        
-        <guid>http://localhost:1313/p/kotlin%E5%AD%A6%E4%B9%A0/</guid>
-        <description>&lt;h1 id=&#34;从零开始认识一门新语言-kotlin&#34;&gt;从零开始认识一门新语言-kotlin
-&lt;/h1&gt;&lt;h2 id=&#34;序言&#34;&gt;序言
-&lt;/h2&gt;&lt;p&gt;这学期选了一门专业选修课《Android技术开发基础》，老师已经提前在群里要求掌握kotlin语法了qaq&lt;br&gt;
-对于我这种大一C语言都没学会多少的基础不好的同学来说，没有面向对象基础就选修这门课显然无异于自寻死路&lt;br&gt;
-不过在Android平台上开发一些小应用也是我之前想学习去做的一件事情&lt;br&gt;
-正好这学期不怎么在乎绩点了（反正早就寄了&lt;br&gt;
-希望学习顺利！&lt;/p&gt;
-&lt;h2 id=&#34;初步了解kotlin&#34;&gt;初步了解kotlin
-&lt;/h2&gt;&lt;p&gt;kotlin似乎是脱胎于java的一个Google目前在Android开发中主推的语言。可惜我没有任何java或者面向对象的基础=_=&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;似乎还完全兼容java(?&lt;/p&gt;
-&lt;h2 id=&#34;环境配置&#34;&gt;环境配置
-&lt;/h2&gt;&lt;p&gt;我下载了&lt;strong&gt;IntelliJ IDEA&lt;/strong&gt;社区版，由于对英文的不熟悉，一直没能找到汉语插件，最后发现目前的设置已经可以直接切换语言为中文。。。
-似乎没有遇到什么其他疑难问题。&lt;/p&gt;
-&lt;h2 id=&#34;hello-world&#34;&gt;Hello World
-&lt;/h2&gt;&lt;p&gt;新建项目后自动生成了代码，看上去很简单，有点像python（我怎么还没学python&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;fun main() {
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    println(&amp;#34;Hello World!&amp;#34;)
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;似乎没什么问题。&lt;/p&gt;
-</description>
-        </item>
-        <item>
+        <lastBuildDate>Mon, 10 Feb 2025 15:37:31 +0800</lastBuildDate><atom:link href="https://windclearing.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Hello world!</title>
-        <link>http://localhost:1313/p/hello-world/</link>
+        <link>https://windclearing.github.io/p/hello-world/</link>
         <pubDate>Mon, 10 Feb 2025 15:37:31 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/hello-world/</guid>
+        <guid>https://windclearing.github.io/p/hello-world/</guid>
         <description>&lt;p&gt;&lt;strong&gt;风澈&lt;/strong&gt;的第一篇个人博客！&lt;/p&gt;
 &lt;p&gt;完全不会写blog呢~~~&lt;/p&gt;
 &lt;hr&gt;

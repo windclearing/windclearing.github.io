@@ -7,7 +7,140 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Example Person</copyright>
-        <lastBuildDate>Mon, 10 Feb 2025 15:37:31 +0800</lastBuildDate><atom:link href="https://windclearing.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 24 Feb 2025 12:20:55 +0800</lastBuildDate><atom:link href="https://windclearing.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>数字逻辑</title>
+        <link>https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/</link>
+        <pubDate>Mon, 24 Feb 2025 12:20:55 +0800</pubDate>
+        
+        <guid>https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/</guid>
+        <description>&lt;p&gt;第一门计算机硬件课程
+晶体管-&amp;gt;计算单元&lt;/p&gt;
+&lt;h1 id=&#34;一数字系统&#34;&gt;一、数字系统
+&lt;/h1&gt;&lt;h2 id=&#34;定义&#34;&gt;定义
+&lt;/h2&gt;&lt;h3 id=&#34;数字系统&#34;&gt;数字系统？
+&lt;/h3&gt;&lt;p&gt;一种&lt;strong&gt;离散信息处理系统&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;离散输入-&amp;gt;离散输出（有系统状态）&lt;/p&gt;
+&lt;h3 id=&#34;分类&#34;&gt;分类
+&lt;/h3&gt;&lt;h4 id=&#34;是否有系统状态&#34;&gt;是否有系统状态
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;组合逻辑系统&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;无状态记忆功能&lt;/li&gt;
+&lt;li&gt;输出值只与当时系统输入有关
+$$
+output= f(input)
+$$
+&lt;strong&gt;时序逻辑功能&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;有状态记忆功能&lt;/li&gt;
+&lt;li&gt;与输入状态都有关
+$$
+output = f(state, input)
+$$&lt;/li&gt;
+&lt;li&gt;在离散时间点更新状态为&lt;strong&gt;同步时序系统&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;在任何时间点更新状态是&lt;strong&gt;异步时序系统&lt;/strong&gt;(理论上存在但少，难设计把控)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;典型系统&#34;&gt;典型系统
+&lt;/h3&gt;&lt;h4 id=&#34;数字计数器&#34;&gt;数字计数器
+&lt;/h4&gt;&lt;p&gt;输入：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;+1&lt;/li&gt;
+&lt;li&gt;重置
+状态：&lt;/li&gt;
+&lt;li&gt;存储数字值
+是时序逻辑电路&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;数字计算机&#34;&gt;数字计算机
+&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;存储器&amp;lt;--&amp;gt;CPU(控制单元&amp;lt;--&amp;gt;数据通道)&amp;lt;--&amp;gt;IO
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;嵌入式系统&#34;&gt;嵌入式系统
+&lt;/h4&gt;&lt;p&gt;计算机作为其他系统的内部部件&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;微型计算机&lt;/li&gt;
+&lt;li&gt;微型控制器&lt;/li&gt;
+&lt;li&gt;数字信号处理器
+e.g. 测温&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;二信息表示&#34;&gt;二、信息表示
+&lt;/h1&gt;&lt;h2 id=&#34;定义-1&#34;&gt;定义
+&lt;/h2&gt;&lt;h3 id=&#34;信息&#34;&gt;信息
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;存在&lt;strong&gt;现象的表示&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;消除&lt;strong&gt;不确定性&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;信息熵&lt;/li&gt;
+&lt;li&gt;熵增定律&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;信号&#34;&gt;信号
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;信息表示的&lt;strong&gt;物理载体&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;模拟信号&lt;/strong&gt;：连续的物理量&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;数字信号&lt;/strong&gt;：离散的物理量&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;二进制&#34;&gt;二进制
+&lt;/h2&gt;&lt;p&gt;可以用不同物理量实现
+比如电路的信号&lt;/p&gt;
+&lt;h2 id=&#34;数制&#34;&gt;数制
+&lt;/h2&gt;&lt;h3 id=&#34;定义-2&#34;&gt;定义
+&lt;/h3&gt;&lt;p&gt;数的表示规则称为&lt;strong&gt;数制&lt;/strong&gt;
+&lt;strong&gt;基底(r)&lt;/strong&gt;：一个数制所包含的数符号的个数
+&lt;strong&gt;权&lt;/strong&gt;：数字符号的位置决定的值
+&lt;strong&gt;值&lt;/strong&gt;($r^i$)是各位数字值与其权之积的总和&lt;/p&gt;
+&lt;p&gt;B, O/Q, D, H
+2, 8, 10, 16 进制&lt;/p&gt;
+&lt;h4 id=&#34;二进制单位&#34;&gt;二进制单位
+&lt;/h4&gt;&lt;p&gt;$2^{10}$ = K
+$2^{20}$ = M
+$2^{30}$ = G
+$2^{40}$ = T&lt;/p&gt;
+&lt;h4 id=&#34;运算&#34;&gt;运算
+&lt;/h4&gt;&lt;p&gt;2进制：类似十进制
+8，16进制加减乘：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;将同一列对应位转换为十进制&lt;/li&gt;
+&lt;li&gt;计算完后再转换为原进制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;转换&#34;&gt;转换
+&lt;/h4&gt;&lt;p&gt;非十进制-&amp;gt;十进制：按权展开
+非十进制互相转换：二进制
+十进制-&amp;gt;非十进制：整数部分除r取余，小数部分乘r取整&lt;/p&gt;
+&lt;h1 id=&#34;编码&#34;&gt;编码
+&lt;/h1&gt;&lt;h2 id=&#34;二进制编码&#34;&gt;二进制编码
+&lt;/h2&gt;&lt;p&gt;0，1排列
+$2^n$ 个数据
+数据类型&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数值型：能进行算术运算，整数，小数&lt;/li&gt;
+&lt;li&gt;非数值型：不需算术，字符，控制符
+M个数据需要&lt;strong&gt;二进制位数&lt;/strong&gt;$\lceil log_2(M)\rceil$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;bcd码&#34;&gt;BCD码
+&lt;/h2&gt;&lt;p&gt;二进制编码&lt;strong&gt;十进制数&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;4位二进制表达0-9，6个冗余&lt;/li&gt;
+&lt;li&gt;8421码&lt;/li&gt;
+&lt;li&gt;最简单，最直觉&lt;/li&gt;
+&lt;li&gt;加权码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;格雷码&#34;&gt;格雷码
+&lt;/h2&gt;&lt;p&gt;计数过程中，相邻编码之间只有一位不同
+不唯一&lt;/p&gt;
+&lt;h3 id=&#34;特点&#34;&gt;特点
+&lt;/h3&gt;&lt;p&gt;计数电路中，位翻转&lt;strong&gt;次数少，功耗低&lt;/strong&gt;
+光学轴角编码器转动中，避免错误编码
+![[Pasted image 20250224121022.png]]&lt;/p&gt;
+&lt;h3 id=&#34;编制n偶数位二进制计数序列&#34;&gt;编制n（偶数）位二进制计数序列
+&lt;/h3&gt;&lt;p&gt;前一半左最高为0，往右是左邻位的偶校验
+后一半前一位逆序排列，左一位为1&lt;/p&gt;
+&lt;h3 id=&#34;自动编制算法递归&#34;&gt;自动编制算法（递归）
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;1位格雷码两个码字：0，1&lt;/li&gt;
+&lt;li&gt;n+1 位格雷码 = n位&lt;strong&gt;顺序&lt;/strong&gt;格雷码加前缀&lt;strong&gt;0&lt;/strong&gt;+n位&lt;strong&gt;逆序&lt;/strong&gt;格雷码加前缀&lt;strong&gt;1&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;字符编码&#34;&gt;字符编码
+&lt;/h2&gt;&lt;h3 id=&#34;ascii码&#34;&gt;ASCII码
+&lt;/h3&gt;&lt;p&gt;美国信息交换标准编码
+128个字符&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Hello world!</title>
         <link>https://windclearing.github.io/p/hello-world/</link>
         <pubDate>Mon, 10 Feb 2025 15:37:31 +0800</pubDate>

@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="第一门计算机硬件课程 晶体管-&gt;计算单元\n一、数字系统\r定义\r数字系统？\r一种离散信息处理系统\n离散输入-&gt;离散输出（有系统状态）\n分类\r是否有系统状态\r组合逻辑系统\n无状态记忆功能 输出值只与当时系统输入有关 $$\routput= f(input)\r$$ 时序逻辑功能 有状态记忆功能 与输入状态都有关 $$\routput = f(state, input)\r$$ 在离散时间点更新状态为同步时序系统 在任何时间点更新状态是异步时序系统(理论上存在但少，难设计把控) 典型系统\r数字计数器\r输入：\n">
+<title>数字逻辑</title>
+
+<link rel='canonical' href='https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/'>
+
+<link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="数字逻辑">
+<meta property='og:description' content="第一门计算机硬件课程 晶体管-&gt;计算单元\n一、数字系统\r定义\r数字系统？\r一种离散信息处理系统\n离散输入-&gt;离散输出（有系统状态）\n分类\r是否有系统状态\r组合逻辑系统\n无状态记忆功能 输出值只与当时系统输入有关 $$\routput= f(input)\r$$ 时序逻辑功能 有状态记忆功能 与输入状态都有关 $$\routput = f(state, input)\r$$ 在离散时间点更新状态为同步时序系统 在任何时间点更新状态是异步时序系统(理论上存在但少，难设计把控) 典型系统\r数字计数器\r输入：\n">
+<meta property='og:url' content='https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/'>
+<meta property='og:site_name' content='风澈'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-02-24T12:20:55&#43;08:00'/><meta property='article:modified_time' content='2025-02-24T12:20:55&#43;08:00'/>
+<meta name="twitter:title" content="数字逻辑">
+<meta name="twitter:description" content="第一门计算机硬件课程 晶体管-&gt;计算单元\n一、数字系统\r定义\r数字系统？\r一种离散信息处理系统\n离散输入-&gt;离散输出（有系统状态）\n分类\r是否有系统状态\r组合逻辑系统\n无状态记忆功能 输出值只与当时系统输入有关 $$\routput= f(input)\r$$ 时序逻辑功能 有状态记忆功能 与输入状态都有关 $$\routput = f(state, input)\r$$ 在离散时间点更新状态为同步时序系统 在任何时间点更新状态是异步时序系统(理论上存在但少，难设计把控) 典型系统\r数字计数器\r输入：\n">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/nonchii_hu_eb4fddf9e90f6f14.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">风澈</a></h1>
+            <h2 class="site-description">这啥</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/clearwinding'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://windclearing.github.io/en/" >English</option>
+                                
+                                    <option value="https://windclearing.github.io/" selected>中文</option>
+                                
+                                    <option value="https://windclearing.github.io/ar/" >عربي</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#定义">定义</a>
+      <ol>
+        <li><a href="#数字系统">数字系统？</a></li>
+        <li><a href="#分类">分类</a>
+          <ol>
+            <li><a href="#是否有系统状态">是否有系统状态</a></li>
+          </ol>
+        </li>
+        <li><a href="#典型系统">典型系统</a>
+          <ol>
+            <li><a href="#数字计数器">数字计数器</a></li>
+            <li><a href="#数字计算机">数字计算机</a></li>
+            <li><a href="#嵌入式系统">嵌入式系统</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li><a href="#定义-1">定义</a>
+      <ol>
+        <li><a href="#信息">信息</a></li>
+        <li><a href="#信号">信号</a></li>
+      </ol>
+    </li>
+    <li><a href="#二进制">二进制</a></li>
+    <li><a href="#数制">数制</a>
+      <ol>
+        <li><a href="#定义-2">定义</a>
+          <ol>
+            <li><a href="#二进制单位">二进制单位</a></li>
+            <li><a href="#运算">运算</a></li>
+            <li><a href="#转换">转换</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li><a href="#二进制编码">二进制编码</a></li>
+    <li><a href="#bcd码">BCD码</a></li>
+    <li><a href="#格雷码">格雷码</a>
+      <ol>
+        <li><a href="#特点">特点</a></li>
+        <li><a href="#编制n偶数位二进制计数序列">编制n（偶数）位二进制计数序列</a></li>
+        <li><a href="#自动编制算法递归">自动编制算法（递归）</a></li>
+      </ol>
+    </li>
+    <li><a href="#字符编码">字符编码</a>
+      <ol>
+        <li><a href="#ascii码">ASCII码</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/">数字逻辑</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb 24, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 2 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>第一门计算机硬件课程
+晶体管-&gt;计算单元</p>
+<h1 id="一数字系统">一、数字系统
+</h1><h2 id="定义">定义
+</h2><h3 id="数字系统">数字系统？
+</h3><p>一种<strong>离散信息处理系统</strong></p>
+<p>离散输入-&gt;离散输出（有系统状态）</p>
+<h3 id="分类">分类
+</h3><h4 id="是否有系统状态">是否有系统状态
+</h4><p><strong>组合逻辑系统</strong></p>
+<ul>
+<li>无状态记忆功能</li>
+<li>输出值只与当时系统输入有关
+$$
+output= f(input)
+$$
+<strong>时序逻辑功能</strong></li>
+<li>有状态记忆功能</li>
+<li>与输入状态都有关
+$$
+output = f(state, input)
+$$</li>
+<li>在离散时间点更新状态为<strong>同步时序系统</strong></li>
+<li>在任何时间点更新状态是<strong>异步时序系统</strong>(理论上存在但少，难设计把控)</li>
+</ul>
+<h3 id="典型系统">典型系统
+</h3><h4 id="数字计数器">数字计数器
+</h4><p>输入：</p>
+<ul>
+<li>+1</li>
+<li>重置
+状态：</li>
+<li>存储数字值
+是时序逻辑电路</li>
+</ul>
+<h4 id="数字计算机">数字计算机
+</h4><pre><code>存储器&lt;--&gt;CPU(控制单元&lt;--&gt;数据通道)&lt;--&gt;IO
+</code></pre>
+<h4 id="嵌入式系统">嵌入式系统
+</h4><p>计算机作为其他系统的内部部件</p>
+<ul>
+<li>微型计算机</li>
+<li>微型控制器</li>
+<li>数字信号处理器
+e.g. 测温</li>
+</ul>
+<h1 id="二信息表示">二、信息表示
+</h1><h2 id="定义-1">定义
+</h2><h3 id="信息">信息
+</h3><ul>
+<li>存在<strong>现象的表示</strong></li>
+<li>消除<strong>不确定性</strong></li>
+<li>信息熵</li>
+<li>熵增定律</li>
+</ul>
+<h3 id="信号">信号
+</h3><ul>
+<li>信息表示的<strong>物理载体</strong></li>
+<li><strong>模拟信号</strong>：连续的物理量</li>
+<li><strong>数字信号</strong>：离散的物理量</li>
+</ul>
+<h2 id="二进制">二进制
+</h2><p>可以用不同物理量实现
+比如电路的信号</p>
+<h2 id="数制">数制
+</h2><h3 id="定义-2">定义
+</h3><p>数的表示规则称为<strong>数制</strong>
+<strong>基底(r)</strong>：一个数制所包含的数符号的个数
+<strong>权</strong>：数字符号的位置决定的值
+<strong>值</strong>($r^i$)是各位数字值与其权之积的总和</p>
+<p>B, O/Q, D, H
+2, 8, 10, 16 进制</p>
+<h4 id="二进制单位">二进制单位
+</h4><p>$2^{10}$ = K
+$2^{20}$ = M
+$2^{30}$ = G
+$2^{40}$ = T</p>
+<h4 id="运算">运算
+</h4><p>2进制：类似十进制
+8，16进制加减乘：</p>
+<ul>
+<li>将同一列对应位转换为十进制</li>
+<li>计算完后再转换为原进制</li>
+</ul>
+<h4 id="转换">转换
+</h4><p>非十进制-&gt;十进制：按权展开
+非十进制互相转换：二进制
+十进制-&gt;非十进制：整数部分除r取余，小数部分乘r取整</p>
+<h1 id="编码">编码
+</h1><h2 id="二进制编码">二进制编码
+</h2><p>0，1排列
+$2^n$ 个数据
+数据类型</p>
+<ul>
+<li>数值型：能进行算术运算，整数，小数</li>
+<li>非数值型：不需算术，字符，控制符
+M个数据需要<strong>二进制位数</strong>$\lceil log_2(M)\rceil$</li>
+</ul>
+<h2 id="bcd码">BCD码
+</h2><p>二进制编码<strong>十进制数</strong></p>
+<ul>
+<li>4位二进制表达0-9，6个冗余</li>
+<li>8421码</li>
+<li>最简单，最直觉</li>
+<li>加权码</li>
+</ul>
+<h2 id="格雷码">格雷码
+</h2><p>计数过程中，相邻编码之间只有一位不同
+不唯一</p>
+<h3 id="特点">特点
+</h3><p>计数电路中，位翻转<strong>次数少，功耗低</strong>
+光学轴角编码器转动中，避免错误编码
+![[Pasted image 20250224121022.png]]</p>
+<h3 id="编制n偶数位二进制计数序列">编制n（偶数）位二进制计数序列
+</h3><p>前一半左最高为0，往右是左邻位的偶校验
+后一半前一位逆序排列，左一位为1</p>
+<h3 id="自动编制算法递归">自动编制算法（递归）
+</h3><ul>
+<li>1位格雷码两个码字：0，1</li>
+<li>n+1 位格雷码 = n位<strong>顺序</strong>格雷码加前缀<strong>0</strong>+n位<strong>逆序</strong>格雷码加前缀<strong>1</strong></li>
+</ul>
+<h2 id="字符编码">字符编码
+</h2><h3 id="ascii码">ASCII码
+</h3><p>美国信息交换标准编码
+128个字符</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+	const mainArticleElement = document.querySelector(".main-article");
+        renderMathInElement(mainArticleElement, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="windclearing/windclearing.github.io"
+    data-repo-id="R_kgDON1KM-A"
+    data-category="Announcements"
+    data-category-id="DIC_kwDON1KM-M4CnInA"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="en"
+    data-loading=""
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('preferred_color_scheme');
+            } else {
+                setGiscusTheme('preferred_color_scheme');
+            }
+        }
+    })();
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2025 Example Person
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

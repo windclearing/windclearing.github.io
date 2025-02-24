@@ -124,8 +124,7 @@ M个数据需要&lt;strong&gt;二进制位数&lt;/strong&gt;$\lceil log_2(M)\rce
 不唯一&lt;/p&gt;
 &lt;h3 id=&#34;特点&#34;&gt;特点
 &lt;/h3&gt;&lt;p&gt;计数电路中，位翻转&lt;strong&gt;次数少，功耗低&lt;/strong&gt;
-光学轴角编码器转动中，避免错误编码
-![[Pasted image 20250224121022.png]]&lt;/p&gt;
+光学轴角编码器转动中，避免错误编码&lt;/p&gt;
 &lt;h3 id=&#34;编制n偶数位二进制计数序列&#34;&gt;编制n（偶数）位二进制计数序列
 &lt;/h3&gt;&lt;p&gt;前一半左最高为0，往右是左邻位的偶校验
 后一半前一位逆序排列，左一位为1&lt;/p&gt;

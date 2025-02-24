@@ -140,6 +140,66 @@ M个数据需要&lt;strong&gt;二进制位数&lt;/strong&gt;$\lceil log_2(M)\rce
 </description>
         </item>
         <item>
+        <title>Kotlin学习</title>
+        <link>https://windclearing.github.io/p/kotlin%E5%AD%A6%E4%B9%A0/</link>
+        <pubDate>Wed, 19 Feb 2025 21:06:33 +0800</pubDate>
+        
+        <guid>https://windclearing.github.io/p/kotlin%E5%AD%A6%E4%B9%A0/</guid>
+        <description>&lt;h1 id=&#34;从零开始认识一门新语言-kotlin&#34;&gt;从零开始认识一门新语言-kotlin
+&lt;/h1&gt;&lt;h2 id=&#34;序言&#34;&gt;序言
+&lt;/h2&gt;&lt;p&gt;这学期选了一门专业选修课《Android技术开发基础》，老师已经提前在群里要求掌握kotlin语法了qaq&lt;br&gt;
+对于我这种大一C语言都没学会多少的基础不好的同学来说，没有面向对象基础就选修这门课显然无异于自寻死路&lt;br&gt;
+不过在Android平台上开发一些小应用也是我之前想学习去做的一件事情&lt;br&gt;
+正好这学期不怎么在乎绩点了（反正早就寄了&lt;br&gt;
+希望学习顺利！&lt;/p&gt;
+&lt;h2 id=&#34;初步了解kotlin&#34;&gt;初步了解kotlin
+&lt;/h2&gt;&lt;p&gt;kotlin似乎是脱胎于java的一个Google目前在Android开发中主推的语言。可惜我没有任何java或者面向对象的基础=_=&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;似乎还完全兼容java(?&lt;/p&gt;
+&lt;h2 id=&#34;环境配置&#34;&gt;环境配置
+&lt;/h2&gt;&lt;p&gt;我下载了&lt;strong&gt;IntelliJ IDEA&lt;/strong&gt;社区版，由于对英文的不熟悉，一直没能找到汉语插件，最后发现目前的设置已经可以直接切换语言为中文。。。
+似乎没有遇到什么其他疑难问题。&lt;/p&gt;
+&lt;h2 id=&#34;hello-world&#34;&gt;Hello World
+&lt;/h2&gt;&lt;p&gt;新建项目后自动生成了代码，看上去很简单，有点像python（我怎么还没学python&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;fun main() {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    println(&amp;#34;Hello World!&amp;#34;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;似乎没什么问题。&lt;/p&gt;
+&lt;h2 id=&#34;基础语法&#34;&gt;基础语法
+&lt;/h2&gt;&lt;p&gt;翻阅官方文档，我找到了Jetbrain的免费课程，开始学习基础语法&lt;/p&gt;
+&lt;h3 id=&#34;1-basic-literals-numbers-strings-and-characters-整数字符和字符串&#34;&gt;1. Basic literals: numbers, strings and characters 整数，字符和字符串
+&lt;/h3&gt;&lt;h4 id=&#34;整数&#34;&gt;整数
+&lt;/h4&gt;&lt;p&gt;整数可以用下划线分块，下划线不能在开头结尾&lt;/p&gt;
+&lt;h4 id=&#34;字符字符串&#34;&gt;字符&amp;amp;字符串
+&lt;/h4&gt;&lt;p&gt;与C语言表示相同&lt;/p&gt;
+&lt;h3 id=&#34;2-values-and-variables--值和变量&#34;&gt;2. Values and variables  值和变量
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&amp;lsquo;val&amp;rsquo;(value) 声明一个只读变量&lt;/li&gt;
+&lt;li&gt;&amp;lsquo;var&amp;rsquo;(variable) 声明一个可变变量&lt;/li&gt;
+&lt;li&gt;&amp;lsquo;const&amp;rsquo;(with val) 用于编译时已知的变量&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;e.g.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    val language = &amp;#34;kotlin&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;val&lt;/strong&gt; 不可变，可读性更强，尽可能使用 &lt;strong&gt;val&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;val&lt;/strong&gt; 可以赋值给 &lt;strong&gt;var&lt;/strong&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Hello world!</title>
         <link>https://windclearing.github.io/p/hello-world/</link>
         <pubDate>Mon, 10 Feb 2025 15:37:31 +0800</pubDate>

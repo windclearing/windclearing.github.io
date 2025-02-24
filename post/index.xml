@@ -124,7 +124,21 @@ M个数据需要&lt;strong&gt;二进制位数&lt;/strong&gt;$\lceil log_2(M)\rce
 不唯一&lt;/p&gt;
 &lt;h3 id=&#34;特点&#34;&gt;特点
 &lt;/h3&gt;&lt;p&gt;计数电路中，位翻转&lt;strong&gt;次数少，功耗低&lt;/strong&gt;&lt;br&gt;
-光学轴角编码器转动中，避免错误编码&lt;/p&gt;
+光学轴角编码器转动中，避免错误编码&lt;br&gt;
+&lt;img src=&#34;https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/p1-gray.png&#34;
+	width=&#34;1631&#34;
+	height=&#34;707&#34;
+	srcset=&#34;https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/p1-gray_hu_1c40d1489b6ea449.png 480w, https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/p1-gray_hu_11e246b16113cd72.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;光学轴角编码器图示&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;230&#34;
+		data-flex-basis=&#34;553px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;h3 id=&#34;编制n偶数位二进制计数序列&#34;&gt;编制n（偶数）位二进制计数序列
 &lt;/h3&gt;&lt;p&gt;前一半左最高为0，往右是左邻位的偶校验&lt;br&gt;
 后一半前一位逆序排列，左一位为1&lt;/p&gt;

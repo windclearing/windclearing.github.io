@@ -13,7 +13,7 @@
         <pubDate>Mon, 24 Feb 2025 12:20:55 +0800</pubDate>
         
         <guid>https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/</guid>
-        <description>&lt;p&gt;第一门计算机硬件课程
+        <description>&lt;p&gt;第一门计算机硬件课程&lt;br&gt;
 晶体管-&amp;gt;计算单元&lt;/p&gt;
 &lt;h1 id=&#34;一数字系统&#34;&gt;一、数字系统
 &lt;/h1&gt;&lt;h2 id=&#34;定义&#34;&gt;定义
@@ -43,11 +43,11 @@ $$&lt;/li&gt;
 &lt;/h4&gt;&lt;p&gt;输入：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;+1&lt;/li&gt;
-&lt;li&gt;重置
+&lt;li&gt;重置&lt;br&gt;
 状态：&lt;/li&gt;
-&lt;li&gt;存储数字值
-是时序逻辑电路&lt;/li&gt;
+&lt;li&gt;存储数字值&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;是时序逻辑电路&lt;/p&gt;
 &lt;h4 id=&#34;数字计算机&#34;&gt;数字计算机
 &lt;/h4&gt;&lt;pre&gt;&lt;code&gt;存储器&amp;lt;--&amp;gt;CPU(控制单元&amp;lt;--&amp;gt;数据通道)&amp;lt;--&amp;gt;IO
 &lt;/code&gt;&lt;/pre&gt;
@@ -56,7 +56,7 @@ $$&lt;/li&gt;
 &lt;ul&gt;
 &lt;li&gt;微型计算机&lt;/li&gt;
 &lt;li&gt;微型控制器&lt;/li&gt;
-&lt;li&gt;数字信号处理器
+&lt;li&gt;数字信号处理器&lt;br&gt;
 e.g. 测温&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;二信息表示&#34;&gt;二、信息表示
@@ -75,7 +75,7 @@ e.g. 测温&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;数字信号&lt;/strong&gt;：离散的物理量&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;二进制&#34;&gt;二进制
-&lt;/h2&gt;&lt;p&gt;可以用不同物理量实现
+&lt;/h2&gt;&lt;p&gt;可以用不同物理量实现，
 比如电路的信号&lt;/p&gt;
 &lt;h2 id=&#34;数制&#34;&gt;数制
 &lt;/h2&gt;&lt;h3 id=&#34;定义-2&#34;&gt;定义
@@ -118,12 +118,13 @@ M个数据需要&lt;strong&gt;二进制位数&lt;/strong&gt;$\lceil log_2(M)\rce
 &lt;li&gt;8421码&lt;/li&gt;
 &lt;li&gt;最简单，最直觉&lt;/li&gt;
 &lt;li&gt;加权码&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;格雷码&#34;&gt;格雷码
 &lt;/h2&gt;&lt;p&gt;计数过程中，相邻编码之间只有一位不同
 不唯一&lt;/p&gt;
 &lt;h3 id=&#34;特点&#34;&gt;特点
-&lt;/h3&gt;&lt;p&gt;计数电路中，位翻转&lt;strong&gt;次数少，功耗低&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;计数电路中，位翻转&lt;strong&gt;次数少，功耗低&lt;/strong&gt;&lt;br&gt;
 光学轴角编码器转动中，避免错误编码&lt;/p&gt;
 &lt;h3 id=&#34;编制n偶数位二进制计数序列&#34;&gt;编制n（偶数）位二进制计数序列
 &lt;/h3&gt;&lt;p&gt;前一半左最高为0，往右是左邻位的偶校验
@@ -135,7 +136,7 @@ M个数据需要&lt;strong&gt;二进制位数&lt;/strong&gt;$\lceil log_2(M)\rce
 &lt;/ul&gt;
 &lt;h2 id=&#34;字符编码&#34;&gt;字符编码
 &lt;/h2&gt;&lt;h3 id=&#34;ascii码&#34;&gt;ASCII码
-&lt;/h3&gt;&lt;p&gt;美国信息交换标准编码
+&lt;/h3&gt;&lt;p&gt;美国信息交换标准编码&lt;br&gt;
 128个字符&lt;/p&gt;
 </description>
         </item>

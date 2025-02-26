@@ -79,12 +79,12 @@ e.g. 测温&lt;/li&gt;
 比如电路的信号&lt;/p&gt;
 &lt;h2 id=&#34;数制&#34;&gt;数制
 &lt;/h2&gt;&lt;h3 id=&#34;定义-2&#34;&gt;定义
-&lt;/h3&gt;&lt;p&gt;数的表示规则称为&lt;strong&gt;数制&lt;/strong&gt;
-&lt;strong&gt;基底(r)&lt;/strong&gt;：一个数制所包含的数符号的个数
-&lt;strong&gt;权&lt;/strong&gt;：数字符号的位置决定的值
-&lt;strong&gt;值&lt;/strong&gt;($r^i$)是各位数字值与其权之积的总和&lt;/p&gt;
-&lt;p&gt;B, O/Q, D, H&lt;br&gt;
-2, 8, 10, 16 进制&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;数的表示规则称为&lt;strong&gt;数制&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;基底(r)&lt;/strong&gt;：一个数制所包含的数符号的个数&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;权&lt;/strong&gt;：数字符号的位置决定的值&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;值&lt;/strong&gt;($r^i$)是各位数字值与其权之积的总和&lt;/p&gt;
+&lt;p&gt;B, O/Q, D, H&lt;/p&gt;
+&lt;p&gt;2, 8, 10, 16 进制&lt;/p&gt;
 &lt;h4 id=&#34;二进制单位&#34;&gt;二进制单位
 &lt;/h4&gt;&lt;p&gt;$2^{10}$ = K&lt;br&gt;
 $2^{20}$ = M&lt;br&gt;
@@ -196,9 +196,9 @@ M个数据需要&lt;strong&gt;二进制位数&lt;/strong&gt;$\lceil log_2(M)\rce
 &lt;/h4&gt;&lt;p&gt;与C语言表示相同&lt;/p&gt;
 &lt;h3 id=&#34;values-and-variables--值和变量&#34;&gt;Values and variables  值和变量
 &lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&amp;lsquo;val&amp;rsquo;(value) 声明一个只读变量&lt;/li&gt;
-&lt;li&gt;&amp;lsquo;var&amp;rsquo;(variable) 声明一个可变变量&lt;/li&gt;
-&lt;li&gt;&amp;lsquo;const&amp;rsquo;(with val) 用于编译时已知的变量&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;val&lt;/code&gt;(value) 声明一个只读变量&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;var&lt;/code&gt;(variable) 声明一个可变变量&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;const&lt;/code&gt;(with val) 用于编译时已知的变量&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;e.g.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -209,13 +209,13 @@ M个数据需要&lt;strong&gt;二进制位数&lt;/strong&gt;$\lceil log_2(M)\rce
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    val language = &amp;#34;kotlin&amp;#34;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&amp;lsquo;val&amp;rsquo; 不可变，可读性更强，尽可能使用 &amp;lsquo;val&amp;rsquo;&lt;/p&gt;
-&lt;p&gt;&amp;lsquo;val&amp;rsquo; 可以赋值给 &amp;lsquo;var&amp;rsquo;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;val&lt;/code&gt; 不可变，可读性更强，尽可能使用 &lt;code&gt;val&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;val&lt;/code&gt; 可以赋值给 &lt;code&gt;var&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;常量不能直接被赋值修改，但是可以通过其他方式修改内容。&lt;/p&gt;
-&lt;p&gt;&amp;lsquo;val&amp;rsquo; 与&lt;strong&gt;Java&lt;/strong&gt;中的&amp;rsquo;final&amp;rsquo;相似：都禁止为变量重新赋值，但允许更改对象的内部状态。&lt;/p&gt;
-&lt;p&gt;但是&amp;rsquo;const val&amp;rsquo;不太行。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;val&lt;/code&gt; 与&lt;strong&gt;Java&lt;/strong&gt;中的&lt;code&gt;final&lt;/code&gt;相似：都禁止为变量重新赋值，但允许更改对象的内部状态。&lt;/p&gt;
+&lt;p&gt;但是&lt;code&gt;const val&lt;/code&gt;不太行。&lt;/p&gt;
 &lt;p&gt;变量命名法建议采用驼峰命名法&lt;strong&gt;camelCase&lt;/strong&gt;：从第二个单词开始每词首字母大写。&lt;/p&gt;
-&lt;p&gt;而对于&amp;rsquo;const val&amp;rsquo;声明的常量，Kotlin 社区通常建议使用&lt;strong&gt;全大写字母&lt;/strong&gt;，单词之间用 下划线分隔。&lt;/p&gt;
+&lt;p&gt;而对于&lt;code&gt;const val&lt;/code&gt;声明的常量，Kotlin 社区通常建议使用&lt;strong&gt;全大写字母&lt;/strong&gt;，单词之间用 下划线分隔。&lt;/p&gt;
 &lt;h3 id=&#34;data-types--数据类型&#34;&gt;Data types  数据类型
 &lt;/h3&gt;&lt;h4 id=&#34;type-inference--类型推理&#34;&gt;type inference  类型推理
 &lt;/h4&gt;&lt;p&gt;&lt;strong&gt;kotlin&lt;/strong&gt;会在初始化时自动确定变量类型，称作类型推理。&lt;/p&gt;
@@ -234,7 +234,7 @@ M个数据需要&lt;strong&gt;二进制位数&lt;/strong&gt;$\lceil log_2(M)\rce
 &lt;p&gt;如果看到&lt;strong&gt;type mismatch&lt;/strong&gt;错误，则意味着为变量分配了不合适的内容。变量类型不能自动更改。&lt;/p&gt;
 &lt;h3 id=&#34;注释&#34;&gt;注释
 &lt;/h3&gt;&lt;h4 id=&#34;小技巧&#34;&gt;小技巧
-&lt;/h4&gt;&lt;p&gt;原来&amp;rsquo;Ctrl&amp;rsquo; + &amp;lsquo;/&amp;lsquo;在编辑器经常可以注释一行，才知道&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;原来&lt;code&gt;Ctrl&lt;/code&gt; + &lt;code&gt;/&lt;/code&gt;在编辑器经常可以注释一行，才知道&lt;/p&gt;
 &lt;h4 id=&#34;文档注释&#34;&gt;文档注释
 &lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -259,7 +259,7 @@ M个数据需要&lt;strong&gt;二进制位数&lt;/strong&gt;$\lceil log_2(M)\rce
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;和多行注释相似，但是通过工具可以生成有关源代码文档。&lt;/p&gt;
-&lt;p&gt;&amp;lsquo;print&amp;rsquo;输出的是不换行的，而&amp;rsquo;println&amp;rsquo;换行，这有点像&lt;strong&gt;C&lt;/strong&gt;语言的&amp;rsquo;printf&amp;rsquo;和&amp;rsquo;puts&amp;rsquo;。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;print&lt;/code&gt;输出的是不换行的，而&lt;code&gt;println&lt;/code&gt;换行，这有点像&lt;strong&gt;C&lt;/strong&gt;语言的&lt;code&gt;printf&lt;/code&gt;和&lt;code&gt;puts&lt;/code&gt;。&lt;/p&gt;
 </description>
         </item>
         <item>

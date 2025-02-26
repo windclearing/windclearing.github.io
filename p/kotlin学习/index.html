@@ -307,9 +307,9 @@
 </h4><p>与C语言表示相同</p>
 <h3 id="values-and-variables--值和变量">Values and variables  值和变量
 </h3><ul>
-<li>&lsquo;val&rsquo;(value) 声明一个只读变量</li>
-<li>&lsquo;var&rsquo;(variable) 声明一个可变变量</li>
-<li>&lsquo;const&rsquo;(with val) 用于编译时已知的变量</li>
+<li><code>val</code>(value) 声明一个只读变量</li>
+<li><code>var</code>(variable) 声明一个可变变量</li>
+<li><code>const</code>(with val) 用于编译时已知的变量</li>
 </ul>
 <p>e.g.</p>
 <div class="highlight"><div class="chroma">
@@ -320,13 +320,13 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    val language = &#34;kotlin&#34;
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>&lsquo;val&rsquo; 不可变，可读性更强，尽可能使用 &lsquo;val&rsquo;</p>
-<p>&lsquo;val&rsquo; 可以赋值给 &lsquo;var&rsquo;</p>
+</div><p><code>val</code> 不可变，可读性更强，尽可能使用 <code>val</code></p>
+<p><code>val</code> 可以赋值给 <code>var</code></p>
 <p>常量不能直接被赋值修改，但是可以通过其他方式修改内容。</p>
-<p>&lsquo;val&rsquo; 与<strong>Java</strong>中的&rsquo;final&rsquo;相似：都禁止为变量重新赋值，但允许更改对象的内部状态。</p>
-<p>但是&rsquo;const val&rsquo;不太行。</p>
+<p><code>val</code> 与<strong>Java</strong>中的<code>final</code>相似：都禁止为变量重新赋值，但允许更改对象的内部状态。</p>
+<p>但是<code>const val</code>不太行。</p>
 <p>变量命名法建议采用驼峰命名法<strong>camelCase</strong>：从第二个单词开始每词首字母大写。</p>
-<p>而对于&rsquo;const val&rsquo;声明的常量，Kotlin 社区通常建议使用<strong>全大写字母</strong>，单词之间用 下划线分隔。</p>
+<p>而对于<code>const val</code>声明的常量，Kotlin 社区通常建议使用<strong>全大写字母</strong>，单词之间用 下划线分隔。</p>
 <h3 id="data-types--数据类型">Data types  数据类型
 </h3><h4 id="type-inference--类型推理">type inference  类型推理
 </h4><p><strong>kotlin</strong>会在初始化时自动确定变量类型，称作类型推理。</p>
@@ -345,7 +345,7 @@
 <p>如果看到<strong>type mismatch</strong>错误，则意味着为变量分配了不合适的内容。变量类型不能自动更改。</p>
 <h3 id="注释">注释
 </h3><h4 id="小技巧">小技巧
-</h4><p>原来&rsquo;Ctrl&rsquo; + &lsquo;/&lsquo;在编辑器经常可以注释一行，才知道</p>
+</h4><p>原来<code>Ctrl</code> + <code>/</code>在编辑器经常可以注释一行，才知道</p>
 <h4 id="文档注释">文档注释
 </h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -370,7 +370,7 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>和多行注释相似，但是通过工具可以生成有关源代码文档。</p>
-<p>&lsquo;print&rsquo;输出的是不换行的，而&rsquo;println&rsquo;换行，这有点像<strong>C</strong>语言的&rsquo;printf&rsquo;和&rsquo;puts&rsquo;。</p>
+<p><code>print</code>输出的是不换行的，而<code>println</code>换行，这有点像<strong>C</strong>语言的<code>printf</code>和<code>puts</code>。</p>
 
 </section>
 

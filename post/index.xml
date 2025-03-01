@@ -26,11 +26,10 @@
 &lt;/ul&gt;
 &lt;h2 id=&#34;通信&#34;&gt;通信
 &lt;/h2&gt;&lt;p&gt;信息的传递与交流。&lt;/p&gt;
-&lt;p&gt;$通信 \begin{cases} 模拟通信  \ 数字通信  \end{cases}$&lt;/p&gt;
-&lt;p&gt;现代通信基本特征是数字化&lt;/p&gt;
+$$通信 \begin{cases} 模拟通信  \\ 数字通信  \end{cases}$$&lt;p&gt;现代通信基本特征是数字化&lt;/p&gt;
 &lt;p&gt;瞬时幅值均离散&lt;/p&gt;
-&lt;h4 id=&#34;数字通信的优点&#34;&gt;数字通信的优点
-&lt;/h4&gt;&lt;p&gt;抗干扰性能好等多条优点&lt;/p&gt;
+&lt;h3 id=&#34;数字通信的优点&#34;&gt;数字通信的优点
+&lt;/h3&gt;&lt;p&gt;抗干扰性能好等多条优点&lt;/p&gt;
 &lt;p&gt;基础——微电子技术&lt;/p&gt;
 &lt;p&gt;核心——计算机基础&lt;/p&gt;
 &lt;p&gt;光纤通信基础——光子技术&lt;/p&gt;

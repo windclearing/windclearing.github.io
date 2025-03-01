@@ -26,7 +26,8 @@
 &lt;/ul&gt;
 &lt;h2 id=&#34;通信&#34;&gt;通信
 &lt;/h2&gt;&lt;p&gt;信息的传递与交流。&lt;/p&gt;
-$$通信 \begin{cases} 模拟通信  \\ 数字通信  \end{cases}$$&lt;p&gt;现代通信基本特征是数字化&lt;/p&gt;
+&lt;p&gt;$$通信 \begin{cases} 模拟通信  \ 数字通信  \end{cases}$$&lt;/p&gt;
+&lt;p&gt;现代通信基本特征是数字化&lt;/p&gt;
 &lt;p&gt;瞬时幅值均离散&lt;/p&gt;
 &lt;h3 id=&#34;数字通信的优点&#34;&gt;数字通信的优点
 &lt;/h3&gt;&lt;p&gt;抗干扰性能好等多条优点&lt;/p&gt;
@@ -53,12 +54,14 @@ $$通信 \begin{cases} 模拟通信  \\ 数字通信  \end{cases}$$&lt;p&gt;现�
 &lt;h2 id=&#34;信息的度量&#34;&gt;信息的度量
 &lt;/h2&gt;&lt;p&gt;不确定性大小的度量&lt;/p&gt;
 &lt;p&gt;概率空间用$[X,p(x)]$表示&lt;/p&gt;
-$$\begin{bmatrix} X  \\ p(x)  \end{bmatrix} = \begin{bmatrix} x_1 &amp; x_2 &amp; ... &amp; x_n  \\ p(x_1)  &amp; p(x_2) &amp; ... &amp;p(x_n)\end{bmatrix} $$&lt;h3 id=&#34;自信息&#34;&gt;自信息
+&lt;p&gt;离散情况下
+$$\begin{bmatrix} X  \ p(x)  \end{bmatrix} = \begin{bmatrix} x_1 &amp;amp; x_2 &amp;amp; &amp;hellip; &amp;amp; x_n  \ p(x_1)  &amp;amp; p(x_2) &amp;amp; &amp;hellip; &amp;amp;p(x_n)\end{bmatrix} $$&lt;/p&gt;
+&lt;h3 id=&#34;自信息&#34;&gt;自信息
 &lt;/h3&gt;&lt;p&gt;$I = \log _2{[1/P(x)]}$，此时单位为比特（bit）&lt;/p&gt;
 &lt;p&gt;概率越大，自信息越小。&lt;/p&gt;
 &lt;h3 id=&#34;信息熵&#34;&gt;信息熵
 &lt;/h3&gt;&lt;h4 id=&#34;平均信息量&#34;&gt;平均信息量
-&lt;/h4&gt;$$H(X) = -\sum_{i = 1} ^ n p(x_i)\log_2 {p(x_i)}$$&lt;p&gt;
+&lt;/h4&gt;&lt;p&gt;$$H(X) = -\sum_{i = 1} ^ n p(x_i)\log_2 {p(x_i)}$$
 离散信源的每一符号等概率出现时，即$P(x_i) = \frac {1}{n}$时，此时熵最大，最大熵为$\log_2 n$(bit/符号)&lt;/p&gt;
 &lt;h2 id=&#34;信号&#34;&gt;信号
 &lt;/h2&gt;&lt;p&gt;通过消息来表示&lt;/p&gt;
@@ -225,6 +228,115 @@ M个数据需要&lt;strong&gt;二进制位数&lt;/strong&gt;$\lceil log_2(M)\rce
 </description>
         </item>
         <item>
+        <title>Kotlin学习</title>
+        <link>https://windclearing.github.io/p/kotlin%E5%AD%A6%E4%B9%A0/</link>
+        <pubDate>Wed, 19 Feb 2025 21:06:33 +0800</pubDate>
+        
+        <guid>https://windclearing.github.io/p/kotlin%E5%AD%A6%E4%B9%A0/</guid>
+        <description>&lt;h1 id=&#34;从零开始认识一门新语言-kotlin&#34;&gt;从零开始认识一门新语言-kotlin
+&lt;/h1&gt;&lt;h2 id=&#34;序言&#34;&gt;序言
+&lt;/h2&gt;&lt;p&gt;这学期选了一门专业选修课《Android技术开发基础》，老师已经提前在群里要求掌握kotlin语法了qaq&lt;br&gt;
+对于我这种大一C语言都没学会多少的基础不好的同学来说，没有面向对象基础就选修这门课显然无异于自寻死路&lt;br&gt;
+不过在Android平台上开发一些小应用也是我之前想学习去做的一件事情&lt;br&gt;
+正好这学期不怎么在乎绩点了（反正早就寄了&lt;br&gt;
+希望学习顺利！&lt;/p&gt;
+&lt;h2 id=&#34;初步了解kotlin&#34;&gt;初步了解kotlin
+&lt;/h2&gt;&lt;p&gt;kotlin似乎是脱胎于java的一个Google目前在Android开发中主推的语言。可惜我没有任何java或者面向对象的基础=_=&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;似乎还完全兼容java(?&lt;/p&gt;
+&lt;h2 id=&#34;环境配置&#34;&gt;环境配置
+&lt;/h2&gt;&lt;p&gt;我下载了&lt;strong&gt;IntelliJ IDEA&lt;/strong&gt;社区版，由于对英文的不熟悉，一直没能找到汉语插件，最后发现目前的设置已经可以直接切换语言为中文。。。
+似乎没有遇到什么其他疑难问题。&lt;/p&gt;
+&lt;h2 id=&#34;hello-world&#34;&gt;Hello World
+&lt;/h2&gt;&lt;p&gt;新建项目后自动生成了代码，看上去很简单，有点像python（我怎么还没学python&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;fun main() {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    println(&amp;#34;Hello World!&amp;#34;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;似乎没什么问题。&lt;/p&gt;
+&lt;h2 id=&#34;基础语法&#34;&gt;基础语法
+&lt;/h2&gt;&lt;p&gt;翻阅官方文档，我找到了Jetbrain的免费课程，开始学习基础语法(写一些认为自己不太清楚的部分)&lt;/p&gt;
+&lt;h3 id=&#34;basic-literals-numbers-strings-and-characters-整数字符和字符串&#34;&gt;Basic literals: numbers, strings and characters 整数，字符和字符串
+&lt;/h3&gt;&lt;h4 id=&#34;整数&#34;&gt;整数
+&lt;/h4&gt;&lt;p&gt;整数可以用下划线分块，下划线不能在开头结尾&lt;/p&gt;
+&lt;h4 id=&#34;字符字符串&#34;&gt;字符&amp;amp;字符串
+&lt;/h4&gt;&lt;p&gt;与C语言表示相同&lt;/p&gt;
+&lt;h3 id=&#34;values-and-variables--值和变量&#34;&gt;Values and variables  值和变量
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;val&lt;/code&gt;(value) 声明一个只读变量&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;var&lt;/code&gt;(variable) 声明一个可变变量&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;const&lt;/code&gt;(with val) 用于编译时已知的变量&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;e.g.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    val language = &amp;#34;kotlin&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;val&lt;/code&gt; 不可变，可读性更强，尽可能使用 &lt;code&gt;val&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;val&lt;/code&gt; 可以赋值给 &lt;code&gt;var&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;常量不能直接被赋值修改，但是可以通过其他方式修改内容。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;val&lt;/code&gt; 与&lt;strong&gt;Java&lt;/strong&gt;中的&lt;code&gt;final&lt;/code&gt;相似：都禁止为变量重新赋值，但允许更改对象的内部状态。&lt;/p&gt;
+&lt;p&gt;但是&lt;code&gt;const val&lt;/code&gt;不太行。&lt;/p&gt;
+&lt;p&gt;变量命名法建议采用驼峰命名法&lt;strong&gt;camelCase&lt;/strong&gt;：从第二个单词开始每词首字母大写。&lt;/p&gt;
+&lt;p&gt;而对于&lt;code&gt;const val&lt;/code&gt;声明的常量，Kotlin 社区通常建议使用&lt;strong&gt;全大写字母&lt;/strong&gt;，单词之间用 下划线分隔。&lt;/p&gt;
+&lt;h3 id=&#34;data-types--数据类型&#34;&gt;Data types  数据类型
+&lt;/h3&gt;&lt;h4 id=&#34;type-inference--类型推理&#34;&gt;type inference  类型推理
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;kotlin&lt;/strong&gt;会在初始化时自动确定变量类型，称作类型推理。&lt;/p&gt;
+&lt;p&gt;也可以自行指定类型，如&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;val text: String = &amp;#34;Hello World!&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;val n: Int = 1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;声明变量时必须有类型，即类型推理或自行指定类型。&lt;/p&gt;
+&lt;p&gt;如果看到&lt;strong&gt;type mismatch&lt;/strong&gt;错误，则意味着为变量分配了不合适的内容。变量类型不能自动更改。&lt;/p&gt;
+&lt;h3 id=&#34;注释&#34;&gt;注释
+&lt;/h3&gt;&lt;h4 id=&#34;小技巧&#34;&gt;小技巧
+&lt;/h4&gt;&lt;p&gt;原来&lt;code&gt;Ctrl&lt;/code&gt; + &lt;code&gt;/&lt;/code&gt;在编辑器经常可以注释一行，才知道&lt;/p&gt;
+&lt;h4 id=&#34;文档注释&#34;&gt;文档注释
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-mysql&#34; data-lang=&#34;mysql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/**
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; * The `main` function accepts string arguments from outside.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; *
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; * @param args arguments from the command line.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; */&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fun&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Array&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;//&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;do&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;something&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;和多行注释相似，但是通过工具可以生成有关源代码文档。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;print&lt;/code&gt;输出的是不换行的，而&lt;code&gt;println&lt;/code&gt;换行，这有点像&lt;strong&gt;C&lt;/strong&gt;语言的&lt;code&gt;printf&lt;/code&gt;和&lt;code&gt;puts&lt;/code&gt;。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Hello world!</title>
         <link>https://windclearing.github.io/p/hello-world/</link>
         <pubDate>Mon, 10 Feb 2025 15:37:31 +0800</pubDate>
@@ -259,6 +371,7 @@ M个数据需要&lt;strong&gt;二进制位数&lt;/strong&gt;$\lceil log_2(M)\rce
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;其他的操作尚在学习当中，目前完全不了解&lt;strong&gt;qwq&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Ctrl&lt;/code&gt; + &lt;code&gt;Shift&lt;/code&gt; + &lt;code&gt;V&lt;/code&gt; 可以预览md文件！&lt;/p&gt;
 &lt;p&gt;很多 &lt;strong&gt;markdown&lt;/strong&gt; 语法也记不住www&lt;/p&gt;
 &lt;h5 id=&#34;感谢教程-httpsratmomogithubio&#34;&gt;感谢教程 &lt;a class=&#34;link&#34; href=&#34;https://ratmomo.github.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://ratmomo.github.io/&lt;/a&gt;

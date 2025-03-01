@@ -7,7 +7,79 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Example Person</copyright>
-        <lastBuildDate>Mon, 24 Feb 2025 12:20:55 +0800</lastBuildDate><atom:link href="https://windclearing.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 02 Mar 2025 01:51:56 +0800</lastBuildDate><atom:link href="https://windclearing.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>网络与通信</title>
+        <link>https://windclearing.github.io/p/%E7%BD%91%E7%BB%9C%E4%B8%8E%E9%80%9A%E4%BF%A1/</link>
+        <pubDate>Sun, 02 Mar 2025 01:51:56 +0800</pubDate>
+        
+        <guid>https://windclearing.github.io/p/%E7%BD%91%E7%BB%9C%E4%B8%8E%E9%80%9A%E4%BF%A1/</guid>
+        <description>&lt;h1 id=&#34;chapter-1-现代通信及应用概述&#34;&gt;Chapter 1 现代通信及应用概述
+&lt;/h1&gt;&lt;h2 id=&#34;通信发展&#34;&gt;通信发展
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;古代通信&lt;/li&gt;
+&lt;li&gt;近代通信
+电报与电话
+无线电通信
+广播与电视&lt;/li&gt;
+&lt;li&gt;现代通信
+彩电，商用卫星，光纤，数字网络，蜂窝电话&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;通信&#34;&gt;通信
+&lt;/h2&gt;&lt;p&gt;信息的传递与交流。&lt;/p&gt;
+&lt;p&gt;$通信 \begin{cases} 模拟通信  \ 数字通信  \end{cases}$&lt;/p&gt;
+&lt;p&gt;现代通信基本特征是数字化&lt;/p&gt;
+&lt;p&gt;瞬时幅值均离散&lt;/p&gt;
+&lt;h4 id=&#34;数字通信的优点&#34;&gt;数字通信的优点
+&lt;/h4&gt;&lt;p&gt;抗干扰性能好等多条优点&lt;/p&gt;
+&lt;p&gt;基础——微电子技术&lt;/p&gt;
+&lt;p&gt;核心——计算机基础&lt;/p&gt;
+&lt;p&gt;光纤通信基础——光子技术&lt;/p&gt;
+&lt;p&gt;卫星通信基础——空间技术&lt;/p&gt;
+&lt;h2 id=&#34;信息时代&#34;&gt;信息时代
+&lt;/h2&gt;&lt;h2 id=&#34;信息技术与信息化&#34;&gt;信息技术与信息化
+&lt;/h2&gt;&lt;h1 id=&#34;chapter-2-信息与信号&#34;&gt;Chapter 2 信息与信号
+&lt;/h1&gt;&lt;p&gt;通信的目的：有效、可靠地获取、传递和交换消息钟还所包含的信息&lt;/p&gt;
+&lt;h2 id=&#34;信息&#34;&gt;信息？
+&lt;/h2&gt;&lt;p&gt;信息是事物运行的状态和方式&lt;/p&gt;
+&lt;p&gt;具有特殊性、普遍性、广泛性、时效性和实效性。&lt;/p&gt;
+&lt;p&gt;信源-&amp;gt;信道-&amp;gt;信宿&lt;/p&gt;
+&lt;p&gt;消息传递是一个不知到知的过程，少到多，不确定到部分确定/全部确定&lt;/p&gt;
+&lt;p&gt;信息是事物运动状态或存在方式的不确定性的描述&lt;/p&gt;
+&lt;p&gt;消息是表达信息的工具，客体，具体&lt;/p&gt;
+&lt;p&gt;通信：消除不确定性，获取信息的过程&lt;/p&gt;
+&lt;p&gt;消息：语音、文字……&lt;/p&gt;
+&lt;p&gt;信息：消息的有效内容 、&lt;/p&gt;
+&lt;p&gt;信号：消息的载体&lt;/p&gt;
+&lt;p&gt;完成通信过程所需的电子设备和信道的总体：通信系统&lt;/p&gt;
+&lt;h2 id=&#34;信息的度量&#34;&gt;信息的度量
+&lt;/h2&gt;&lt;p&gt;不确定性大小的度量&lt;/p&gt;
+&lt;p&gt;概率空间用$[X,p(x)]$表示&lt;/p&gt;
+$$\begin{bmatrix} X  \\ p(x)  \end{bmatrix} = \begin{bmatrix} x_1 &amp; x_2 &amp; ... &amp; x_n  \\ p(x_1)  &amp; p(x_2) &amp; ... &amp;p(x_n)\end{bmatrix} $$&lt;h3 id=&#34;自信息&#34;&gt;自信息
+&lt;/h3&gt;&lt;p&gt;$I = \log _2{[1/P(x)]}$，此时单位为比特（bit）&lt;/p&gt;
+&lt;p&gt;概率越大，自信息越小。&lt;/p&gt;
+&lt;h3 id=&#34;信息熵&#34;&gt;信息熵
+&lt;/h3&gt;&lt;h4 id=&#34;平均信息量&#34;&gt;平均信息量
+&lt;/h4&gt;$$H(X) = -\sum_{i = 1} ^ n p(x_i)\log_2 {p(x_i)}$$&lt;p&gt;
+离散信源的每一符号等概率出现时，即$P(x_i) = \frac {1}{n}$时，此时熵最大，最大熵为$\log_2 n$(bit/符号)&lt;/p&gt;
+&lt;h2 id=&#34;信号&#34;&gt;信号
+&lt;/h2&gt;&lt;p&gt;通过消息来表示&lt;/p&gt;
+&lt;p&gt;消息的载体，通信系统中传递的是信号&lt;/p&gt;
+&lt;h3 id=&#34;分类&#34;&gt;分类
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;确知信号（可用确定时间函数表示）&amp;amp; 随机信号（写不出明确的数学表达式，只知道取某值概率）&lt;/li&gt;
+&lt;li&gt;周期信号 &amp;amp; 非周期信号&lt;/li&gt;
+&lt;li&gt;模拟信号（时间上连续离散皆可，幅度、频率或相位随信号连续变化）&amp;amp; 数字信号（时间上离散，幅度取值也离散）
+A/D, D/A 转换器可以实现数模互相转换&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;一般特性&#34;&gt;一般特性
+&lt;/h3&gt;&lt;h4 id=&#34;时域特性&#34;&gt;时域特性
+&lt;/h4&gt;&lt;p&gt;信号电压或电流随时间的变化关系&lt;/p&gt;
+&lt;h4 id=&#34;频域特性&#34;&gt;频域特性
+&lt;/h4&gt;&lt;p&gt;信号频率范围（傅里叶变换后的正弦信号）&lt;/p&gt;
+&lt;p&gt;用$F(\omega)$表示时域信号$f(t)$的频谱&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>数字逻辑</title>
         <link>https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/</link>
         <pubDate>Mon, 24 Feb 2025 12:20:55 +0800</pubDate>

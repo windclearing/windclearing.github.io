@@ -223,8 +223,161 @@ M个数据需要&lt;strong&gt;二进制位数&lt;/strong&gt;$\lceil log_2(M)\rce
 &lt;/ul&gt;
 &lt;h2 id=&#34;字符编码&#34;&gt;字符编码
 &lt;/h2&gt;&lt;h3 id=&#34;ascii码&#34;&gt;ASCII码
-&lt;/h3&gt;&lt;p&gt;美国信息交换标准编码&lt;br&gt;
-128个字符&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;美国信息交换标准编码&lt;/p&gt;
+&lt;p&gt;128个字符&lt;/p&gt;
+&lt;h3 id=&#34;unicode&#34;&gt;Unicode
+&lt;/h3&gt;&lt;p&gt;万国码、统一码
+所有语言 中的字符与文字
+对字符规定了唯一代码点， U+0030 表示0
+不同方案：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;UTF-8：1~4字节，与ASCII兼容
+&lt;img src=&#34;https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-1.png&#34;
+	width=&#34;1697&#34;
+	height=&#34;879&#34;
+	srcset=&#34;https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-1_hu_7493def0acf7b651.png 480w, https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-1_hu_6edc96bccee4cb27.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2-1&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;193&#34;
+		data-flex-basis=&#34;463px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;UTF-16：2或4字节&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;UTF-32：4字节&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;校验位&#34;&gt;校验位
+&lt;/h3&gt;&lt;p&gt;检测数据传输中可能存在的错误&lt;/p&gt;
+&lt;p&gt;增加1位：表示编码中&lt;code&gt;1&lt;/code&gt;的个数是奇数还是偶数&lt;/p&gt;
+&lt;p&gt;无法确定偶数位，无法检测偶数个位出错（概率小）&lt;/p&gt;
+&lt;p&gt;奇校验位：奇数个&lt;code&gt;1&lt;/code&gt;为 0；偶校验反之。&lt;/p&gt;
+&lt;h1 id=&#34;二布尔代数&#34;&gt;二、布尔代数
+&lt;/h1&gt;&lt;h2 id=&#34;二值逻辑&#34;&gt;二值逻辑
+&lt;/h2&gt;&lt;p&gt;定义：描述&lt;strong&gt;二值变量&lt;/strong&gt;以及对其施加的&lt;strong&gt;逻辑运算&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;变量取值为0或1&lt;/p&gt;
+&lt;p&gt;基本逻辑运算：与或非&lt;/p&gt;
+&lt;p&gt;类似二进制计算&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;与和乘&lt;/li&gt;
+&lt;li&gt;或和加&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;真值表&lt;/p&gt;
+&lt;h2 id=&#34;逻辑门&#34;&gt;逻辑门
+&lt;/h2&gt;&lt;h3 id=&#34;定义-3&#34;&gt;定义
+&lt;/h3&gt;&lt;p&gt;处理一个或多个输入，产生一个输出信号电子电路&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-2.png&#34;
+	width=&#34;1437&#34;
+	height=&#34;880&#34;
+	srcset=&#34;https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-2_hu_24c96e7ddf97e954.png 480w, https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-2_hu_9c685487f81ef135.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2-2&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;163&#34;
+		data-flex-basis=&#34;391px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;定时图&#34;&gt;定时图
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-3.png&#34;
+	width=&#34;1601&#34;
+	height=&#34;1009&#34;
+	srcset=&#34;https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-3_hu_bdea06c43881bd6a.png 480w, https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-3_hu_a947ad8114d81cd.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2-3&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;158&#34;
+		data-flex-basis=&#34;380px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;延时&#34;&gt;延时
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-4.png&#34;
+	width=&#34;1577&#34;
+	height=&#34;1126&#34;
+	srcset=&#34;https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-4_hu_f3da587d8b43d378.png 480w, https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-4_hu_33d3f02552bad9c0.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2-4&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;140&#34;
+		data-flex-basis=&#34;336px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;其他门&#34;&gt;其他门
+&lt;/h3&gt;&lt;p&gt;与非、或非、异或等&lt;/p&gt;
+&lt;h2 id=&#34;布尔代数&#34;&gt;布尔代数
+&lt;/h2&gt;&lt;h3 id=&#34;定义-4&#34;&gt;定义
+&lt;/h3&gt;&lt;p&gt;布尔代数是处理二进制变量和逻辑运算的代数方法&lt;/p&gt;
+&lt;p&gt;布尔表达式是由二进制变量，常量0和1，逻辑运算符和括号组成的代数运算式
+$$D\bar X + A$$&lt;/p&gt;
+&lt;p&gt;布尔函数是一个布尔等式，由函数变量、等号和布尔表达式组成：
+$$L(D,X,A) = D\bar X + A$$
+布尔函数，真值表，逻辑电路图三者等价，仅&lt;/p&gt;
+&lt;h3 id=&#34;恒等式&#34;&gt;恒等式
+&lt;/h3&gt;&lt;h4 id=&#34;对偶原则&#34;&gt;对偶原则
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;0和1对偶&lt;/li&gt;
+&lt;li&gt;与和或对偶&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;此处应有17个公式。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;德摩根定理&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;与的非等于非的或，或的非等于非的与&lt;/p&gt;
+&lt;h4 id=&#34;代数运算&#34;&gt;代数运算
+&lt;/h4&gt;&lt;p&gt;利用代数性质对布尔函数化简，可简化电路&lt;/p&gt;
+&lt;h4 id=&#34;反函数&#34;&gt;反函数
+&lt;/h4&gt;&lt;p&gt;F的反函数：真值表中将F值把1和0互换&lt;/p&gt;
+&lt;p&gt;函数取反方法：德摩根定理/对偶式+变量取反&lt;/p&gt;
+&lt;h4 id=&#34;标准形式&#34;&gt;标准形式
+&lt;/h4&gt;&lt;h5 id=&#34;最小项和最大项&#34;&gt;最小项和最大项
+&lt;/h5&gt;&lt;p&gt;所有变量以原变量或反变量按序出现，这样的乘积项叫做&lt;strong&gt;最小项&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;n个变量，共有$2^n$个不同的最小项&lt;/p&gt;
+&lt;p&gt;对应变量的1个组合。对该变量组合最小项为1&lt;/p&gt;
+&lt;p&gt;变量组合对应的二进制值为最小项序号&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;所有变量以原变量或反变量按序出现，这样的求和项叫做&lt;strong&gt;最大项&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;n个变量，共有$2^n$个不同的最大项&lt;/p&gt;
+&lt;p&gt;对应变量的1个组合。对该变量组合最大项为0&lt;/p&gt;
+&lt;p&gt;变量组合对应的二进制值为最大项序号&lt;/p&gt;
+&lt;h5 id=&#34;最小项之和和最大项之积&#34;&gt;最小项之和和最大项之积
+&lt;/h5&gt;&lt;p&gt;&lt;strong&gt;最小项之和&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;真值表中所有函数取值为1的最小项之和&lt;/p&gt;
+&lt;p&gt;$$F = \bar X \bar Y \bar Z + \bar X Y\bar Z + X\bar Y Z +XYZ=m_0 +m_2+m_5+m_7$$
+缩写
+$$F(X,Y,Z) =\sum m(0,2,5,7)$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;最大项之积&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;真值表中所有函数取值为0的最大项之积&lt;/p&gt;
+&lt;p&gt;也可反函数最小项之和取反得到&lt;/p&gt;
+&lt;p&gt;$$F = \overline{m_1+m_3+m_4+m_6} = \bar m_1 \cdot \bar m_3 \cdot \bar m_4 \cdot \bar m_6= M_1\cdot M_3 \cdot M_4 \cdot M_6 = (X+Y+\bar Z)(X+\bar Y + \bar Z)(\bar X + Y + Z)(\bar X + \bar Y + Z)$$
+$$F(X,Y,Z)=\prod M(1,3,4,6)$$&lt;/p&gt;
+&lt;h5 id=&#34;积之和和和之积&#34;&gt;积之和和和之积
+&lt;/h5&gt;&lt;p&gt;积之和&lt;br&gt;
+先与门后或门
+和之积&lt;br&gt;
+先或门后与门&lt;/p&gt;
+&lt;p&gt;均为两级电路&lt;/p&gt;
+&lt;p&gt;不同的标准形公式复杂度不同&lt;/p&gt;
+&lt;p&gt;对应不同的电路实现&lt;/p&gt;
+&lt;h4 id=&#34;卡诺图&#34;&gt;卡诺图
+&lt;/h4&gt;&lt;h5 id=&#34;成本标准&#34;&gt;成本标准
+&lt;/h5&gt;&lt;p&gt;&lt;strong&gt;成本标准&lt;/strong&gt;：衡量电路复杂度，优化目标&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;文字成本&lt;/strong&gt;：逻辑图对应的表达式中文字个数&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;门输入成本（G）&lt;/strong&gt;：逻辑图中门的输入端个数，不算非门&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;带非门的门输入成本（GN）&lt;/strong&gt;：逻辑图中门的输入端个数，算非门&lt;/p&gt;
 </description>
         </item>
         <item>

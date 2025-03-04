@@ -213,11 +213,46 @@
         </div>
     </header>
         
-    
-    <section class="article-list--compact">
+    <section id="post-container" class="article-list--compact">
         
     </section>
-<footer class="site-footer">
+    
+    <div id="load-more" data-next="">
+        加载更多...
+    </div>
+    
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let loadMore = document.getElementById("load-more");
+        if (!loadMore.dataset.next) return;
+    
+        let observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                observer.unobserve(loadMore);
+                fetch(loadMore.dataset.next)
+                    .then((res) => res.text())
+                    .then((html) => {
+                        let parser = new DOMParser();
+                        let doc = parser.parseFromString(html, "text/html");
+                        let posts = doc.querySelector("#post-container").innerHTML;
+                        let nextPage = doc.querySelector("#load-more").dataset.next;
+    
+                        document.getElementById("post-container").insertAdjacentHTML("beforeend", posts);
+                        if (nextPage) {
+                            loadMore.dataset.next = nextPage;
+                            observer.observe(loadMore);
+                        } else {
+                            loadMore.remove();
+                        }
+                    });
+            }
+        });
+    
+        observer.observe(loadMore);
+    });
+    </script>
+    
+    <footer class="site-footer">
     <section class="copyright">
         &copy; 
         

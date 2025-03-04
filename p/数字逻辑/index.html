@@ -221,6 +221,34 @@
     <li><a href="#字符编码">字符编码</a>
       <ol>
         <li><a href="#ascii码">ASCII码</a></li>
+        <li><a href="#unicode">Unicode</a></li>
+        <li><a href="#校验位">校验位</a></li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li><a href="#二值逻辑">二值逻辑</a></li>
+    <li><a href="#逻辑门">逻辑门</a>
+      <ol>
+        <li><a href="#定义-3">定义</a></li>
+        <li><a href="#定时图">定时图</a></li>
+        <li><a href="#延时">延时</a></li>
+        <li><a href="#其他门">其他门</a></li>
+      </ol>
+    </li>
+    <li><a href="#布尔代数">布尔代数</a>
+      <ol>
+        <li><a href="#定义-4">定义</a></li>
+        <li><a href="#恒等式">恒等式</a>
+          <ol>
+            <li><a href="#对偶原则">对偶原则</a></li>
+            <li><a href="#代数运算">代数运算</a></li>
+            <li><a href="#反函数">反函数</a></li>
+            <li><a href="#标准形式">标准形式</a></li>
+            <li><a href="#卡诺图">卡诺图</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
   </ol>
@@ -279,7 +307,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 2 分钟
+                    阅读时长: 4 分钟
                 </time>
             </div>
         
@@ -430,8 +458,161 @@ M个数据需要<strong>二进制位数</strong>$\lceil log_2(M)\rceil$</li>
 </ul>
 <h2 id="字符编码">字符编码
 </h2><h3 id="ascii码">ASCII码
-</h3><p>美国信息交换标准编码<br>
-128个字符</p>
+</h3><p>美国信息交换标准编码</p>
+<p>128个字符</p>
+<h3 id="unicode">Unicode
+</h3><p>万国码、统一码
+所有语言 中的字符与文字
+对字符规定了唯一代码点， U+0030 表示0
+不同方案：</p>
+<ul>
+<li>
+<p>UTF-8：1~4字节，与ASCII兼容
+<img src="/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-1.png"
+	width="1697"
+	height="879"
+	srcset="/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-1_hu_7493def0acf7b651.png 480w, /p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-1_hu_6edc96bccee4cb27.png 1024w"
+	loading="lazy"
+	
+		alt="2-1"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="193"
+		data-flex-basis="463px"
+	
+></p>
+</li>
+<li>
+<p>UTF-16：2或4字节</p>
+</li>
+<li>
+<p>UTF-32：4字节</p>
+</li>
+</ul>
+<h3 id="校验位">校验位
+</h3><p>检测数据传输中可能存在的错误</p>
+<p>增加1位：表示编码中<code>1</code>的个数是奇数还是偶数</p>
+<p>无法确定偶数位，无法检测偶数个位出错（概率小）</p>
+<p>奇校验位：奇数个<code>1</code>为 0；偶校验反之。</p>
+<h1 id="二布尔代数">二、布尔代数
+</h1><h2 id="二值逻辑">二值逻辑
+</h2><p>定义：描述<strong>二值变量</strong>以及对其施加的<strong>逻辑运算</strong></p>
+<p>变量取值为0或1</p>
+<p>基本逻辑运算：与或非</p>
+<p>类似二进制计算</p>
+<ul>
+<li>与和乘</li>
+<li>或和加</li>
+</ul>
+<p>真值表</p>
+<h2 id="逻辑门">逻辑门
+</h2><h3 id="定义-3">定义
+</h3><p>处理一个或多个输入，产生一个输出信号电子电路</p>
+<p><img src="/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-2.png"
+	width="1437"
+	height="880"
+	srcset="/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-2_hu_24c96e7ddf97e954.png 480w, /p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-2_hu_9c685487f81ef135.png 1024w"
+	loading="lazy"
+	
+		alt="2-2"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="163"
+		data-flex-basis="391px"
+	
+></p>
+<h3 id="定时图">定时图
+</h3><p><img src="/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-3.png"
+	width="1601"
+	height="1009"
+	srcset="/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-3_hu_bdea06c43881bd6a.png 480w, /p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-3_hu_a947ad8114d81cd.png 1024w"
+	loading="lazy"
+	
+		alt="2-3"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="158"
+		data-flex-basis="380px"
+	
+></p>
+<h3 id="延时">延时
+</h3><p><img src="/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-4.png"
+	width="1577"
+	height="1126"
+	srcset="/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-4_hu_f3da587d8b43d378.png 480w, /p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-4_hu_33d3f02552bad9c0.png 1024w"
+	loading="lazy"
+	
+		alt="2-4"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="140"
+		data-flex-basis="336px"
+	
+></p>
+<h3 id="其他门">其他门
+</h3><p>与非、或非、异或等</p>
+<h2 id="布尔代数">布尔代数
+</h2><h3 id="定义-4">定义
+</h3><p>布尔代数是处理二进制变量和逻辑运算的代数方法</p>
+<p>布尔表达式是由二进制变量，常量0和1，逻辑运算符和括号组成的代数运算式
+$$D\bar X + A$$</p>
+<p>布尔函数是一个布尔等式，由函数变量、等号和布尔表达式组成：
+$$L(D,X,A) = D\bar X + A$$
+布尔函数，真值表，逻辑电路图三者等价，仅</p>
+<h3 id="恒等式">恒等式
+</h3><h4 id="对偶原则">对偶原则
+</h4><ul>
+<li>0和1对偶</li>
+<li>与和或对偶</li>
+</ul>
+<p>此处应有17个公式。</p>
+<p><strong>德摩根定理</strong></p>
+<p>与的非等于非的或，或的非等于非的与</p>
+<h4 id="代数运算">代数运算
+</h4><p>利用代数性质对布尔函数化简，可简化电路</p>
+<h4 id="反函数">反函数
+</h4><p>F的反函数：真值表中将F值把1和0互换</p>
+<p>函数取反方法：德摩根定理/对偶式+变量取反</p>
+<h4 id="标准形式">标准形式
+</h4><h5 id="最小项和最大项">最小项和最大项
+</h5><p>所有变量以原变量或反变量按序出现，这样的乘积项叫做<strong>最小项</strong></p>
+<p>n个变量，共有$2^n$个不同的最小项</p>
+<p>对应变量的1个组合。对该变量组合最小项为1</p>
+<p>变量组合对应的二进制值为最小项序号</p>
+<hr>
+<p>所有变量以原变量或反变量按序出现，这样的求和项叫做<strong>最大项</strong></p>
+<p>n个变量，共有$2^n$个不同的最大项</p>
+<p>对应变量的1个组合。对该变量组合最大项为0</p>
+<p>变量组合对应的二进制值为最大项序号</p>
+<h5 id="最小项之和和最大项之积">最小项之和和最大项之积
+</h5><p><strong>最小项之和</strong></p>
+<p>真值表中所有函数取值为1的最小项之和</p>
+<p>$$F = \bar X \bar Y \bar Z + \bar X Y\bar Z + X\bar Y Z +XYZ=m_0 +m_2+m_5+m_7$$
+缩写
+$$F(X,Y,Z) =\sum m(0,2,5,7)$$</p>
+<p><strong>最大项之积</strong></p>
+<p>真值表中所有函数取值为0的最大项之积</p>
+<p>也可反函数最小项之和取反得到</p>
+<p>$$F = \overline{m_1+m_3+m_4+m_6} = \bar m_1 \cdot \bar m_3 \cdot \bar m_4 \cdot \bar m_6= M_1\cdot M_3 \cdot M_4 \cdot M_6 = (X+Y+\bar Z)(X+\bar Y + \bar Z)(\bar X + Y + Z)(\bar X + \bar Y + Z)$$
+$$F(X,Y,Z)=\prod M(1,3,4,6)$$</p>
+<h5 id="积之和和和之积">积之和和和之积
+</h5><p>积之和<br>
+先与门后或门
+和之积<br>
+先或门后与门</p>
+<p>均为两级电路</p>
+<p>不同的标准形公式复杂度不同</p>
+<p>对应不同的电路实现</p>
+<h4 id="卡诺图">卡诺图
+</h4><h5 id="成本标准">成本标准
+</h5><p><strong>成本标准</strong>：衡量电路复杂度，优化目标</p>
+<p><strong>文字成本</strong>：逻辑图对应的表达式中文字个数</p>
+<p><strong>门输入成本（G）</strong>：逻辑图中门的输入端个数，不算非门</p>
+<p><strong>带非门的门输入成本（GN）</strong>：逻辑图中门的输入端个数，算非门</p>
 
 </section>
 

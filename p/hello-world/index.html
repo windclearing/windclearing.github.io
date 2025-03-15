@@ -279,7 +279,7 @@
 <h5 id="感谢教程-httpsratmomogithubio">感谢教程 <a class="link" href="https://ratmomo.github.io/"  target="_blank" rel="noopener"
     >https://ratmomo.github.io/</a>
 </h5><h1 id="其他笔记">其他笔记
-</h1><p>写笔记还是太累了，根本没有精力记笔记。就暂时不继续更新了。另外评论系统等我有时间再修。</p>
+</h1><p>写笔记还是太累了，根本没有精力记笔记。就暂时不继续更新了。</p>
 
 </section>
 
@@ -338,27 +338,55 @@
      
     
         
-    <div class="disqus-container">
-    
-</div>
-
-<style>
-    .disqus-container {
-        background-color: var(--card-background);
-        border-radius: var(--card-border-radius);
-        box-shadow: var(--shadow-l1);
-        padding: var(--card-padding);
-    }
-</style>
-
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="windclearing/windclearing.github.io"
+    data-repo-id="R_kgDON1KM-A"
+    data-category="Comments"
+    data-category-id="DIC_kwDON1KM-M4CnInA"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    data-lang="zh-CN"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async
+></script>
 <script>
-    window.addEventListener('onColorSchemeChange', (e) => {
-        if (typeof DISQUS == 'object') {
-            DISQUS.reset({
-                reload: true
-            });
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
         }
-    })
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('light');
+            } else {
+                setGiscusTheme('dark_dimmed');
+            }
+        }
+    })();
 </script>
 
     

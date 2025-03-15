@@ -2,30 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://windclearing.github.io/post/</loc>
+    <loc>http://localhost:1313/post/</loc>
     <lastmod>2025-03-02T01:51:56+08:00</lastmod>
   </url><url>
-    <loc>https://windclearing.github.io/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2025-03-02T01:51:56+08:00</lastmod>
   </url><url>
-    <loc>https://windclearing.github.io/p/%E7%BD%91%E7%BB%9C%E4%B8%8E%E9%80%9A%E4%BF%A1/</loc>
+    <loc>http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E4%B8%8E%E9%80%9A%E4%BF%A1/</loc>
     <lastmod>2025-03-02T01:51:56+08:00</lastmod>
   </url><url>
-    <loc>https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/</loc>
+    <loc>http://localhost:1313/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/</loc>
     <lastmod>2025-02-24T12:20:55+08:00</lastmod>
   </url><url>
-    <loc>https://windclearing.github.io/p/kotlin%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>http://localhost:1313/p/kotlin%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2025-02-19T21:06:33+08:00</lastmod>
   </url><url>
-    <loc>https://windclearing.github.io/p/hello-world/</loc>
+    <loc>http://localhost:1313/p/hello-world/</loc>
     <lastmod>2025-02-10T15:37:31+08:00</lastmod>
   </url><url>
-    <loc>https://windclearing.github.io/archives/</loc>
+    <loc>http://localhost:1313/archives/</loc>
   </url><url>
-    <loc>https://windclearing.github.io/search/</loc>
+    <loc>http://localhost:1313/search/</loc>
   </url><url>
-    <loc>https://windclearing.github.io/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
   </url><url>
-    <loc>https://windclearing.github.io/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
   </url>
 </urlset>

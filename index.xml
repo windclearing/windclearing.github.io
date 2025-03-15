@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>风澈</title>
-        <link>https://windclearing.github.io/</link>
+        <link>http://localhost:1313/</link>
         <description>Recent content on 风澈</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Example Person</copyright>
-        <lastBuildDate>Sun, 02 Mar 2025 01:51:56 +0800</lastBuildDate><atom:link href="https://windclearing.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 02 Mar 2025 01:51:56 +0800</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>网络与通信</title>
-        <link>https://windclearing.github.io/p/%E7%BD%91%E7%BB%9C%E4%B8%8E%E9%80%9A%E4%BF%A1/</link>
+        <link>http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E4%B8%8E%E9%80%9A%E4%BF%A1/</link>
         <pubDate>Sun, 02 Mar 2025 01:51:56 +0800</pubDate>
         
-        <guid>https://windclearing.github.io/p/%E7%BD%91%E7%BB%9C%E4%B8%8E%E9%80%9A%E4%BF%A1/</guid>
+        <guid>http://localhost:1313/p/%E7%BD%91%E7%BB%9C%E4%B8%8E%E9%80%9A%E4%BF%A1/</guid>
         <description>&lt;h1 id=&#34;chapter-1-现代通信及应用概述&#34;&gt;Chapter 1 现代通信及应用概述
 &lt;/h1&gt;&lt;h2 id=&#34;通信发展&#34;&gt;通信发展
 &lt;/h2&gt;&lt;ul&gt;
@@ -83,10 +83,10 @@ A/D, D/A 转换器可以实现数模互相转换&lt;/li&gt;
         </item>
         <item>
         <title>数字逻辑</title>
-        <link>https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/</link>
+        <link>http://localhost:1313/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/</link>
         <pubDate>Mon, 24 Feb 2025 12:20:55 +0800</pubDate>
         
-        <guid>https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/</guid>
+        <guid>http://localhost:1313/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/</guid>
         <description>&lt;p&gt;第一门计算机硬件课程&lt;br&gt;
 晶体管-&amp;gt;计算单元&lt;/p&gt;
 &lt;h1 id=&#34;一数字系统&#34;&gt;一、数字系统
@@ -199,10 +199,10 @@ M个数据需要&lt;strong&gt;二进制位数&lt;/strong&gt;$\lceil log_2(M)\rce
 &lt;h3 id=&#34;特点&#34;&gt;特点
 &lt;/h3&gt;&lt;p&gt;计数电路中，位翻转&lt;strong&gt;次数少，功耗低&lt;/strong&gt;&lt;br&gt;
 光学轴角编码器转动中，避免错误编码&lt;br&gt;
-&lt;img src=&#34;https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/p1-gray.png&#34;
+&lt;img src=&#34;http://localhost:1313/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/p1-gray.png&#34;
 	width=&#34;1631&#34;
 	height=&#34;707&#34;
-	srcset=&#34;https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/p1-gray_hu_1c40d1489b6ea449.png 480w, https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/p1-gray_hu_11e246b16113cd72.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/p1-gray_hu_1c40d1489b6ea449.png 480w, http://localhost:1313/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/p1-gray_hu_11e246b16113cd72.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;光学轴角编码器图示&#34;
@@ -233,10 +233,10 @@ M个数据需要&lt;strong&gt;二进制位数&lt;/strong&gt;$\lceil log_2(M)\rce
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;UTF-8：1~4字节，与ASCII兼容
-&lt;img src=&#34;https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-1.png&#34;
+&lt;img src=&#34;http://localhost:1313/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-1.png&#34;
 	width=&#34;1697&#34;
 	height=&#34;879&#34;
-	srcset=&#34;https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-1_hu_7493def0acf7b651.png 480w, https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-1_hu_6edc96bccee4cb27.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-1_hu_7493def0acf7b651.png 480w, http://localhost:1313/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-1_hu_6edc96bccee4cb27.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;2-1&#34;
@@ -274,10 +274,10 @@ M个数据需要&lt;strong&gt;二进制位数&lt;/strong&gt;$\lceil log_2(M)\rce
 &lt;h2 id=&#34;逻辑门&#34;&gt;逻辑门
 &lt;/h2&gt;&lt;h3 id=&#34;定义-3&#34;&gt;定义
 &lt;/h3&gt;&lt;p&gt;处理一个或多个输入，产生一个输出信号电子电路&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-2.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-2.png&#34;
 	width=&#34;1437&#34;
 	height=&#34;880&#34;
-	srcset=&#34;https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-2_hu_24c96e7ddf97e954.png 480w, https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-2_hu_9c685487f81ef135.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-2_hu_24c96e7ddf97e954.png 480w, http://localhost:1313/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-2_hu_9c685487f81ef135.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;2-2&#34;
@@ -289,10 +289,10 @@ M个数据需要&lt;strong&gt;二进制位数&lt;/strong&gt;$\lceil log_2(M)\rce
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;定时图&#34;&gt;定时图
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-3.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-3.png&#34;
 	width=&#34;1601&#34;
 	height=&#34;1009&#34;
-	srcset=&#34;https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-3_hu_bdea06c43881bd6a.png 480w, https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-3_hu_a947ad8114d81cd.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-3_hu_bdea06c43881bd6a.png 480w, http://localhost:1313/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-3_hu_a947ad8114d81cd.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;2-3&#34;
@@ -304,10 +304,10 @@ M个数据需要&lt;strong&gt;二进制位数&lt;/strong&gt;$\lceil log_2(M)\rce
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;延时&#34;&gt;延时
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-4.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-4.png&#34;
 	width=&#34;1577&#34;
 	height=&#34;1126&#34;
-	srcset=&#34;https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-4_hu_f3da587d8b43d378.png 480w, https://windclearing.github.io/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-4_hu_33d3f02552bad9c0.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-4_hu_f3da587d8b43d378.png 480w, http://localhost:1313/p/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/2-4_hu_33d3f02552bad9c0.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;2-4&#34;
@@ -382,10 +382,10 @@ $$F(X,Y,Z)=\prod M(1,3,4,6)$$&lt;/p&gt;
         </item>
         <item>
         <title>Kotlin学习</title>
-        <link>https://windclearing.github.io/p/kotlin%E5%AD%A6%E4%B9%A0/</link>
+        <link>http://localhost:1313/p/kotlin%E5%AD%A6%E4%B9%A0/</link>
         <pubDate>Wed, 19 Feb 2025 21:06:33 +0800</pubDate>
         
-        <guid>https://windclearing.github.io/p/kotlin%E5%AD%A6%E4%B9%A0/</guid>
+        <guid>http://localhost:1313/p/kotlin%E5%AD%A6%E4%B9%A0/</guid>
         <description>&lt;h1 id=&#34;从零开始认识一门新语言-kotlin&#34;&gt;从零开始认识一门新语言-kotlin
 &lt;/h1&gt;&lt;h2 id=&#34;序言&#34;&gt;序言
 &lt;/h2&gt;&lt;p&gt;这学期选了一门专业选修课《Android技术开发基础》，老师已经提前在群里要求掌握kotlin语法了qaq&lt;br&gt;
@@ -491,10 +491,10 @@ $$F(X,Y,Z)=\prod M(1,3,4,6)$$&lt;/p&gt;
         </item>
         <item>
         <title>Hello world!</title>
-        <link>https://windclearing.github.io/p/hello-world/</link>
+        <link>http://localhost:1313/p/hello-world/</link>
         <pubDate>Mon, 10 Feb 2025 15:37:31 +0800</pubDate>
         
-        <guid>https://windclearing.github.io/p/hello-world/</guid>
+        <guid>http://localhost:1313/p/hello-world/</guid>
         <description>&lt;p&gt;&lt;strong&gt;风澈&lt;/strong&gt;的第一篇个人博客！&lt;/p&gt;
 &lt;p&gt;完全不会写blog呢~~~&lt;/p&gt;
 &lt;hr&gt;
@@ -534,10 +534,10 @@ $$F(X,Y,Z)=\prod M(1,3,4,6)$$&lt;/p&gt;
         </item>
         <item>
         <title></title>
-        <link>https://windclearing.github.io/archives/</link>
+        <link>http://localhost:1313/archives/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://windclearing.github.io/archives/</guid>
+        <guid>http://localhost:1313/archives/</guid>
         <description>&lt;p&gt;��-�-�-��
 �t�i�t�l�e�:� � A�r�c�h�i�v�e�s� �
 �l�a�y�o�u�t�:� � a�r�c�h�i�v�e�s� �
@@ -548,10 +548,10 @@ $$F(X,Y,Z)=\prod M(1,3,4,6)$$&lt;/p&gt;
         </item>
         <item>
         <title></title>
-        <link>https://windclearing.github.io/search/</link>
+        <link>http://localhost:1313/search/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://windclearing.github.io/search/</guid>
+        <guid>http://localhost:1313/search/</guid>
         <description>&lt;p&gt;��-�-�-��
 �t�i�t�l�e�:� �&amp;quot;�S�e�a�r�c�h�&amp;quot;��
 �l�a�y�o�u�t�:� �&amp;quot;�s�e�a�r�c�h�&amp;quot;��

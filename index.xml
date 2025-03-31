@@ -405,6 +405,291 @@ $$F(X,Y,Z)=\prod M(1,3,4,6)$$&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;文字成本&lt;/strong&gt;：逻辑图对应的表达式中文字个数&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;门输入成本（G）&lt;/strong&gt;：逻辑图中门的输入端个数，不算非门&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;带非门的门输入成本（GN）&lt;/strong&gt;：逻辑图中门的输入端个数，算非门&lt;/p&gt;
+&lt;h1 id=&#34;chapter-3--组合逻辑电路分析与设计&#34;&gt;Chapter 3  组合逻辑电路分析与设计
+&lt;/h1&gt;&lt;p&gt;一个组合逻辑电路由：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;m个布尔输入&lt;/li&gt;
+&lt;li&gt;n个布尔输出&lt;/li&gt;
+&lt;li&gt;n个转换函数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;构成&lt;/p&gt;
+&lt;h2 id=&#34;组合逻辑电路的设计过程&#34;&gt;组合逻辑电路的设计过程
+&lt;/h2&gt;&lt;p&gt;设计过程分为五步：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;规范化——指定组合电路行为&lt;/li&gt;
+&lt;li&gt;形式化——用真值表对输入输出形式化&lt;/li&gt;
+&lt;li&gt;优化——优化逻辑，减少门输入成本，如卡诺图优化&lt;/li&gt;
+&lt;li&gt;工艺映射——将优化后逻辑映射到实现工艺&lt;/li&gt;
+&lt;li&gt;验证——验证设计正确性&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;规范化&#34;&gt;规范化
+&lt;/h3&gt;&lt;p&gt;确定输入输出范围&lt;/p&gt;
+&lt;h3 id=&#34;形式化&#34;&gt;形式化
+&lt;/h3&gt;&lt;p&gt;得出真值表或者布尔函数&lt;/p&gt;
+&lt;h3 id=&#34;优化&#34;&gt;优化
+&lt;/h3&gt;&lt;p&gt;用卡诺图优化，降低门输入成本&lt;/p&gt;
+&lt;p&gt;例子：由该真值表&lt;img src=&#34;https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220406224405966.png&#34; alt=&#34;image-20220406224405966&#34; style=&#34;zoom:67%;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;得出了4个卡诺图：&lt;img src=&#34;https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220406224419400.png&#34; alt=&#34;image-20220406224419400&#34; style=&#34;zoom:67%;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;最后化简得到：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$W=A+BC+BD$&lt;/li&gt;
+&lt;li&gt;$X=\overline BC+\overline BD+B\overline C\overline D$&lt;/li&gt;
+&lt;li&gt;$Y=CD+\overline C\overline D$&lt;/li&gt;
+&lt;li&gt;$Z=\overline D$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;还可以通过&lt;strong&gt;共享电路&lt;/strong&gt;进行进一步优化，如令$\overline C\overline D=\overline{C+D}=\overline T$，则有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$W=A+BT$&lt;/li&gt;
+&lt;li&gt;$X=\overline BT+T\overline B$&lt;/li&gt;
+&lt;li&gt;$Y=CD+\overline T$&lt;/li&gt;
+&lt;li&gt;$Z=\overline D$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;最后得到下图所示电路：&lt;img src=&#34;https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220406224459049.png&#34; alt=&#34;image-20220406224459049&#34; style=&#34;zoom:50%;&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;工艺映射&#34;&gt;工艺映射
+&lt;/h3&gt;&lt;p&gt;通过连结词完备集将电路用一种或两种门表示出来&lt;/p&gt;
+&lt;p&gt;映射过程：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;用与非门/或非门替换掉与门和或门&lt;/p&gt;
+&lt;p&gt;与非门&lt;img src=&#34;https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220606074709377.png&#34; alt=&#34;image-20220606074709377&#34; style=&#34;zoom:80%;&#34; /&gt;或非门&lt;img src=&#34;https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220606074816158.png&#34; alt=&#34;image-20220606074816158&#34; style=&#34;zoom:80%;&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将反相器推过电路中的&lt;strong&gt;扇出点&lt;/strong&gt;，其实就是一个变量不要用多个非门&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;抵消掉反相器对&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;重复2和3直到在a和b之间&lt;strong&gt;只存在1个反相器&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;电路输入或或非门的输出&lt;/li&gt;
+&lt;li&gt;或非门输入&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;验证&#34;&gt;验证
+&lt;/h3&gt;&lt;p&gt;人工逻辑验证或者模拟验证&lt;/p&gt;
+&lt;h2 id=&#34;组合逻辑功能模块&#34;&gt;组合逻辑功能模块
+&lt;/h2&gt;&lt;h3 id=&#34;组合功能模块&#34;&gt;组合功能模块
+&lt;/h3&gt;&lt;p&gt;在电路设计中经常使用的公共模块，每个功能模块对应一个组合电路实现。&lt;/p&gt;
+&lt;h3 id=&#34;基本逻辑函数&#34;&gt;基本逻辑函数
+&lt;/h3&gt;&lt;h4 id=&#34;单变量函数&#34;&gt;单变量函数
+&lt;/h4&gt;&lt;p&gt;一个变量X的函数，可在输入处作功能块&lt;/p&gt;
+&lt;h4 id=&#34;多位函数&#34;&gt;多位函数
+&lt;/h4&gt;&lt;p&gt;一位函数的向量；粗线代表&lt;strong&gt;总线&lt;/strong&gt;，是一个&lt;strong&gt;向量信号&lt;/strong&gt;；可以从总线中分割出一个位子集。&lt;/p&gt;
+&lt;img src=&#34;https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220406224555482.png&#34; alt=&#34;image-20220406224555482&#34; style=&#34;zoom:50%;&#34; /&gt;
+&lt;h4 id=&#34;使能函数&#34;&gt;使能函数
+&lt;/h4&gt;&lt;p&gt;是否允许函数从输入传递到到输出&lt;/p&gt;
+&lt;p&gt;引入&lt;strong&gt;使能信号EN&lt;/strong&gt;。EN为1时允许，为0时不允许并输出一个==固定的信号值==，可能为0可能为1。&lt;/p&gt;
+&lt;h3 id=&#34;译码与编码&#34;&gt;译码与编码
+&lt;/h3&gt;&lt;p&gt;译码：输入n位，输出m位，其中$n\le m\le 2^n$&lt;/p&gt;
+&lt;p&gt;编码：输入最大m位，输出n位，其中$n\le m\le 2^n$&lt;/p&gt;
+&lt;p&gt;译码与编码互逆&lt;/p&gt;
+&lt;h3 id=&#34;译码器&#34;&gt;译码器
+&lt;/h3&gt;&lt;p&gt;实现译码功能的电路&lt;/p&gt;
+&lt;p&gt;译码有n位输入m位输出，&lt;/p&gt;
+&lt;h4 id=&#34;1-2译码器&#34;&gt;1-2译码器
+&lt;/h4&gt;&lt;img src=&#34;https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220406224621853.png&#34; alt=&#34;image-20220406224621853&#34; style=&#34;zoom:67%;&#34; /&gt;
+&lt;h4 id=&#34;2-4译码器&#34;&gt;2-4译码器
+&lt;/h4&gt;&lt;p&gt;简单的来讲，2-4译码器可以由两个1-2译码器加上4个与门（作用于四种输出）构成&lt;/p&gt;
+&lt;h4 id=&#34;n-2n译码器&#34;&gt;n-$2^n$译码器
+&lt;/h4&gt;&lt;p&gt;需要$2^n$个与门，其中每个与门和两个译码器连接，这两个译码器的输入相等或者只相差1，并且输入之和为n。不断展开，直到展开到1-2译码器&lt;/p&gt;
+&lt;p&gt;通过修改$n-2^n$译码器，可以得到$n-m$译码器，如7-128译码器可以由3-8译码器和4-16译码器和128个与门构成。&lt;/p&gt;
+&lt;h4 id=&#34;带使能的译码器&#34;&gt;带使能的译码器
+&lt;/h4&gt;&lt;p&gt;电路输出增加==使能信号-EN==，并且$n-2^n$译码器再增加$2^n$个输出与门以结合使能：&lt;img src=&#34;https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220606082357317.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20220606082357317&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;当EN为0时，$A_0,A_1$变为X，X可以表示0或者1&lt;/p&gt;
+&lt;p&gt;此时相当于EN为输入信号，$A_0,A_1$为输出端==选择信号==&lt;img src=&#34;https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220606082551659.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20220606082551659&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;基于译码器的组合电路设计&#34;&gt;基于译码器的组合电路设计
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;实现1个函数，其中有n个变量&lt;/li&gt;
+&lt;li&gt;一个$n-2^n$译码器，译码器输出对应最小项 ；1个或门，将最小项或起来（最小项之和）&lt;/li&gt;
+&lt;li&gt;简单来说，n个输入能输出所有的最小项或者最大项；将所有最小项和起来或者最大项或起来就能得到最后的电路&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;但是直接通过译码器得到组合电路，就相当于没有用卡诺图把最小项之和优化成积之和，==门输入成本太高==&lt;/p&gt;
+&lt;h3 id=&#34;编码器&#34;&gt;编码器
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;十进制——BCD编码器&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;输入: 10位代表从0到9，($D_0, …, D_9$)&lt;/li&gt;
+&lt;li&gt;输出: 4位BCD码&lt;/li&gt;
+&lt;li&gt;函数: 若输入位 Di 是1, 则输出($A_3, A_2, A_1, A_0$) 是i的BCD码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;步骤：真值表$\to$卡诺图优化$\to$优化&lt;/p&gt;
+&lt;p&gt;有布尔方程：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$A_3=D_8+D_9$&lt;/li&gt;
+&lt;li&gt;$A_2=D_4+D_5+D_6+D_7$&lt;/li&gt;
+&lt;li&gt;$A_1=D_2+D_3+D_6+D_7$&lt;/li&gt;
+&lt;li&gt;$A_0=D_1+D_3+D_5+D_7+D_9$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;但是如果输入有不止一个1，该编码器就无法工作&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;优先编码器&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;下面以五输入十进制-BCD编码器为例讲解如何解决这个问题&lt;/p&gt;
+&lt;img src=&#34;https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220406225314022.png&#34; alt=&#34;image-20220406225314022&#34; style=&#34;zoom:67%;&#34; /&gt;
+&lt;p&gt;显然该编码器只人他看到的“第一个1”，后面的不管，然后输出对应BCD码&lt;/p&gt;
+&lt;p&gt;也就是说，D4的优先级最高，D3次之，D0优先级最低&lt;/p&gt;
+&lt;h3 id=&#34;选择和复用器&#34;&gt;选择和复用器
+&lt;/h3&gt;&lt;h4 id=&#34;多路复用器&#34;&gt;多路复用器
+&lt;/h4&gt;&lt;p&gt;多路复用器是执行选择的逻辑电路，输入输出如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;输入：一组待选择的数据，最多$2^n$个($I_0&amp;hellip;I_{2^n}$);
+一组用来进行选择的选择信号n个($S_{n-1}&amp;hellip;S_0$)&lt;/li&gt;
+&lt;li&gt;输出：一个输出$Y$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;多路复用器通过改变选择信号S，就可以实现对带选择的数据I的选择输出&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;2-1多路复用器&lt;/p&gt;
+&lt;img src=&#34;https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220406225408107.png&#34; alt=&#34;image-20220406225408107&#34; style=&#34;zoom: 80%;&#34; /&gt;
+&lt;p&gt;当$S=0$时，输出$I_0$；当$S=1$时，输出$I_1$&lt;/p&gt;
+&lt;p&gt;实际上，该多路复用器由：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一个1-2译码器&lt;/li&gt;
+&lt;li&gt;两个使能信号&lt;/li&gt;
+&lt;li&gt;2-输入或门&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;组成，由此可以得出下列的多路复用器&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;$2^n-1$多路复用器&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;由：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一个$n-2^n$译码器&lt;/li&gt;
+&lt;li&gt;$2^n$个使能信号&lt;/li&gt;
+&lt;li&gt;$2^n$-输入或门&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;组成。其中$2^n$个使能信号和$2^n$个输入或门看作==$2^n\times2$个与或门==&lt;/p&gt;
+&lt;img src=&#34;https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220609113519246.png&#34; alt=&#34;image-20220609113519246&#34; style=&#34;zoom:33%;&#34; /&gt;
+&lt;h4 id=&#34;位宽展开&#34;&gt;位宽展开
+&lt;/h4&gt;&lt;p&gt;上面所说的多路复用器的输入都是==单个位==，多位的多路复用器输入采用==位向量==&lt;/p&gt;
+&lt;p&gt;也就是说n位的多路复用器要实现n个函数，有n个输出；在译码器之后要平行地使用n个$2^n\times2$个与或门&lt;/p&gt;
+&lt;img src=&#34;https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220609113326874.png&#34; alt=&#34;image-20220609113326874&#34; style=&#34;zoom: 33%;&#34; /&gt;
+&lt;h3 id=&#34;基于复用器的组合电路&#34;&gt;基于复用器的组合电路
+&lt;/h3&gt;&lt;p&gt;实现&lt;strong&gt;m个函数&lt;/strong&gt;，包含n个变量&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;m位宽$2^n-1$多路复用器&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;得到函数真值表&lt;/li&gt;
+&lt;li&gt;根据真值表进行如下操作&lt;/li&gt;
+&lt;li&gt;将函数输入$S_n - 1 , … , S_0$ 作为选择信号&lt;/li&gt;
+&lt;li&gt;真值表中的值作为多路复用器的待选择数据&lt;/li&gt;
+&lt;li&gt;将多路复用器的输出标识成函数输出&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;例子，格雷码到二进制码的转换：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;重新排列真值表使输入按==计数顺序==&lt;img src=&#34;https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220606095838498.png&#34; alt=&#34;image-20220606095838498&#34; style=&#34;zoom:50%;&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;y和z通过一个双位8-1多路复用器实现：&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;A，B，C连到选择信号；y和z连到输出信号，各自的真值连到待选择数据：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;imgs/image-20220606100005277.png&#34; alt=&#34;image-20220606100005277&#34; style=&#34;zoom:50%;&#34; /&gt;&lt;img src=&#34;https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220606100012775.png&#34; alt=&#34;image-20220606100012775&#34; style=&#34;zoom:50%;&#34; /&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;m位宽的==$2^{n-1}-1$==多路复用器&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;先得到函数的真值表：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;重排真值表&lt;/strong&gt;，使得输入按照计数升序&lt;/li&gt;
+&lt;li&gt;基于n-1个变量值，将真值表中的==行配对==，其中n-1个变量一致&lt;/li&gt;
+&lt;li&gt;设剩下的变量为$X$&lt;/li&gt;
+&lt;li&gt;每一配对中，将输出表达成$(0, 1, X, \overline X)$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;根据真值表：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;将n-1个变量作为选择信号&lt;/li&gt;
+&lt;li&gt;$(0, 1, X, \overline X)$作为待选择数据&lt;/li&gt;
+&lt;li&gt;将多路复用器的输出标识成函数输出&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img src=&#34;https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220408170719655.png&#34; alt=&#34;image-20220408170719655&#34; style=&#34;zoom:67%;&#34; /&gt;
+&lt;p&gt;&lt;strong&gt;行配对&lt;/strong&gt;：在上图右侧的多路复用器中,我们可以看到:对于某个AB的组合,Z的值仅由C决定.所以行配对就是要得出AB相同时的函数输出与C的关系,以构建最终的多路复用器.&lt;/p&gt;
+&lt;h2 id=&#34;算术功能模块&#34;&gt;算术功能模块
+&lt;/h2&gt;&lt;h3 id=&#34;迭代组合电路&#34;&gt;迭代组合电路
+&lt;/h3&gt;&lt;p&gt;基本思想：利用规律性来简化设计&lt;/p&gt;
+&lt;p&gt;在实现算数功能时，一般是对二进制向量进行操作，对向量中的每一位进行&lt;strong&gt;同样&lt;/strong&gt;的子函数操作&lt;/p&gt;
+&lt;p&gt;所以可以重复使用一些功能&lt;/p&gt;
+&lt;p&gt;单元：子函数模块&lt;/p&gt;
+&lt;p&gt;迭代阵列：相互连接的单元的阵列&lt;/p&gt;
+&lt;h3 id=&#34;二进制加法器&#34;&gt;二进制加法器
+&lt;/h3&gt;&lt;h4 id=&#34;半加器&#34;&gt;半加器
+&lt;/h4&gt;&lt;p&gt;输入：X，Y&lt;/p&gt;
+&lt;p&gt;输出：和位S，进位C&lt;/p&gt;
+&lt;img src=&#34;https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220408172314531.png&#34; alt=&#34;image-20220408172314531&#34; style=&#34;zoom:67%;&#34; /&gt;
+&lt;p&gt;公式：$S=X\oplus Y$，$C=X·Y$&lt;/p&gt;
+&lt;img src=&#34;https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220408172420642.png&#34; alt=&#34;image-20220408172420642&#34; style=&#34;zoom:67%;&#34; /&gt;
+&lt;h4 id=&#34;全加器&#34;&gt;全加器
+&lt;/h4&gt;&lt;p&gt;输入：X，Y，进位Z&lt;/p&gt;
+&lt;p&gt;输出：和位S，进位C&lt;/p&gt;
+&lt;p&gt;真值表：&lt;img src=&#34;https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220408172837898.png&#34; alt=&#34;image-20220408172837898&#34; style=&#34;zoom:67%;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;公式：$S=X\oplus Y\oplus Z$，$C=XY+(X\oplus Y)Z$&lt;/p&gt;
+&lt;p&gt;电路图：&lt;img src=&#34;https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220606110933459.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20220606110933459&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;实际上全加器由两个半加器和一个或门组成&lt;/p&gt;
+&lt;h4 id=&#34;4位行波进位加法器&#34;&gt;4位行波进位加法器
+&lt;/h4&gt;&lt;p&gt;单元是1位全加法器&lt;/p&gt;
+&lt;img src=&#34;https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220408173847424.png&#34; alt=&#34;image-20220408173847424&#34; style=&#34;zoom:67%;&#34; /&gt;
+&lt;h3 id=&#34;二进制加减法器&#34;&gt;二进制加减法器
+&lt;/h3&gt;&lt;p&gt;按照补码的加法执行&lt;/p&gt;
+&lt;img src=&#34;https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220408173921602.png&#34; alt=&#34;image-20220408173921602&#34; style=&#34;zoom:67%;&#34; /&gt;
+&lt;p&gt;当S=1时，对B按位取反（反码），$C_0=1$使得B变成补码（反码+1）。注意，最终计算得到的结果如果==没有产生进位==，那么需要对结果==求补并添加负号==；如果产生进位则计算结果就是真实结果，进位不用管他。&lt;/p&gt;
+&lt;p&gt;当S=0时，等同于二进制加法&lt;/p&gt;
+&lt;h3 id=&#34;有符号的二进制加减法&#34;&gt;有符号的二进制加减法
+&lt;/h3&gt;&lt;h4 id=&#34;负数的合理表示&#34;&gt;负数的合理表示
+&lt;/h4&gt;&lt;p&gt;在二进制加减法器中我们发现，减法在该电路模块中还没有完全完成，还需要根据是否有进位来进行校正；并且上面的加减法器只适用于无符号数加减。为解决这一问题，需要引进新的负数表示方法：==符号-二进制补码表示法==。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;符号-二进制补码表示法&lt;/strong&gt;：==负数用其绝对值的补码来表示，包括绝对值的符号位0==&lt;/p&gt;
+&lt;h4 id=&#34;有符号的二进制加法&#34;&gt;有符号的二进制加法
+&lt;/h4&gt;&lt;p&gt;用补码表示负数的两个有符号二进制数的加法运算，只需要将其包含符号位在内的两个数相加，然后丢弃进位&lt;/p&gt;
+&lt;h4 id=&#34;有符号的二进制减法&#34;&gt;有符号的二进制减法
+&lt;/h4&gt;&lt;p&gt;用补码表示负数的两个有符号二进制数的减法运算，对减数取补，再将其与被减数相加，然后丢弃进位&lt;/p&gt;
+&lt;p&gt;所以，只要采用&lt;strong&gt;符号-二进制补码表示法&lt;/strong&gt;，上面的二进制加减法器的电路仍然可以正常使用，而此时不需要在进行计算后的校正操作&lt;/p&gt;
+&lt;h3 id=&#34;溢出&#34;&gt;溢出
+&lt;/h3&gt;&lt;p&gt;溢出：两个n位数产生的结果需要用n+1位数保存，那么称其发生了溢出&lt;/p&gt;
+&lt;h4 id=&#34;溢出检测&#34;&gt;溢出检测
+&lt;/h4&gt;&lt;p&gt;如果&lt;strong&gt;符号位的进位输入与进位输出&lt;/strong&gt;不相等，那么发生了溢出&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220615101058122.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20220615101058122&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;压缩&#34;&gt;压缩
+&lt;/h3&gt;&lt;p&gt;从一个基本电路（如二进制加法器或乘法器）出发，将已有的电路转换成有用的、较简单的电路来简化设计，从而代替直接设计电路。针对特定应用将已有电路简化成一个简单电路，我们称这个过程为==压缩==&lt;/p&gt;
+&lt;p&gt;对于已经设计好的功能块，通过将其输入端的值固定、传递和取反，即可实现新的功能&lt;/p&gt;
+&lt;h3 id=&#34;递增递减&#34;&gt;递增/递减
+&lt;/h3&gt;&lt;p&gt;由加减法器压缩可得&lt;/p&gt;
 </description>
         </item>
         <item>

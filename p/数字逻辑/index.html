@@ -252,6 +252,75 @@
       </ol>
     </li>
   </ol>
+
+  <ol>
+    <li><a href="#组合逻辑电路的设计过程">组合逻辑电路的设计过程</a>
+      <ol>
+        <li><a href="#规范化">规范化</a></li>
+        <li><a href="#形式化">形式化</a></li>
+        <li><a href="#优化">优化</a></li>
+        <li><a href="#工艺映射">工艺映射</a></li>
+        <li><a href="#验证">验证</a></li>
+      </ol>
+    </li>
+    <li><a href="#组合逻辑功能模块">组合逻辑功能模块</a>
+      <ol>
+        <li><a href="#组合功能模块">组合功能模块</a></li>
+        <li><a href="#基本逻辑函数">基本逻辑函数</a>
+          <ol>
+            <li><a href="#单变量函数">单变量函数</a></li>
+            <li><a href="#多位函数">多位函数</a></li>
+            <li><a href="#使能函数">使能函数</a></li>
+          </ol>
+        </li>
+        <li><a href="#译码与编码">译码与编码</a></li>
+        <li><a href="#译码器">译码器</a>
+          <ol>
+            <li><a href="#1-2译码器">1-2译码器</a></li>
+            <li><a href="#2-4译码器">2-4译码器</a></li>
+            <li><a href="#n-2n译码器">n-$2^n$译码器</a></li>
+            <li><a href="#带使能的译码器">带使能的译码器</a></li>
+          </ol>
+        </li>
+        <li><a href="#基于译码器的组合电路设计">基于译码器的组合电路设计</a></li>
+        <li><a href="#编码器">编码器</a></li>
+        <li><a href="#选择和复用器">选择和复用器</a>
+          <ol>
+            <li><a href="#多路复用器">多路复用器</a></li>
+            <li><a href="#位宽展开">位宽展开</a></li>
+          </ol>
+        </li>
+        <li><a href="#基于复用器的组合电路">基于复用器的组合电路</a></li>
+      </ol>
+    </li>
+    <li><a href="#算术功能模块">算术功能模块</a>
+      <ol>
+        <li><a href="#迭代组合电路">迭代组合电路</a></li>
+        <li><a href="#二进制加法器">二进制加法器</a>
+          <ol>
+            <li><a href="#半加器">半加器</a></li>
+            <li><a href="#全加器">全加器</a></li>
+            <li><a href="#4位行波进位加法器">4位行波进位加法器</a></li>
+          </ol>
+        </li>
+        <li><a href="#二进制加减法器">二进制加减法器</a></li>
+        <li><a href="#有符号的二进制加减法">有符号的二进制加减法</a>
+          <ol>
+            <li><a href="#负数的合理表示">负数的合理表示</a></li>
+            <li><a href="#有符号的二进制加法">有符号的二进制加法</a></li>
+            <li><a href="#有符号的二进制减法">有符号的二进制减法</a></li>
+          </ol>
+        </li>
+        <li><a href="#溢出">溢出</a>
+          <ol>
+            <li><a href="#溢出检测">溢出检测</a></li>
+          </ol>
+        </li>
+        <li><a href="#压缩">压缩</a></li>
+        <li><a href="#递增递减">递增/递减</a></li>
+      </ol>
+    </li>
+  </ol>
 </nav>
         </div>
     </section>
@@ -307,7 +376,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 4 分钟
+                    阅读时长: 11 分钟
                 </time>
             </div>
         
@@ -613,6 +682,291 @@ $$F(X,Y,Z)=\prod M(1,3,4,6)$$</p>
 <p><strong>文字成本</strong>：逻辑图对应的表达式中文字个数</p>
 <p><strong>门输入成本（G）</strong>：逻辑图中门的输入端个数，不算非门</p>
 <p><strong>带非门的门输入成本（GN）</strong>：逻辑图中门的输入端个数，算非门</p>
+<h1 id="chapter-3--组合逻辑电路分析与设计">Chapter 3  组合逻辑电路分析与设计
+</h1><p>一个组合逻辑电路由：</p>
+<ul>
+<li>m个布尔输入</li>
+<li>n个布尔输出</li>
+<li>n个转换函数</li>
+</ul>
+<p>构成</p>
+<h2 id="组合逻辑电路的设计过程">组合逻辑电路的设计过程
+</h2><p>设计过程分为五步：</p>
+<ol>
+<li>规范化——指定组合电路行为</li>
+<li>形式化——用真值表对输入输出形式化</li>
+<li>优化——优化逻辑，减少门输入成本，如卡诺图优化</li>
+<li>工艺映射——将优化后逻辑映射到实现工艺</li>
+<li>验证——验证设计正确性</li>
+</ol>
+<h3 id="规范化">规范化
+</h3><p>确定输入输出范围</p>
+<h3 id="形式化">形式化
+</h3><p>得出真值表或者布尔函数</p>
+<h3 id="优化">优化
+</h3><p>用卡诺图优化，降低门输入成本</p>
+<p>例子：由该真值表<img src="https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220406224405966.png" alt="image-20220406224405966" style="zoom:67%;" /></p>
+<p>得出了4个卡诺图：<img src="https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220406224419400.png" alt="image-20220406224419400" style="zoom:67%;" /></p>
+<p>最后化简得到：</p>
+<ul>
+<li>$W=A+BC+BD$</li>
+<li>$X=\overline BC+\overline BD+B\overline C\overline D$</li>
+<li>$Y=CD+\overline C\overline D$</li>
+<li>$Z=\overline D$</li>
+</ul>
+<p>还可以通过<strong>共享电路</strong>进行进一步优化，如令$\overline C\overline D=\overline{C+D}=\overline T$，则有：</p>
+<ul>
+<li>$W=A+BT$</li>
+<li>$X=\overline BT+T\overline B$</li>
+<li>$Y=CD+\overline T$</li>
+<li>$Z=\overline D$</li>
+</ul>
+<p>最后得到下图所示电路：<img src="https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220406224459049.png" alt="image-20220406224459049" style="zoom:50%;" /></p>
+<h3 id="工艺映射">工艺映射
+</h3><p>通过连结词完备集将电路用一种或两种门表示出来</p>
+<p>映射过程：</p>
+<ol>
+<li>
+<p>用与非门/或非门替换掉与门和或门</p>
+<p>与非门<img src="https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220606074709377.png" alt="image-20220606074709377" style="zoom:80%;" />或非门<img src="https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220606074816158.png" alt="image-20220606074816158" style="zoom:80%;" /></p>
+</li>
+<li>
+<p>将反相器推过电路中的<strong>扇出点</strong>，其实就是一个变量不要用多个非门</p>
+</li>
+<li>
+<p>抵消掉反相器对</p>
+</li>
+<li>
+<p>重复2和3直到在a和b之间<strong>只存在1个反相器</strong>：</p>
+<ul>
+<li>电路输入或或非门的输出</li>
+<li>或非门输入</li>
+</ul>
+</li>
+</ol>
+<h3 id="验证">验证
+</h3><p>人工逻辑验证或者模拟验证</p>
+<h2 id="组合逻辑功能模块">组合逻辑功能模块
+</h2><h3 id="组合功能模块">组合功能模块
+</h3><p>在电路设计中经常使用的公共模块，每个功能模块对应一个组合电路实现。</p>
+<h3 id="基本逻辑函数">基本逻辑函数
+</h3><h4 id="单变量函数">单变量函数
+</h4><p>一个变量X的函数，可在输入处作功能块</p>
+<h4 id="多位函数">多位函数
+</h4><p>一位函数的向量；粗线代表<strong>总线</strong>，是一个<strong>向量信号</strong>；可以从总线中分割出一个位子集。</p>
+<img src="https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220406224555482.png" alt="image-20220406224555482" style="zoom:50%;" />
+<h4 id="使能函数">使能函数
+</h4><p>是否允许函数从输入传递到到输出</p>
+<p>引入<strong>使能信号EN</strong>。EN为1时允许，为0时不允许并输出一个==固定的信号值==，可能为0可能为1。</p>
+<h3 id="译码与编码">译码与编码
+</h3><p>译码：输入n位，输出m位，其中$n\le m\le 2^n$</p>
+<p>编码：输入最大m位，输出n位，其中$n\le m\le 2^n$</p>
+<p>译码与编码互逆</p>
+<h3 id="译码器">译码器
+</h3><p>实现译码功能的电路</p>
+<p>译码有n位输入m位输出，</p>
+<h4 id="1-2译码器">1-2译码器
+</h4><img src="https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220406224621853.png" alt="image-20220406224621853" style="zoom:67%;" />
+<h4 id="2-4译码器">2-4译码器
+</h4><p>简单的来讲，2-4译码器可以由两个1-2译码器加上4个与门（作用于四种输出）构成</p>
+<h4 id="n-2n译码器">n-$2^n$译码器
+</h4><p>需要$2^n$个与门，其中每个与门和两个译码器连接，这两个译码器的输入相等或者只相差1，并且输入之和为n。不断展开，直到展开到1-2译码器</p>
+<p>通过修改$n-2^n$译码器，可以得到$n-m$译码器，如7-128译码器可以由3-8译码器和4-16译码器和128个与门构成。</p>
+<h4 id="带使能的译码器">带使能的译码器
+</h4><p>电路输出增加==使能信号-EN==，并且$n-2^n$译码器再增加$2^n$个输出与门以结合使能：<img src="https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220606082357317.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20220606082357317"
+	
+	
+></p>
+<p>当EN为0时，$A_0,A_1$变为X，X可以表示0或者1</p>
+<p>此时相当于EN为输入信号，$A_0,A_1$为输出端==选择信号==<img src="https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220606082551659.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20220606082551659"
+	
+	
+></p>
+<h3 id="基于译码器的组合电路设计">基于译码器的组合电路设计
+</h3><ul>
+<li>实现1个函数，其中有n个变量</li>
+<li>一个$n-2^n$译码器，译码器输出对应最小项 ；1个或门，将最小项或起来（最小项之和）</li>
+<li>简单来说，n个输入能输出所有的最小项或者最大项；将所有最小项和起来或者最大项或起来就能得到最后的电路</li>
+</ul>
+<p>但是直接通过译码器得到组合电路，就相当于没有用卡诺图把最小项之和优化成积之和，==门输入成本太高==</p>
+<h3 id="编码器">编码器
+</h3><p><strong>十进制——BCD编码器</strong></p>
+<ul>
+<li>输入: 10位代表从0到9，($D_0, …, D_9$)</li>
+<li>输出: 4位BCD码</li>
+<li>函数: 若输入位 Di 是1, 则输出($A_3, A_2, A_1, A_0$) 是i的BCD码</li>
+</ul>
+<p>步骤：真值表$\to$卡诺图优化$\to$优化</p>
+<p>有布尔方程：</p>
+<ul>
+<li>$A_3=D_8+D_9$</li>
+<li>$A_2=D_4+D_5+D_6+D_7$</li>
+<li>$A_1=D_2+D_3+D_6+D_7$</li>
+<li>$A_0=D_1+D_3+D_5+D_7+D_9$</li>
+</ul>
+<p>但是如果输入有不止一个1，该编码器就无法工作</p>
+<p><strong>优先编码器</strong></p>
+<p>下面以五输入十进制-BCD编码器为例讲解如何解决这个问题</p>
+<img src="https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220406225314022.png" alt="image-20220406225314022" style="zoom:67%;" />
+<p>显然该编码器只人他看到的“第一个1”，后面的不管，然后输出对应BCD码</p>
+<p>也就是说，D4的优先级最高，D3次之，D0优先级最低</p>
+<h3 id="选择和复用器">选择和复用器
+</h3><h4 id="多路复用器">多路复用器
+</h4><p>多路复用器是执行选择的逻辑电路，输入输出如下：</p>
+<ul>
+<li>输入：一组待选择的数据，最多$2^n$个($I_0&hellip;I_{2^n}$);
+一组用来进行选择的选择信号n个($S_{n-1}&hellip;S_0$)</li>
+<li>输出：一个输出$Y$</li>
+</ul>
+<p><strong>多路复用器通过改变选择信号S，就可以实现对带选择的数据I的选择输出</strong></p>
+<ol>
+<li>
+<p>2-1多路复用器</p>
+<img src="https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220406225408107.png" alt="image-20220406225408107" style="zoom: 80%;" />
+<p>当$S=0$时，输出$I_0$；当$S=1$时，输出$I_1$</p>
+<p>实际上，该多路复用器由：</p>
+<ul>
+<li>一个1-2译码器</li>
+<li>两个使能信号</li>
+<li>2-输入或门</li>
+</ul>
+</li>
+</ol>
+<p>组成，由此可以得出下列的多路复用器</p>
+<ol>
+<li>$2^n-1$多路复用器</li>
+</ol>
+<p>由：</p>
+<ul>
+<li>一个$n-2^n$译码器</li>
+<li>$2^n$个使能信号</li>
+<li>$2^n$-输入或门</li>
+</ul>
+<p>组成。其中$2^n$个使能信号和$2^n$个输入或门看作==$2^n\times2$个与或门==</p>
+<img src="https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220609113519246.png" alt="image-20220609113519246" style="zoom:33%;" />
+<h4 id="位宽展开">位宽展开
+</h4><p>上面所说的多路复用器的输入都是==单个位==，多位的多路复用器输入采用==位向量==</p>
+<p>也就是说n位的多路复用器要实现n个函数，有n个输出；在译码器之后要平行地使用n个$2^n\times2$个与或门</p>
+<img src="https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220609113326874.png" alt="image-20220609113326874" style="zoom: 33%;" />
+<h3 id="基于复用器的组合电路">基于复用器的组合电路
+</h3><p>实现<strong>m个函数</strong>，包含n个变量</p>
+<ol>
+<li>m位宽$2^n-1$多路复用器</li>
+</ol>
+<ul>
+<li>得到函数真值表</li>
+<li>根据真值表进行如下操作</li>
+<li>将函数输入$S_n - 1 , … , S_0$ 作为选择信号</li>
+<li>真值表中的值作为多路复用器的待选择数据</li>
+<li>将多路复用器的输出标识成函数输出</li>
+</ul>
+<p>例子，格雷码到二进制码的转换：</p>
+<ol>
+<li>
+<p>重新排列真值表使输入按==计数顺序==<img src="https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220606095838498.png" alt="image-20220606095838498" style="zoom:50%;" /></p>
+</li>
+<li>
+<p>y和z通过一个双位8-1多路复用器实现：</p>
+</li>
+</ol>
+<p>A，B，C连到选择信号；y和z连到输出信号，各自的真值连到待选择数据：</p>
+<p><img src="imgs/image-20220606100005277.png" alt="image-20220606100005277" style="zoom:50%;" /><img src="https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220606100012775.png" alt="image-20220606100012775" style="zoom:50%;" /></p>
+<ol start="2">
+<li>m位宽的==$2^{n-1}-1$==多路复用器</li>
+</ol>
+<p>先得到函数的真值表：</p>
+<ul>
+<li><strong>重排真值表</strong>，使得输入按照计数升序</li>
+<li>基于n-1个变量值，将真值表中的==行配对==，其中n-1个变量一致</li>
+<li>设剩下的变量为$X$</li>
+<li>每一配对中，将输出表达成$(0, 1, X, \overline X)$</li>
+</ul>
+<p>根据真值表：</p>
+<ul>
+<li>将n-1个变量作为选择信号</li>
+<li>$(0, 1, X, \overline X)$作为待选择数据</li>
+<li>将多路复用器的输出标识成函数输出</li>
+</ul>
+<img src="https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220408170719655.png" alt="image-20220408170719655" style="zoom:67%;" />
+<p><strong>行配对</strong>：在上图右侧的多路复用器中,我们可以看到:对于某个AB的组合,Z的值仅由C决定.所以行配对就是要得出AB相同时的函数输出与C的关系,以构建最终的多路复用器.</p>
+<h2 id="算术功能模块">算术功能模块
+</h2><h3 id="迭代组合电路">迭代组合电路
+</h3><p>基本思想：利用规律性来简化设计</p>
+<p>在实现算数功能时，一般是对二进制向量进行操作，对向量中的每一位进行<strong>同样</strong>的子函数操作</p>
+<p>所以可以重复使用一些功能</p>
+<p>单元：子函数模块</p>
+<p>迭代阵列：相互连接的单元的阵列</p>
+<h3 id="二进制加法器">二进制加法器
+</h3><h4 id="半加器">半加器
+</h4><p>输入：X，Y</p>
+<p>输出：和位S，进位C</p>
+<img src="https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220408172314531.png" alt="image-20220408172314531" style="zoom:67%;" />
+<p>公式：$S=X\oplus Y$，$C=X·Y$</p>
+<img src="https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220408172420642.png" alt="image-20220408172420642" style="zoom:67%;" />
+<h4 id="全加器">全加器
+</h4><p>输入：X，Y，进位Z</p>
+<p>输出：和位S，进位C</p>
+<p>真值表：<img src="https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220408172837898.png" alt="image-20220408172837898" style="zoom:67%;" /></p>
+<p>公式：$S=X\oplus Y\oplus Z$，$C=XY+(X\oplus Y)Z$</p>
+<p>电路图：<img src="https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220606110933459.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20220606110933459"
+	
+	
+></p>
+<p>实际上全加器由两个半加器和一个或门组成</p>
+<h4 id="4位行波进位加法器">4位行波进位加法器
+</h4><p>单元是1位全加法器</p>
+<img src="https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220408173847424.png" alt="image-20220408173847424" style="zoom:67%;" />
+<h3 id="二进制加减法器">二进制加减法器
+</h3><p>按照补码的加法执行</p>
+<img src="https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220408173921602.png" alt="image-20220408173921602" style="zoom:67%;" />
+<p>当S=1时，对B按位取反（反码），$C_0=1$使得B变成补码（反码+1）。注意，最终计算得到的结果如果==没有产生进位==，那么需要对结果==求补并添加负号==；如果产生进位则计算结果就是真实结果，进位不用管他。</p>
+<p>当S=0时，等同于二进制加法</p>
+<h3 id="有符号的二进制加减法">有符号的二进制加减法
+</h3><h4 id="负数的合理表示">负数的合理表示
+</h4><p>在二进制加减法器中我们发现，减法在该电路模块中还没有完全完成，还需要根据是否有进位来进行校正；并且上面的加减法器只适用于无符号数加减。为解决这一问题，需要引进新的负数表示方法：==符号-二进制补码表示法==。</p>
+<p><strong>符号-二进制补码表示法</strong>：==负数用其绝对值的补码来表示，包括绝对值的符号位0==</p>
+<h4 id="有符号的二进制加法">有符号的二进制加法
+</h4><p>用补码表示负数的两个有符号二进制数的加法运算，只需要将其包含符号位在内的两个数相加，然后丢弃进位</p>
+<h4 id="有符号的二进制减法">有符号的二进制减法
+</h4><p>用补码表示负数的两个有符号二进制数的减法运算，对减数取补，再将其与被减数相加，然后丢弃进位</p>
+<p>所以，只要采用<strong>符号-二进制补码表示法</strong>，上面的二进制加减法器的电路仍然可以正常使用，而此时不需要在进行计算后的校正操作</p>
+<h3 id="溢出">溢出
+</h3><p>溢出：两个n位数产生的结果需要用n+1位数保存，那么称其发生了溢出</p>
+<h4 id="溢出检测">溢出检测
+</h4><p>如果<strong>符号位的进位输入与进位输出</strong>不相等，那么发生了溢出</p>
+<p><img src="https://lbw-img-lbw.oss-cn-beijing.aliyuncs.com/img/image-20220615101058122.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20220615101058122"
+	
+	
+></p>
+<h3 id="压缩">压缩
+</h3><p>从一个基本电路（如二进制加法器或乘法器）出发，将已有的电路转换成有用的、较简单的电路来简化设计，从而代替直接设计电路。针对特定应用将已有电路简化成一个简单电路，我们称这个过程为==压缩==</p>
+<p>对于已经设计好的功能块，通过将其输入端的值固定、传递和取反，即可实现新的功能</p>
+<h3 id="递增递减">递增/递减
+</h3><p>由加减法器压缩可得</p>
 
 </section>
 

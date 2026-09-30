@@ -90,7 +90,15 @@
   .today .lbl{font-size:11.5px;font-weight:650;color:var(--primary);letter-spacing:.03em}
   .today .tt{font-size:14px;font-weight:600}
   .today .meta{font-size:12.5px;color:var(--muted)}
-  .today .go{margin-left:auto}
+  .today .go{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+  .today .go .gl{font-size:11px;font-weight:650;color:var(--primary);letter-spacing:.03em}
+  .today .go .gr{font-size:11px;color:var(--faint);font-family:ui-monospace,monospace;white-space:nowrap}
+  .today .dbadge{
+    display:inline-block;margin-left:8px;font-family:ui-monospace,monospace;
+    font-size:11px;font-weight:600;color:var(--text);letter-spacing:0;
+    background:var(--surface);border:1px solid var(--border);
+    border-radius:6px;padding:1px 6px;white-space:nowrap;
+  }
   .today input[type=date]{
     border:1px solid var(--border);background:var(--surface);color:var(--text);
     border-radius:8px;padding:5px 9px;font-size:12.5px;font-family:inherit;
@@ -175,6 +183,7 @@
   .day-chk.on::after{content:"";width:9px;height:5px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg) translate(1px,-1px)}
   .day-title{flex:1;min-width:0}
   .day-title .dnum{font-size:11px;font-weight:700;letter-spacing:.05em;color:var(--c);font-family:ui-monospace,monospace}
+  .day-title .dnum .ddate{color:var(--muted);font-weight:650}
   .day-title .tt{font-size:15px;font-weight:640;letter-spacing:-.01em;margin:1px 0 4px;line-height:1.35}
   .day-title .refs{font-size:11.5px;color:var(--muted);display:flex;gap:9px;flex-wrap:wrap;font-family:ui-monospace,monospace}
   .day-hrs{font-size:11.5px;color:var(--muted);white-space:nowrap;font-family:ui-monospace,monospace;padding-top:2px}
@@ -379,11 +388,15 @@
       <div class="stats" id="stats"></div>
       <div class="today">
         <div>
-          <div class="lbl">今天学什么</div>
+          <div class="lbl">今天学什么 <span class="dbadge" id="todayDate">—</span></div>
           <div class="tt" id="todayTitle">—</div>
           <div class="meta" id="todayMeta">—</div>
         </div>
-        <div class="go"><input type="date" id="startDate" title="设定开工日期"></div>
+        <div class="go">
+          <label class="gl" for="startDate">开工日（Day 1 的日期）</label>
+          <input type="date" id="startDate" title="设定开工日，即 Day 1 的日期">
+          <div class="gr" id="dateRange">—</div>
+        </div>
       </div>
     </div>
   </div>
@@ -865,10 +878,11 @@ const FAQ = [
       <tr><td>时间不够</td><td>启用上面的压缩表；把「从零实现」降级为「跑通 + 改一个组件观察差异」</td></tr>
     </table>` },
 
-  { q:'关于这份计划的三个已知前提',
+  { q:'关于这份计划的四个已知前提',
     html:`<p style="margin:0 0 8px"><b>1. 视频讲次编号仅作跳转锚点。</b>B 站各搬运版把 v2 系列切成 73 / 171 / 191 / 236 集不等，编号存在分歧。所有链接统一指向官方空间，不写死单集 BV 号。</p>
       <p style="margin:0 0 8px"><b>2. 中文教材没有 ViT / 大模型章节。</b>英文版已扩到 19 章（含 Transformers for Vision、Large-Scale Pretraining），中文第二版为 15 章正文 + 附录。这部分由 Day 30 的论文精读取代。</p>
-      <p style="margin:0"><b>3. 开工日期可配置。</b>顶部日期选择器决定「今天学什么」的推算，默认从今天开始，可随时改成别的日期。</p>` }
+      <p style="margin:0"><b>3. 开工日是唯一的日期入口。</b>右上角「开工日」设的是 <b>Day 1 的日期</b>，全站日期都由它推导：Day 1 = 开工日，Day 2 = 开工日 +1 天 …… 往后顺延。改开工日，下面所有日程卡的日期会一起跟着走，<b>日期和 Day 序号永远同向递增</b>。</p>
+      <p style="margin:0"><b>4. 「今天学什么」按真实日期自动定位。</b>它显示的是<b>今天</b>该学第几天——即「今天 − 开工日 + 1」。所以如果你把开工日设成未来的日期，它会提示「还没到开工日」，这是正常的；想提前开学，把开工日改成今天即可。</p>` }
 ];
 
 const RESOURCES = [
@@ -907,6 +921,31 @@ function todayISO(){
   return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate());
 }
 
+/* ---------------------------------------------------------------------
+   日期换算：Day N  ↔  实际日历日期
+   口径：Day 1 = 开工日，Day 2 = 开工日 + 1 天 …… 方向与 Day 序号一致（前进）
+   --------------------------------------------------------------------- */
+const WEEK_CN = ['日','一','二','三','四','五','六'];
+const pad2 = n => String(n).padStart(2,'0');
+
+// 开工日（Day 1）的 Date 对象；未设定或非法时返回 null
+function startDateObj(){
+  if (!state.startDate) return null;
+  const sd = new Date(state.startDate + 'T00:00:00');
+  return isNaN(sd.getTime()) ? null : sd;
+}
+
+// Day N 对应的日历日期；N<1 或开工日非法时返回 null
+function dateOfDay(n){
+  const sd = startDateObj();
+  if (!sd || !(n >= 1)) return null;
+  return new Date(sd.getFullYear(), sd.getMonth(), sd.getDate() + (n - 1));
+}
+
+const fmtMD   = d => d ? pad2(d.getMonth()+1) + '/' + pad2(d.getDate()) : '—';
+const fmtMDW  = d => d ? fmtMD(d) + ' 周' + WEEK_CN[d.getDay()] : '—';
+const fmtYMDW = d => d ? d.getFullYear() + '/' + pad2(d.getMonth()+1) + '/' + pad2(d.getDate()) + ' 周' + WEEK_CN[d.getDay()] : '—';
+
 let state;
 try {
   const raw = localStorage.getItem(LS_KEY);
@@ -936,12 +975,13 @@ function dayProgress(d){ return d.tasks.filter(t => state.done[t.id]).length / d
 function stageDays(s){ return DAYS.filter(d => d.stage === s.id); }
 function stageDone(s){ return stageDays(s).filter(dayDone).length; }
 
-/* 今日推算 */
+/* 今日推算：返回「今天对应第几天」，无有效开工日时返回 null */
 function currentDayNum(){
-  const sd = new Date(state.startDate + 'T00:00:00');
-  if (isNaN(sd)) return null;
+  const sd = startDateObj();
+  if (!sd) return null;
   const now = new Date(); now.setHours(0,0,0,0);
-  const diff = Math.floor((now - sd) / 86400000);
+  // 用 round 而非 floor：两者都是本地零点，round 可避开夏令时造成的 23/25 小时误差
+  const diff = Math.round((now - sd) / 86400000);
   return diff + 1;
 }
 
@@ -986,15 +1026,34 @@ function renderHero(){
   // 今天
   const n = currentDayNum();
   const tEl = $('#todayTitle'), mEl = $('#todayMeta');
-  if (n === null){ tEl.textContent = '请先设定开工日期'; mEl.textContent = ''; }
-  else if (n < 1){ tEl.textContent = '还没到开工日（Day 1）'; mEl.textContent = '距离 Day 1 还有 ' + (1 - n) + ' 天'; }
-  else if (n > totalDays){ tEl.textContent = '30 天计划已走完 🎉'; mEl.textContent = '建议进入第二轮：挑一个方向做完整复现'; }
+  const dEl = $('#todayDate'), rEl = $('#dateRange');
+  const d1 = dateOfDay(1), dLast = dateOfDay(totalDays);
+  if (rEl) rEl.textContent = (d1 && dLast)
+    ? 'Day 1 = ' + fmtMD(d1) + '　Day ' + totalDays + ' = ' + fmtMD(dLast)
+    : '未设定开工日';
+  if (n === null){
+    if (dEl) dEl.textContent = '未设定';
+    tEl.textContent = '请先设定开工日期'; mEl.textContent = '';
+  }
+  else if (n < 1){
+    if (dEl) dEl.textContent = fmtYMDW(new Date());
+    tEl.textContent = '还没到开工日（Day 1 = ' + fmtMDW(d1) + '）';
+    mEl.textContent = '距 Day 1 还有 ' + (1 - n) + ' 天 · 想现在就开学，把「开工日」改成今天即可';
+  }
+  else if (n > totalDays){
+    if (dEl) dEl.textContent = fmtYMDW(new Date());
+    tEl.textContent = (totalDays) + ' 天计划已走完 🎉';
+    mEl.textContent = '建议进入第二轮：挑一个方向做完整复现';
+  }
   else {
     const d = DAYS.find(x => x.day === n);
     const p = Math.round(dayProgress(d)*100);
+    const dd = dateOfDay(d.day);
+    if (dEl) dEl.textContent = fmtYMDW(dd);
     tEl.innerHTML = 'Day ' + d.day + ' · ' + esc(d.title) +
       (dayDone(d) ? ' <span style="color:var(--accent)">✓ 已完成</span>' : '');
-    mEl.textContent = [stageOf(d.stage).name, d.book.length ? '教材 ' + d.book.join('/') : '', '约 ' + d.hrs + 'h', '进度 ' + p + '%']
+    mEl.textContent = ['📅 ' + fmtMDW(dd), stageOf(d.stage).name,
+      d.book.length ? '教材 ' + d.book.join('/') : '', '约 ' + d.hrs + 'h', '进度 ' + p + '%']
       .filter(Boolean).join(' ｜ ');
   }
   $('#startDate').value = state.startDate;
@@ -1009,8 +1068,10 @@ function renderTimeline(){
     const ds = stageDays(s);
     const done = stageDone(s);
     const pct = Math.round(done / ds.length * 100);
+    const r1 = dateOfDay(s.days[0]), r2 = dateOfDay(s.days[1]);
+    const range = (r1 && r2) ? ' · ' + fmtMD(r1) + '–' + fmtMD(r2) : '';
     return `<div class="tl" data-stage="${s.id}" style="--c:${s.color}">
-      <div class="n">${s.id.toUpperCase()} · DAY ${s.days[0]}–${s.days[1]}</div>
+      <div class="n">${s.id.toUpperCase()} · DAY ${s.days[0]}–${s.days[1]}${range}</div>
       <div class="nm">${esc(s.name)}</div>
       <div class="rg">${esc(s.book)} ｜ 视频 ${esc(s.video)}</div>
       <div class="ms">🎯 ${esc(s.milestone)}</div>
@@ -1059,11 +1120,13 @@ function cardsHTML(){
     const full = dayDone(d);
     const n = currentDayNum();
     const isToday = (n === d.day);
+    const dd = dateOfDay(d.day);
+    const dlab = dd ? ' · <span class="ddate">' + fmtMD(dd) + ' 周' + WEEK_CN[dd.getDay()] + '</span>' : '';
     return `<div class="day${d.hl?' hl':''}${full?' full':''}" data-day="${d.id}" style="--c:${s.color}">
       <div class="day-head">
         <button class="day-chk${full?' on':''}" data-daychk="${d.id}" aria-label="标记 Day ${d.day} 完成"></button>
         <div class="day-title">
-          <div class="dnum">DAY ${d.day}${isToday ? ' · 今天' : ''} · ${esc(s.name)}</div>
+          <div class="dnum">DAY ${d.day}${dlab}${isToday ? ' · 今天' : ''} · ${esc(s.name)}</div>
           <div class="tt">${esc(d.title)}</div>
           <div class="refs">
             ${d.book.length ? '<span>教材 '+esc(d.book.join(' / '))+'</span>' : ''}
@@ -1113,13 +1176,16 @@ function ganttHTML(){
       const done = dayDone(d);
       const cls = 'g-cell on' + (done?' done':'') + (n===dayNo?' today':'');
       const mark = d.paper ? '📄' : (d.review ? '🔄' : '');
-      return '<div class="'+cls+'" style="--c:'+s.color+'" data-gday="'+d.id+'" title="Day '+dayNo+' · '+esc(d.title)+'">'
+      const dd = dateOfDay(dayNo);
+      return '<div class="'+cls+'" style="--c:'+s.color+'" data-gday="'+d.id+'" title="Day '+dayNo+(dd?' · '+fmtMDW(dd):'')+' · '+esc(d.title)+'">'
            + '<div class="g-mark">'+mark+'</div></div>';
     }).join('');
     return '<div class="g-row"><div class="g-name" style="--c:'+s.color+'"><i></i>'+esc(s.name)+'</div>'+cells+'</div>';
   }).join('');
+  const gd1 = dateOfDay(1);
   return '<div class="gantt"><div class="gantt-grid">'+axis+rows+'</div></div>'
-       + '<div style="font-size:12px;color:var(--muted);margin-top:10px">绿=已完成 · 灰=未开始 · 黑框=今天 ｜ 点击色块跳到对应日卡片</div>';
+       + '<div style="font-size:12px;color:var(--muted);margin-top:10px">绿=已完成 · 灰=未开始 · 黑框=今天 ｜ 点击色块跳到对应日卡片'
+       + (gd1 ? ' ｜ Day 1 = ' + fmtMDW(gd1) + '，往后每天 +1' : '') + '</div>';
 }
 
 function bindGantt(){
@@ -1134,13 +1200,15 @@ function tableHTML(){
   const list = DAYS.filter(passFilter);
   if (!list.length) return '<div class="empty">该筛选条件下没有日程</div>';
   return '<div class="tblwrap"><table class="tbl"><thead><tr>' +
-    '<th>Day</th><th>阶段</th><th>主题</th><th>教材</th><th>视频</th><th>任务</th><th>时长</th><th>状态</th>' +
+    '<th>Day</th><th>日期</th><th>阶段</th><th>主题</th><th>教材</th><th>视频</th><th>任务</th><th>时长</th><th>状态</th>' +
     '</tr></thead><tbody>' +
     list.map(d => {
       const s = stageOf(d.stage), full = dayDone(d);
       const p = Math.round(dayProgress(d)*100);
+      const dd = dateOfDay(d.day);
       return '<tr class="'+(full?'done-row':'')+'" style="--c:'+s.color+'" data-day="'+d.id+'">' +
         '<td class="dcol">'+(full?'✓ ':'')+'D'+d.day+'</td>' +
+        '<td class="mono">'+(dd?fmtMDW(dd):'—')+'</td>' +
         '<td>'+esc(s.name)+'</td>' +
         '<td>'+esc(d.title)+(d.paper?' 📄':'')+(d.review?' 🔄':'')+'</td>' +
         '<td class="mono">'+(d.book.length?esc(d.book.join('/')):'—')+'</td>' +

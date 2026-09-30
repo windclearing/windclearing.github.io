@@ -57,6 +57,14 @@
   }
   .tb-btn:hover{border-color:var(--primary);color:var(--primary)}
   .tb-btn.icon{padding:6px 9px}
+  .tb-date{
+    display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);
+    border:1px solid var(--border);background:var(--surface);border-radius:9px;padding:5px 10px;
+  }
+  .tb-date input[type=date]{
+    border:0;background:transparent;color:var(--text);
+    font-size:12.5px;font-family:inherit;padding:0;
+  }
 
   /* ---------- Hero ---------- */
   .hero{
@@ -92,7 +100,10 @@
   .today .meta{font-size:12.5px;color:var(--muted)}
   .today .go{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:4px}
   .today .go .gl{font-size:11px;font-weight:650;color:var(--primary);letter-spacing:.03em}
-  .today .go .gr{font-size:11px;color:var(--faint);font-family:ui-monospace,monospace;white-space:nowrap}
+  .today .back-today{
+    border:0;background:transparent;color:var(--primary);font:inherit;font-size:11.5px;
+    cursor:pointer;text-decoration:underline;padding:0 0 0 8px;
+  }
   .today .dbadge{
     display:inline-block;margin-left:8px;font-family:ui-monospace,monospace;
     font-size:11px;font-weight:600;color:var(--text);letter-spacing:0;
@@ -356,6 +367,9 @@
   <div class="topbar-inner">
     <div class="brand"><span class="dot"></span>30 天 · 动手学深度学习<small>科研导向冲刺计划</small></div>
     <div class="spacer"></div>
+    <label class="tb-date" for="startDate" title="Day 1 的日期，全站所有日期都由它推算">
+      开工日 <input type="date" id="startDate">
+    </label>
     <a class="tb-btn" href="https://windclearing.github.io/" title="返回「风澈」博客首页">← 返回博客</a>
     <button class="tb-btn" id="btnTheme" title="切换深浅色">🌙 深色</button>
     <button class="tb-btn" id="btnExport">导出进度</button>
@@ -388,14 +402,13 @@
       <div class="stats" id="stats"></div>
       <div class="today">
         <div>
-          <div class="lbl">今天学什么 <span class="dbadge" id="todayDate">—</span></div>
+          <div class="lbl"><span id="todayLabel">今天学什么</span> <span class="dbadge" id="todayDate">—</span><button class="back-today" id="btnToday" hidden>回到今天</button></div>
           <div class="tt" id="todayTitle">—</div>
           <div class="meta" id="todayMeta">—</div>
         </div>
         <div class="go">
-          <label class="gl" for="startDate">开工日（Day 1 的日期）</label>
-          <input type="date" id="startDate" title="设定开工日，即 Day 1 的日期">
-          <div class="gr" id="dateRange">—</div>
+          <label class="gl" for="viewDate">查看日期</label>
+          <input type="date" id="viewDate" title="选一天，看那天的安排">
         </div>
       </div>
     </div>
@@ -881,8 +894,8 @@ const FAQ = [
   { q:'关于这份计划的四个已知前提',
     html:`<p style="margin:0 0 8px"><b>1. 视频讲次编号仅作跳转锚点。</b>B 站各搬运版把 v2 系列切成 73 / 171 / 191 / 236 集不等，编号存在分歧。所有链接统一指向官方空间，不写死单集 BV 号。</p>
       <p style="margin:0 0 8px"><b>2. 中文教材没有 ViT / 大模型章节。</b>英文版已扩到 19 章（含 Transformers for Vision、Large-Scale Pretraining），中文第二版为 15 章正文 + 附录。这部分由 Day 30 的论文精读取代。</p>
-      <p style="margin:0"><b>3. 开工日是唯一的日期入口。</b>右上角「开工日」设的是 <b>Day 1 的日期</b>，全站日期都由它推导：Day 1 = 开工日，Day 2 = 开工日 +1 天 …… 往后顺延。改开工日，下面所有日程卡的日期会一起跟着走，<b>日期和 Day 序号永远同向递增</b>。</p>
-      <p style="margin:0"><b>4. 「今天学什么」按真实日期自动定位。</b>它显示的是<b>今天</b>该学第几天——即「今天 − 开工日 + 1」。所以如果你把开工日设成未来的日期，它会提示「还没到开工日」，这是正常的；想提前开学，把开工日改成今天即可。</p>` }
+      <p style="margin:0 0 8px"><b>3. 两个日期各管一件事。</b>顶栏的<b>「开工日」</b>就是 Day 1 的日期，改它则全站日期一起重算——Day 2 = 开工日 +1 天，往后顺延，<b>日期与 Day 序号永远同向递增</b>。面板里的<b>「查看日期」</b>只决定你在看哪一天，不会改动开工日。</p>
+      <p style="margin:0"><b>4. 面板默认跟真实日期走。</b>「今天学什么」默认显示今天该学第几天。要看别的日子，在「查看日期」里选一天即可，选完点「回到今天」返回。刷新页面会自动回到今天。</p>` }
 ];
 
 const RESOURCES = [
@@ -942,6 +955,21 @@ function dateOfDay(n){
   return new Date(sd.getFullYear(), sd.getMonth(), sd.getDate() + (n - 1));
 }
 
+// 反向：某个日历日期是第几天；早于开工日时返回 0 或负数
+function dayNumOfDate(d){
+  const sd = startDateObj();
+  if (!sd || !d) return null;
+  const a = new Date(sd.getFullYear(), sd.getMonth(), sd.getDate());
+  const b = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  return Math.round((b - a) / 86400000) + 1;
+}
+
+const isoToDate = s => {
+  if (!s) return null;
+  const d = new Date(s + 'T00:00:00');
+  return isNaN(d.getTime()) ? null : d;
+};
+
 const fmtMD   = d => d ? pad2(d.getMonth()+1) + '/' + pad2(d.getDate()) : '—';
 const fmtMDW  = d => d ? fmtMD(d) + ' 周' + WEEK_CN[d.getDay()] : '—';
 const fmtYMDW = d => d ? d.getFullYear() + '/' + pad2(d.getMonth()+1) + '/' + pad2(d.getDate()) + ' 周' + WEEK_CN[d.getDay()] : '—';
@@ -960,6 +988,9 @@ function save(){
   try { localStorage.setItem(LS_KEY, JSON.stringify(state)); }
   catch(e){ memFallback = JSON.stringify(state); }
 }
+
+/* 面板正在查看的日期。默认今天，刷新即回到今天（不写入 localStorage，避免"看不到今天"） */
+let viewDate = todayISO();
 
 /* =====================================================================
    工具
@@ -1023,39 +1054,36 @@ function renderHero(){
     ['自测通过', scDone + '<small> / ' + scTotal + '</small>']
   ].map(([k,v]) => '<div class="stat"><div class="k">'+k+'</div><div class="v">'+v+'</div></div>').join('');
 
-  // 今天
-  const n = currentDayNum();
+  // 面板：按「查看日期」反查是第几天（默认今天）
+  const vd = isoToDate(viewDate);
+  const n = vd ? dayNumOfDate(vd) : null;
+  const isToday = (viewDate === todayISO());
   const tEl = $('#todayTitle'), mEl = $('#todayMeta');
-  const dEl = $('#todayDate'), rEl = $('#dateRange');
-  const d1 = dateOfDay(1), dLast = dateOfDay(totalDays);
-  if (rEl) rEl.textContent = (d1 && dLast)
-    ? 'Day 1 = ' + fmtMD(d1) + '　Day ' + totalDays + ' = ' + fmtMD(dLast)
-    : '未设定开工日';
+  const dEl = $('#todayDate'), lEl = $('#todayLabel'), bEl = $('#btnToday');
+  if (lEl) lEl.textContent = isToday ? '今天学什么' : '这一天的安排';
+  if (bEl) bEl.hidden = isToday;
+  if (dEl) dEl.textContent = vd ? fmtYMDW(vd) : '—';
   if (n === null){
-    if (dEl) dEl.textContent = '未设定';
-    tEl.textContent = '请先设定开工日期'; mEl.textContent = '';
+    tEl.textContent = '请先设定开工日'; mEl.textContent = '';
   }
   else if (n < 1){
-    if (dEl) dEl.textContent = fmtYMDW(new Date());
-    tEl.textContent = '还没到开工日（Day 1 = ' + fmtMDW(d1) + '）';
-    mEl.textContent = '距 Day 1 还有 ' + (1 - n) + ' 天 · 想现在就开学，把「开工日」改成今天即可';
+    tEl.textContent = 'Day 1 还没开始';
+    mEl.textContent = '开学日是 ' + fmtMDW(dateOfDay(1)) + '，还有 ' + (1 - n) + ' 天';
   }
   else if (n > totalDays){
-    if (dEl) dEl.textContent = fmtYMDW(new Date());
-    tEl.textContent = (totalDays) + ' 天计划已走完 🎉';
+    tEl.textContent = totalDays + ' 天计划已走完 🎉';
     mEl.textContent = '建议进入第二轮：挑一个方向做完整复现';
   }
   else {
     const d = DAYS.find(x => x.day === n);
     const p = Math.round(dayProgress(d)*100);
-    const dd = dateOfDay(d.day);
-    if (dEl) dEl.textContent = fmtYMDW(dd);
     tEl.innerHTML = 'Day ' + d.day + ' · ' + esc(d.title) +
       (dayDone(d) ? ' <span style="color:var(--accent)">✓ 已完成</span>' : '');
-    mEl.textContent = ['📅 ' + fmtMDW(dd), stageOf(d.stage).name,
+    mEl.textContent = [stageOf(d.stage).name,
       d.book.length ? '教材 ' + d.book.join('/') : '', '约 ' + d.hrs + 'h', '进度 ' + p + '%']
       .filter(Boolean).join(' ｜ ');
   }
+  $('#viewDate').value = viewDate;
   $('#startDate').value = state.startDate;
 }
 
@@ -1164,7 +1192,8 @@ function bindCards(){
 }
 
 function ganttHTML(){
-  const n = currentDayNum();
+  const vd = isoToDate(viewDate);
+  const n = vd ? dayNumOfDate(vd) : null;
   const axis = '<div class="g-row g-axis"><span></span>' +
     Array.from({length:30}, (_,i)=>'<span>'+(i+1)+'</span>').join('') + '</div>';
   const rows = STAGES.map(s => {
@@ -1182,10 +1211,8 @@ function ganttHTML(){
     }).join('');
     return '<div class="g-row"><div class="g-name" style="--c:'+s.color+'"><i></i>'+esc(s.name)+'</div>'+cells+'</div>';
   }).join('');
-  const gd1 = dateOfDay(1);
   return '<div class="gantt"><div class="gantt-grid">'+axis+rows+'</div></div>'
-       + '<div style="font-size:12px;color:var(--muted);margin-top:10px">绿=已完成 · 灰=未开始 · 黑框=今天 ｜ 点击色块跳到对应日卡片'
-       + (gd1 ? ' ｜ Day 1 = ' + fmtMDW(gd1) + '，往后每天 +1' : '') + '</div>';
+       + '<div style="font-size:12px;color:var(--muted);margin-top:10px">绿=已完成 · 灰=未开始 · 黑框=正在查看的那天 ｜ 点击色块跳到对应日卡片</div>';
 }
 
 function bindGantt(){
@@ -1377,8 +1404,18 @@ $('#filters').onclick = e => { const c = e.target.closest('.chip'); if (c) setFi
 $('#btnTheme').onclick = () => applyTheme(state.theme === 'dark' ? 'light' : 'dark');
 $('#btnPrint').onclick = () => window.print();
 
+/* 顶栏「开工日」：定义 Day 1，全站日期随之重算 */
 $('#startDate').oninput = e => {
-  state.startDate = e.target.value; save(); renderHero(); renderView();
+  state.startDate = e.target.value; save(); renderHero(); renderTimeline(); renderView();
+};
+
+/* 面板「查看日期」：只切换看哪一天，不影响开工日 */
+$('#viewDate').oninput = e => {
+  viewDate = e.target.value || todayISO(); renderHero(); renderView();
+};
+
+$('#btnToday').onclick = () => {
+  viewDate = todayISO(); renderHero(); renderView();
 };
 
 $('#btnCollapse').onclick = e => {
@@ -1434,6 +1471,7 @@ $('#btnReset').onclick = () => {
   const keepDate = state.startDate;
   state = blankState();
   state.startDate = keepDate;
+  viewDate = todayISO();
   save(); renderAll();
 };
 

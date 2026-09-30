@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>30 天学完李沐《动手学深度学习》· 科研导向学习规划</title>
+<style>
+  :root{
+    --bg:#FAFAFB; --surface:#FFFFFF; --surface2:#F4F4F7; --border:#E7E7EC;
+    --text:#1F2024; --muted:#6B7280; --faint:#9CA3AF;
+    --primary:#5B5BD6; --primary-soft:#EEEEFB;
+    --accent:#0EA5A4; --accent-soft:#E6F7F6;
+    --paper:#F59E0B; --paper-soft:#FEF4E3;
+    --review:#8B5CF6; --review-soft:#F3EEFE;
+    --skip:#9CA3AF;
+    --s1:#6366F1; --s2:#0EA5A4; --s3:#3B82F6; --s4:#8B5CF6; --s5:#F59E0B;
+    --shadow:0 1px 2px rgba(16,18,30,.04), 0 4px 16px rgba(16,18,30,.04);
+    --radius:14px;
+  }
+  html[data-theme="dark"]{
+    --bg:#0F1115; --surface:#1A1D24; --surface2:#22262F; --border:#2C313C;
+    --text:#E8E9ED; --muted:#A2A9B6; --faint:#6E7683;
+    --primary:#818CF8; --primary-soft:#242440;
+    --accent:#2DD4BF; --accent-soft:#16302E;
+    --paper:#FBBF24; --paper-soft:#3A2E14;
+    --review:#A78BFA; --review-soft:#2A2340;
+    --skip:#6E7683;
+    --s1:#818CF8; --s2:#2DD4BF; --s3:#60A5FA; --s4:#A78BFA; --s5:#FBBF24;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 4px 20px rgba(0,0,0,.25);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:system-ui,-apple-system,"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif;
+    font-size:14.5px; line-height:1.62; -webkit-font-smoothing:antialiased;
+  }
+  code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9em}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px 80px}
+
+  /* ---------- TopBar ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    background:color-mix(in srgb, var(--surface) 88%, transparent);
+    backdrop-filter:saturate(180%) blur(12px);
+    border-bottom:1px solid var(--border);
+  }
+  .topbar-inner{max-width:1180px;margin:0 auto;padding:10px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:650;font-size:15px;letter-spacing:-.01em}
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 4px var(--primary-soft)}
+  .brand small{font-weight:400;color:var(--muted);font-size:12.5px}
+  .topbar .spacer{flex:1}
+  .tb-btn{
+    border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:9px;padding:6px 11px;font-size:12.5px;cursor:pointer;
+    transition:.15s;font-family:inherit;text-decoration:none;white-space:nowrap;
+  }
+  .tb-btn:hover{border-color:var(--primary);color:var(--primary)}
+  .tb-btn.icon{padding:6px 9px}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    margin-top:26px;background:var(--surface);border:1px solid var(--border);
+    border-radius:18px;box-shadow:var(--shadow);padding:26px 28px;
+    display:grid;grid-template-columns:auto 1fr;gap:30px;align-items:center;
+  }
+  .ring-wrap{display:flex;flex-direction:column;align-items:center;gap:6px}
+  .ring{position:relative;width:150px;height:150px}
+  .ring svg{transform:rotate(-90deg)}
+  .ring .track{stroke:var(--surface2)}
+  .ring .bar{stroke:var(--primary);stroke-linecap:round;transition:stroke-dashoffset .6s cubic-bezier(.4,0,.2,1)}
+  .ring .mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px}
+  .ring .mid b{font-size:30px;font-weight:680;letter-spacing:-.02em;line-height:1}
+  .ring .mid span{font-size:11.5px;color:var(--muted)}
+  .hero-main h1{margin:0 0 6px;font-size:25px;font-weight:680;letter-spacing:-.02em;line-height:1.3}
+  .hero-main .sub{color:var(--muted);font-size:13.5px;margin-bottom:16px}
+  .hero-main .sub b{color:var(--text);font-weight:600}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .stat{background:var(--surface2);border:1px solid var(--border);border-radius:11px;padding:11px 13px}
+  .stat .k{font-size:11.5px;color:var(--muted);margin-bottom:3px}
+  .stat .v{font-size:19px;font-weight:660;letter-spacing:-.01em}
+  .stat .v small{font-size:12px;color:var(--muted);font-weight:400}
+
+  /* today card */
+  .today{
+    margin-top:16px;border-radius:12px;padding:13px 16px;
+    background:var(--primary-soft);border:1px solid color-mix(in srgb,var(--primary) 26%,transparent);
+    display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  }
+  .today .lbl{font-size:11.5px;font-weight:650;color:var(--primary);letter-spacing:.03em}
+  .today .tt{font-size:14px;font-weight:600}
+  .today .meta{font-size:12.5px;color:var(--muted)}
+  .today .go{margin-left:auto}
+  .today input[type=date]{
+    border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:8px;padding:5px 9px;font-size:12.5px;font-family:inherit;
+  }
+
+  /* ---------- Section ---------- */
+  section{margin-top:38px}
+  .sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+  .sec-head h2{margin:0;font-size:17px;font-weight:660;letter-spacing:-.01em}
+  .sec-head .desc{font-size:12.5px;color:var(--muted)}
+  .sec-head .spacer{flex:1}
+
+  /* ---------- Stage timeline ---------- */
+  .timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .tl{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:13px 14px;box-shadow:var(--shadow);position:relative;overflow:hidden;cursor:pointer;
+    transition:.18s;
+  }
+  .tl:hover{transform:translateY(-2px)}
+  .tl::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--c)}
+  .tl .n{font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--c)}
+  .tl .nm{font-size:13.5px;font-weight:620;margin:2px 0 5px}
+  .tl .rg{font-size:11.5px;color:var(--muted);font-family:ui-monospace,monospace}
+  .tl .ms{font-size:11.5px;color:var(--muted);margin-top:6px;line-height:1.5;min-height:34px}
+  .tl .pbar{height:4px;border-radius:99px;background:var(--surface2);margin-top:9px;overflow:hidden}
+  .tl .pbar i{display:block;height:100%;width:0;background:var(--c);border-radius:99px;transition:width .5s}
+  .tl .pct{font-size:11px;color:var(--faint);margin-top:4px}
+
+  /* ---------- Toolbar ---------- */
+  .toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .seg{display:inline-flex;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:3px;gap:2px}
+  .seg button{
+    border:0;background:transparent;color:var(--muted);font-family:inherit;font-size:12.5px;
+    padding:5px 13px;border-radius:7px;cursor:pointer;transition:.15s;font-weight:500;
+  }
+  .seg button.on{background:var(--surface);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.07);font-weight:600}
+  .chiplist{display:flex;gap:6px;flex-wrap:wrap}
+  .chip{
+    border:1px solid var(--border);background:var(--surface);color:var(--muted);
+    border-radius:99px;padding:4.5px 12px;font-size:12.5px;cursor:pointer;transition:.15s;font-family:inherit;
+  }
+  .chip:hover{border-color:var(--primary);color:var(--primary)}
+  .chip.on{background:var(--primary);border-color:var(--primary);color:#fff}
+
+  /* ---------- Gantt ---------- */
+  .gantt{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:16px 18px;overflow-x:auto}
+  .gantt-grid{min-width:720px}
+  .g-row{display:grid;grid-template-columns:140px repeat(30,1fr);gap:3px;align-items:center;margin-bottom:6px}
+  .g-axis span{font-size:10px;color:var(--faint);text-align:center;font-family:ui-monospace,monospace}
+  .g-name{font-size:11.5px;font-weight:600;display:flex;align-items:center;gap:7px;padding-right:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .g-name i{width:8px;height:8px;border-radius:2px;background:var(--c);flex:none}
+  .g-cell{height:26px;border-radius:5px;background:var(--surface2);transition:.15s;cursor:pointer;position:relative}
+  .g-cell.on{background:var(--c);opacity:.92}
+  .g-cell.on:hover{opacity:1;transform:scale(1.06)}
+  .g-cell.done{background:var(--accent)}
+  .g-cell.today{box-shadow:0 0 0 2px var(--text)}
+  .g-mark{font-size:9.5px;line-height:26px;text-align:center;color:#fff}
+
+  /* ---------- Day cards ---------- */
+  .days{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
+  .day{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);overflow:hidden;position:relative;transition:.18s;
+    border-left:3px solid var(--c);
+  }
+  .day:hover{box-shadow:0 2px 6px rgba(16,18,30,.07),0 10px 28px rgba(16,18,30,.07)}
+  .day.hl{background:linear-gradient(180deg,color-mix(in srgb,var(--c) 6%,var(--surface)) 0%,var(--surface) 90px)}
+  .day.full{opacity:.72}
+  .day.full::after{
+    content:"✓";position:absolute;right:14px;top:38px;font-size:52px;font-weight:700;
+    color:var(--accent);opacity:.09;pointer-events:none;line-height:1
+  }
+  .day-head{display:flex;align-items:flex-start;gap:11px;padding:13px 15px 10px}
+  .day-chk{
+    width:19px;height:19px;border-radius:6px;border:1.6px solid var(--border);background:var(--surface);
+    cursor:pointer;flex:none;margin-top:2px;display:grid;place-items:center;transition:.15s;padding:0;
+  }
+  .day-chk:hover{border-color:var(--accent)}
+  .day-chk.on{background:var(--accent);border-color:var(--accent)}
+  .day-chk.on::after{content:"";width:9px;height:5px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg) translate(1px,-1px)}
+  .day-title{flex:1;min-width:0}
+  .day-title .dnum{font-size:11px;font-weight:700;letter-spacing:.05em;color:var(--c);font-family:ui-monospace,monospace}
+  .day-title .tt{font-size:15px;font-weight:640;letter-spacing:-.01em;margin:1px 0 4px;line-height:1.35}
+  .day-title .refs{font-size:11.5px;color:var(--muted);display:flex;gap:9px;flex-wrap:wrap;font-family:ui-monospace,monospace}
+  .day-hrs{font-size:11.5px;color:var(--muted);white-space:nowrap;font-family:ui-monospace,monospace;padding-top:2px}
+  .tags{display:flex;gap:5px;flex-wrap:wrap;padding:0 15px 9px}
+  .tag{font-size:10.5px;padding:2.5px 8px;border-radius:6px;font-weight:600;letter-spacing:.02em}
+  .tag.core{background:var(--primary-soft);color:var(--primary)}
+  .tag.skip{background:var(--surface2);color:var(--skip)}
+  .tag.paper{background:var(--paper-soft);color:var(--paper)}
+  .tag.review{background:var(--review-soft);color:var(--review)}
+  .tag.derive{background:var(--accent-soft);color:var(--accent)}
+  .tasks{padding:4px 15px 13px;display:flex;flex-direction:column;gap:1px}
+  .task{display:flex;gap:9px;align-items:flex-start;padding:5px 7px;border-radius:8px;cursor:pointer;transition:.12s}
+  .task:hover{background:var(--surface2)}
+  .task .box{
+    width:15px;height:15px;border-radius:5px;border:1.5px solid var(--border);flex:none;margin-top:3px;
+    display:grid;place-items:center;transition:.15s;background:var(--surface);
+  }
+  .task.on .box{background:var(--accent);border-color:var(--accent)}
+  .task.on .box::after{content:"";width:7px;height:4px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg) translate(1px,-1px)}
+  .task .tx{font-size:13px;line-height:1.5;flex:1}
+  .task.on .tx{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--faint)}
+  .task .tm{font-size:10.5px;color:var(--faint);font-family:ui-monospace,monospace;white-space:nowrap;padding-top:2px}
+  .deliv{
+    margin:0 15px 13px;padding:9px 12px;border-radius:9px;background:var(--surface2);
+    font-size:12px;color:var(--muted);border:1px dashed var(--border);
+  }
+  .deliv b{color:var(--text);font-weight:620}
+  .dnote{margin:0 15px 13px;font-size:12px;color:var(--c);font-weight:500}
+  .days.collapsed .day .tags,
+  .days.collapsed .day .tasks,
+  .days.collapsed .day .deliv,
+  .days.collapsed .day .dnote{display:none}
+  .days.collapsed .day-head{padding-bottom:13px}
+
+  /* ---------- Table view ---------- */
+  .tblwrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:auto}
+  table.tbl{width:100%;border-collapse:collapse;font-size:12.5px;min-width:820px}
+  table.tbl th{
+    text-align:left;font-weight:620;font-size:11.5px;color:var(--muted);letter-spacing:.03em;
+    padding:11px 13px;border-bottom:1px solid var(--border);background:var(--surface2);position:sticky;top:0;
+  }
+  table.tbl td{padding:10px 13px;border-bottom:1px solid var(--border);vertical-align:top}
+  table.tbl tr:last-child td{border-bottom:0}
+  table.tbl tbody tr:hover{background:var(--surface2)}
+  table.tbl .dcol{font-family:ui-monospace,monospace;font-weight:650;color:var(--c);white-space:nowrap}
+  table.tbl .done-row td{color:var(--faint)}
+  .mini-chk{display:inline-block;width:15px;height:15px;border-radius:5px;border:1.5px solid var(--border);cursor:pointer;vertical-align:-3px}
+  .mini-chk.on{background:var(--accent);border-color:var(--accent)}
+
+  /* ---------- Papers ---------- */
+  .papers{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}
+  .paper{
+    background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--paper);
+    border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 16px;transition:.18s;
+  }
+  .paper:hover{box-shadow:0 2px 6px rgba(16,18,30,.07),0 10px 28px rgba(16,18,30,.07)}
+  .paper.read{opacity:.78}
+  .paper-top{display:flex;align-items:flex-start;gap:11px}
+  .paper-top .pchk{margin-top:1px}
+  .paper-name{font-size:14.5px;font-weight:650;letter-spacing:-.01em;line-height:1.35;flex:1}
+  .paper-name .cn{display:block;font-size:12px;color:var(--muted);font-weight:400;margin-top:2px}
+  .paper-meta{display:flex;gap:8px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin:9px 0 4px;font-family:ui-monospace,monospace}
+  .paper-meta span{background:var(--surface2);padding:2px 8px;border-radius:5px}
+  .pm-p0{background:var(--primary)!important;color:#fff!important}
+  .qlist{margin:9px 0 4px;padding-left:0;list-style:none;display:none;flex-direction:column;gap:5px}
+  .paper.open .qlist{display:flex}
+  .qlist li{display:flex;gap:8px;font-size:12.5px;line-height:1.5;align-items:flex-start;cursor:pointer;padding:3px 5px;border-radius:6px}
+  .qlist li:hover{background:var(--surface2)}
+  .qlist li .box{width:14px;height:14px;border-radius:4px;border:1.5px solid var(--border);flex:none;margin-top:3px;display:grid;place-items:center;background:var(--surface)}
+  .qlist li.on .box{background:var(--accent);border-color:var(--accent)}
+  .qlist li.on .box::after{content:"";width:6px;height:3.5px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg) translate(1px,-1px)}
+  .qlist li.on{color:var(--muted)}
+  .paper-acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center}
+  .plink{font-size:11.5px;color:var(--primary);text-decoration:none;border:1px solid var(--border);border-radius:7px;padding:4px 10px;transition:.15s}
+  .plink:hover{border-color:var(--primary);background:var(--primary-soft)}
+  .expand{margin-left:auto;font-size:11.5px;color:var(--muted);cursor:pointer;background:none;border:0;font-family:inherit}
+  .expand:hover{color:var(--primary)}
+
+  /* ---------- Self check ---------- */
+  .sc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+  .sc{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:15px 17px}
+  .sc-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .sc-head .wk{font-size:13.5px;font-weight:660}
+  .sc-head .dd{font-size:11px;color:var(--muted);font-family:ui-monospace,monospace}
+  .sc-head .pass{margin-left:auto;font-size:10.5px;font-weight:650;padding:2.5px 9px;border-radius:99px;background:var(--surface2);color:var(--muted)}
+  .sc-head .pass.ok{background:var(--accent-soft);color:var(--accent)}
+  .sc-items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+  .sc-items li{display:flex;gap:9px;font-size:12.8px;line-height:1.5;cursor:pointer;padding:5px 6px;border-radius:7px;align-items:flex-start}
+  .sc-items li:hover{background:var(--surface2)}
+  .sc-items li .box{width:14px;height:14px;border-radius:4px;border:1.5px solid var(--border);flex:none;margin-top:3px;display:grid;place-items:center;background:var(--surface)}
+  .sc-items li.on .box{background:var(--accent);border-color:var(--accent)}
+  .sc-items li.on .box::after{content:"";width:6px;height:3.5px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg) translate(1px,-1px)}
+  .sc-items li.on{color:var(--muted)}
+
+  /* ---------- FAQ ---------- */
+  details.faq{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);margin-bottom:10px;overflow:hidden;
+  }
+  details.faq>summary{
+    padding:13px 17px;cursor:pointer;font-size:13.5px;font-weight:620;list-style:none;
+    display:flex;align-items:center;gap:10px;
+  }
+  details.faq>summary::-webkit-details-marker{display:none}
+  details.faq>summary::before{
+    content:"";width:7px;height:7px;border-right:1.8px solid var(--muted);border-bottom:1.8px solid var(--muted);
+    transform:rotate(-45deg);transition:.2s;flex:none;margin-left:2px
+  }
+  details.faq[open]>summary::before{transform:rotate(45deg)}
+  details.faq .body{padding:0 17px 16px;font-size:13px;color:var(--muted)}
+  details.faq .body table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:6px}
+  details.faq .body th{text-align:left;color:var(--text);font-weight:620;padding:7px 10px;border-bottom:1px solid var(--border);font-size:11.5px}
+  details.faq .body td{padding:7px 10px;border-bottom:1px solid var(--border);vertical-align:top}
+  details.faq .body td:first-child{color:var(--text);font-weight:550;white-space:nowrap}
+  details.faq .body tr:last-child td{border-bottom:0}
+  .rule{margin-top:10px;padding:10px 13px;border-radius:9px;background:var(--paper-soft);color:var(--text);font-size:12.5px;border:1px solid color-mix(in srgb,var(--paper) 30%,transparent)}
+
+  /* ---------- Resources ---------- */
+  .res{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+  .rc{
+    display:flex;flex-direction:column;gap:3px;background:var(--surface);border:1px solid var(--border);
+    border-radius:12px;padding:13px 15px;text-decoration:none;color:var(--text);box-shadow:var(--shadow);transition:.18s;
+  }
+  .rc:hover{border-color:var(--primary);transform:translateY(-2px)}
+  .rc .rn{font-size:13.5px;font-weight:620}
+  .rc .ru{font-size:11px;color:var(--primary);font-family:ui-monospace,monospace;word-break:break-all}
+  .rc .rd{font-size:11.5px;color:var(--muted);margin-top:3px;line-height:1.5}
+
+  footer{margin-top:44px;padding-top:20px;border-top:1px solid var(--border);font-size:12px;color:var(--faint);
+    display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  footer .spacer{flex:1}
+
+  .empty{padding:34px;text-align:center;color:var(--muted);font-size:13px;background:var(--surface);border:1px dashed var(--border);border-radius:var(--radius)}
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:900px){
+    .hero{grid-template-columns:1fr;gap:20px;padding:22px}
+    .ring-wrap{flex-direction:row;justify-content:center;gap:18px}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .timeline{grid-template-columns:repeat(2,1fr)}
+    .tl .ms{min-height:0}
+  }
+  @media(max-width:640px){
+    .wrap{padding:0 14px 60px}
+    .topbar-inner{padding:9px 14px}
+    .brand small{display:none}
+    .hero-main h1{font-size:20px}
+    .days,.papers,.sc-grid,.res{grid-template-columns:1fr}
+    .timeline{grid-template-columns:1fr}
+    .g-row{grid-template-columns:84px repeat(30,minmax(16px,1fr))}
+  }
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+  /* ---------- Print ---------- */
+  @media print{
+    .topbar,.toolbar,.today .go,.ring-wrap,.tl:hover{display:none!important}
+    body{background:#fff;font-size:11px}
+    .hero{box-shadow:none;border-color:#ccc;grid-template-columns:1fr}
+    .day,.paper,.sc,.tl,.gantt,.tblwrap,details.faq{box-shadow:none;border-color:#ccc;break-inside:avoid}
+    .day.full{opacity:1}
+    details.faq{display:block}
+    details.faq .body{display:block!important}
+    section{margin-top:22px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><span class="dot"></span>30 天 · 动手学深度学习<small>科研导向冲刺计划</small></div>
+    <div class="spacer"></div>
+    <a class="tb-btn" href="https://windclearing.github.io/" title="返回「风澈」博客首页">← 返回博客</a>
+    <button class="tb-btn" id="btnTheme" title="切换深浅色">🌙 深色</button>
+    <button class="tb-btn" id="btnExport">导出进度</button>
+    <button class="tb-btn" id="btnImport">导入进度</button>
+    <button class="tb-btn" id="btnReset">重置</button>
+    <input type="file" id="fileInput" accept="application/json" hidden>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="ring-wrap">
+      <div class="ring">
+        <svg width="150" height="150" viewBox="0 0 150 150">
+          <circle class="track" cx="75" cy="75" r="63" fill="none" stroke-width="11"></circle>
+          <circle class="bar" id="ringBar" cx="75" cy="75" r="63" fill="none" stroke-width="11"
+                  stroke-dasharray="395.84" stroke-dashoffset="395.84"></circle>
+        </svg>
+        <div class="mid"><b id="ringPct">0%</b><span id="ringSub">0 / 30 天</span></div>
+      </div>
+    </div>
+    <div class="hero-main">
+      <h1>30 天学完李沐《动手学深度学习》</h1>
+      <div class="sub">
+        定位：<b>科研 / 读论文导向</b> ｜ 每天 <b>3–4 小时</b> ｜ 压缩工程章节，重仓
+        <b>注意力 · Transformer · 预训练</b>，穿插 <b>9 篇论文精读</b>
+      </div>
+      <div class="stats" id="stats"></div>
+      <div class="today">
+        <div>
+          <div class="lbl">今天学什么</div>
+          <div class="tt" id="todayTitle">—</div>
+          <div class="meta" id="todayMeta">—</div>
+        </div>
+        <div class="go"><input type="date" id="startDate" title="设定开工日期"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGES -->
+  <section>
+    <div class="sec-head">
+      <h2>五个阶段</h2>
+      <span class="desc">点阶段卡片可筛选该阶段日程 · 铁律：S4 与 S5 永不压缩</span>
+    </div>
+    <div class="timeline" id="timeline"></div>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section>
+    <div class="sec-head">
+      <h2>30 天日程</h2>
+      <span class="desc">★精读深挖 ｜ ⏭可略读 ｜ 📄论文日 ｜ 🔄复盘日</span>
+      <div class="spacer"></div>
+      <div class="seg" id="viewSeg">
+        <button data-view="cards" class="on">卡片</button>
+        <button data-view="gantt">甘特图</button>
+        <button data-view="table">表格</button>
+      </div>
+    </div>
+    <div class="toolbar">
+      <div class="chiplist" id="filters">
+        <button class="chip on" data-f="all">全部</button>
+        <button class="chip" data-f="undone">只看未完成</button>
+        <button class="chip" data-f="paper">论文精读日</button>
+        <button class="chip" data-f="review">复盘日</button>
+        <button class="chip" data-f="core">核心精读</button>
+      </div>
+      <div class="spacer" style="flex:1"></div>
+      <button class="tb-btn" id="btnCollapse">全部收起</button>
+    </div>
+    <div id="viewHost"></div>
+  </section>
+
+  <!-- PAPERS -->
+  <section>
+    <div class="sec-head">
+      <h2>论文精读清单</h2>
+      <span class="desc">李沐「论文精读」系列 · 展开查看必答问题（可勾选）</span>
+      <div class="spacer"></div>
+      <button class="tb-btn" id="btnExpandAll">全部展开问题</button>
+    </div>
+    <div class="papers" id="papers"></div>
+  </section>
+
+  <!-- SELF CHECK -->
+  <section>
+    <div class="sec-head">
+      <h2>每周自测</h2>
+      <span class="desc">通过标准：<b>不看资料</b>能完成</span>
+    </div>
+    <div class="sc-grid" id="selfchecks"></div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="sec-head"><h2>风险与补救</h2><span class="desc">进度落后怎么压、卡住怎么查</span></div>
+    <div id="faq"></div>
+  </section>
+
+  <!-- RESOURCES -->
+  <section>
+    <div class="sec-head"><h2>资源聚合</h2></div>
+    <div class="res" id="resources"></div>
+  </section>
+
+  <footer>
+    <span>进度保存在本机浏览器（localStorage），不上传任何数据</span>
+    <span class="spacer"></span>
+    <button class="tb-btn" id="btnPrint">打印 / 存为 PDF</button>
+  </footer>
+</div>
+
+<script>
+/* =====================================================================
+   数据层
+   ===================================================================== */
+
+const STAGES = [
+  { id:'s1', name:'基础冲刺',      days:[1,7],  color:'var(--s1)', book:'Ch1–4',      video:'01–15',
+    milestone:'手推 softmax+交叉熵梯度得 p−y；纯 NumPy 手写两层 MLP 反传，与 autograd 对拍误差 <1e-6' },
+  { id:'s2', name:'卷积与视觉',    days:[8,14], color:'var(--s2)', book:'Ch5–7, 13.1–13.2', video:'16–30, 36–37',
+    milestone:'从零实现 LeNet；ResNet/VGG 在 CIFAR-10 子集跑到 >85%；产出 3 篇 CNN 论文笔记' },
+  { id:'s3', name:'序列与循环',    days:[15,21],color:'var(--s3)', book:'Ch8–9',      video:'51–63',
+    milestone:'从零实现 RNN + LSTM；手推门控对梯度流的作用；seq2seq 小规模中英翻译 demo 并记录 BLEU' },
+  { id:'s4', name:'注意力 · Transformer', days:[22,28], color:'var(--s4)', book:'Ch10, 11', video:'64–68, 72',
+    milestone:'从零实现 scaled dot-product 多头自注意力 + 位置编码 + 完整 Transformer block；能画张量维度变化图' },
+  { id:'s5', name:'预训练 · 复现', days:[29,30],color:'var(--s5)', book:'Ch14, 15',   video:'69–70',
+    milestone:'跑通 BERT 微调；1 份端到端复现报告 + 9 张论文卡 + 总复盘自测通过' }
+];
+
+const DAYS = [
+/* ---------------- S1 ---------------- */
+{ id:'d01', day:1, stage:'s1', title:'环境搭建与全书全景', book:['1','2.1','2.2'], videos:['01','02','03','04'],
+  tags:[], hrs:3.5,
+  tasks:[
+    {id:'d01t1', text:'安装 PyTorch + d2l，跑通环境自检（torch.cuda.is_available()）', min:60, type:'code'},
+    {id:'d01t2', text:'看视频 01–04：课程安排 / 深度学习介绍 / 安装 / 数据操作', min:60, type:'video'},
+    {id:'d01t3', text:'跑通 2.1 数据操作、2.2 数据预处理 两个 notebook', min:60, type:'code'},
+    {id:'d01t4', text:'通读第 1 章，画出 D2L 全书结构思维导图', min:30, type:'note'}
+  ],
+  deliv:['环境清单','全书思维导图'] },
+
+{ id:'d02', day:2, stage:'s1', title:'预备知识（压缩速过）', book:['2.3','2.4','2.5','2.6'], videos:['05','06','07'],
+  tags:['derive'], hrs:3.5,
+  tasks:[
+    {id:'d02t1', text:'⏭ 快速过 2.3 线性代数、2.4 矩阵计算（会查 API 即可）', min:45, type:'skim'},
+    {id:'d02t2', text:'★精读 2.5 自动微分，手绘前向 / 反向计算图', min:60, type:'derive'},
+    {id:'d02t3', text:'用 torch.autograd 验证矩阵乘与复合函数梯度，与手推结果对拍', min:60, type:'code'},
+    {id:'d02t4', text:'看视频 05–07（线性代数 / 矩阵计算 / 自动求导）', min:45, type:'video'}
+  ],
+  deliv:['计算图手绘','autograd 验证脚本'] },
+
+{ id:'d03', day:3, stage:'s1', title:'线性回归与最优化', book:['3.1','3.2','3.3'], videos:['08'],
+  tags:[], hrs:3.5,
+  tasks:[
+    {id:'d03t1', text:'看视频 08：线性回归 + 基础优化算法', min:50, type:'video'},
+    {id:'d03t2', text:'从零实现线性回归（含数据迭代器、手写 SGD）', min:70, type:'code'},
+    {id:'d03t3', text:'手推 MSE 的解析解与 ∂L/∂w、∂L/∂b', min:60, type:'derive'}
+  ],
+  deliv:['手推 ∂L/∂w','notebook'] },
+
+{ id:'d04', day:4, stage:'s1', title:'Softmax 回归与交叉熵', book:['3.4','3.5','3.6','3.7'], videos:['09'],
+  tags:['core','derive'], hrs:4, hl:true,
+  tasks:[
+    {id:'d04t1', text:'看视频 09：Softmax 回归 + 损失函数 + 图像分类数据集', min:50, type:'video'},
+    {id:'d04t2', text:'★手推 softmax Jacobian，与交叉熵合并化简为 ∂L/∂z = p − y', min:70, type:'derive'},
+    {id:'d04t3', text:'从零实现 softmax 回归并在 Fashion-MNIST 上训练', min:80, type:'code'}
+  ],
+  deliv:['一页手写推导'], note:'交叉熵梯度是全书最重要的推导之一' },
+
+{ id:'d05', day:5, stage:'s1', title:'多层感知机与反向传播', book:['4.1','4.2','4.3','4.7'], videos:['10'],
+  tags:['core','derive'], hrs:4, hl:true,
+  tasks:[
+    {id:'d05t1', text:'看视频 10：多层感知机 + 代码实现', min:50, type:'video'},
+    {id:'d05t2', text:'★手推两层 MLP 的 ∂L/∂W1、∂L/∂W2，标清每个张量的维度', min:70, type:'derive'},
+    {id:'d05t3', text:'纯 NumPy 实现 forward/backward，与 torch.autograd 对拍（误差 <1e-6）', min:90, type:'code'}
+  ],
+  deliv:['NumPy 手写反传 notebook'] },
+
+{ id:'d06', day:6, stage:'s1', title:'泛化 · 正则化 · 数值稳定性', book:['4.4','4.5','4.6','4.8','4.9','4.10'], videos:['11','12','13','14','15'],
+  tags:['skip'], hrs:3.5,
+  tasks:[
+    {id:'d06t1', text:'看视频 11–14：模型选择 / 权重衰退 / 丢弃法 / 数值稳定性', min:70, type:'video'},
+    {id:'d06t2', text:'实验对比 L2 与 Dropout 对过拟合的抑制，画 train/val 曲线', min:80, type:'code'},
+    {id:'d06t3', text:'理解 Xavier 初始化与梯度爆炸的关系', min:40, type:'derive'},
+    {id:'d06t4', text:'⏭ 视频 15 Kaggle 房价只过思路，不必跟做', min:20, type:'skim'}
+  ],
+  deliv:['train/val 曲线对比报告'] },
+
+{ id:'d07', day:7, stage:'s1', title:'W1 复盘 + 研究方法论', book:[], videos:[],
+  tags:['review','paper'], hrs:3, review:true, paper:true, paperIds:['p-howto'],
+  tasks:[
+    {id:'d07t1', text:'完成 W1 自测（全部不看资料）', min:50, type:'check'},
+    {id:'d07t2', text:'📄 精读《如何读论文》(6:39) 与《如何找研究想法》', min:60, type:'paper'},
+    {id:'d07t3', text:'整理错题清单 + 论文阅读 SOP 卡片', min:50, type:'note'}
+  ],
+  deliv:['错题清单','论文阅读 SOP'] },
+
+/* ---------------- S2 ---------------- */
+{ id:'d08', day:8, stage:'s2', title:'深度学习计算（略读）', book:['5.1','5.2','5.3','5.4','5.6'], videos:['16','17','18'],
+  tags:['skip'], hrs:2.5,
+  tasks:[
+    {id:'d08t1', text:'⏭ 快速过 5.1–5.4 层和块 / 参数管理 / 自定义层 / 读写文件', min:60, type:'skim'},
+    {id:'d08t2', text:'会写一个自定义 nn.Module（含参数注册与 forward）', min:45, type:'code'},
+    {id:'d08t3', text:'⏭ 5.6 GPU 与视频 17/18 只看用法，不做多卡实验', min:35, type:'skim'}
+  ],
+  deliv:['自定义层代码片段'] },
+
+{ id:'d09', day:9, stage:'s2', title:'卷积基础与归纳偏置', book:['6.1','6.2','6.3','6.4','6.5'], videos:['19','20','21','22'],
+  tags:['core','derive'], hrs:4, hl:true,
+  tasks:[
+    {id:'d09t1', text:'★精读 6.1 从全连接到卷积，吃透局部性与平移等变性', min:60, type:'derive'},
+    {id:'d09t2', text:'看视频 19–22：卷积层 / 填充步幅 / 多通道 / 池化层', min:70, type:'video'},
+    {id:'d09t3', text:'从零实现二维卷积与池化，手算输出尺寸公式', min:60, type:'code'}
+  ],
+  deliv:['归纳偏置推导笔记'] },
+
+{ id:'d10', day:10, stage:'s2', title:'LeNet 与 AlexNet', book:['6.6'], videos:['23','24'],
+  tags:['paper'], hrs:4, paper:true, paperIds:['p-alexnet'],
+  tasks:[
+    {id:'d10t1', text:'从零实现 LeNet 并在 Fashion-MNIST 上训练', min:80, type:'code'},
+    {id:'d10t2', text:'📄 精读 AlexNet（逐段精读 55:21 + 9 年重读 19:59）', min:90, type:'paper'},
+    {id:'d10t3', text:'写 AlexNet 论文卡，回答必答问题', min:40, type:'note'}
+  ],
+  deliv:['LeNet notebook','AlexNet 论文卡'] },
+
+{ id:'d11', day:11, stage:'s2', title:'现代卷积网络（上）', book:['7.1','7.2','7.3','7.4'], videos:['25','26','27'],
+  tags:['paper'], hrs:3.5, paper:true, paperIds:['p-vgg'],
+  tasks:[
+    {id:'d11t1', text:'看视频 25–27：VGG / NiN / GoogLeNet', min:70, type:'video'},
+    {id:'d11t2', text:'整理 VGG / NiN / GoogLeNet 架构对比表（参数量 / 创新点）', min:70, type:'note'},
+    {id:'d11t3', text:'📄 VGG 选读：3×3 堆叠的动机与感受野递归计算', min:50, type:'paper'}
+  ],
+  deliv:['架构对比表'] },
+
+{ id:'d12', day:12, stage:'s2', title:'批量归一化与 ResNet', book:['7.5','7.6','7.7'], videos:['28','29','30'],
+  tags:['core','paper','derive'], hrs:4, hl:true, paper:true, paperIds:['p-resnet'],
+  tasks:[
+    {id:'d12t1', text:'★看视频 28 批量归一化，推导 BN 前向并分析其对反向的影响', min:60, type:'derive'},
+    {id:'d12t2', text:'★看视频 29 + 29.2：残差连接为何能治梯度消失', min:70, type:'derive'},
+    {id:'d12t3', text:'📄 精读 ResNet（直觉版 11:50 + 逐段精读 53:46）', min:80, type:'paper'}
+  ],
+  deliv:['残差梯度流推导笔记'] },
+
+{ id:'d13', day:13, stage:'s2', title:'视觉实战与复现实验', book:['13.1','13.2'], videos:['36','37'],
+  tags:[], hrs:4,
+  tasks:[
+    {id:'d13t1', text:'看视频 36–37：数据增广 + 微调', min:50, type:'video'},
+    {id:'d13t2', text:'复现实验：CIFAR-10 子集训练 ResNet，调到 >85%', min:120, type:'code'},
+    {id:'d13t3', text:'记录复现实验（配置 / 曲线 / acc / 结论）', min:50, type:'note'}
+  ],
+  deliv:['复现实验记录'] },
+
+{ id:'d14', day:14, stage:'s2', title:'W2 复盘', book:[], videos:[],
+  tags:['review'], hrs:3, review:true,
+  tasks:[
+    {id:'d14t1', text:'完成 W2 自测（全部不看资料）', min:60, type:'check'},
+    {id:'d14t2', text:'整理 AlexNet / VGG / ResNet 三篇论文笔记', min:80, type:'note'},
+    {id:'d14t3', text:'补做前面漏掉的 notebook', min:40, type:'code'}
+  ],
+  deliv:['第 2 周自测卷'] },
+
+/* ---------------- S3 ---------------- */
+{ id:'d15', day:15, stage:'s3', title:'序列模型 · 文本 · 语言模型', book:['8.1','8.2','8.3'], videos:['51','52','53'],
+  tags:[], hrs:3.5,
+  tasks:[
+    {id:'d15t1', text:'看视频 51–53：序列模型 / 文本预处理 / 语言模型与数据集', min:70, type:'video'},
+    {id:'d15t2', text:'实现 n-gram 语言模型并计算困惑度', min:70, type:'code'},
+    {id:'d15t3', text:'笔记：序列建模动机与马尔可夫假设的局限', min:45, type:'note'}
+  ],
+  deliv:['困惑度计算笔记'] },
+
+{ id:'d16', day:16, stage:'s3', title:'RNN 与 BPTT', book:['8.4','8.5','8.6','8.7'], videos:['54','55'],
+  tags:['core','derive'], hrs:4, hl:true,
+  tasks:[
+    {id:'d16t1', text:'看视频 54–55：RNN 原理与实现（从零 + 简洁）', min:60, type:'video'},
+    {id:'d16t2', text:'★从零实现 RNN，含手写 BPTT 反向', min:80, type:'code'},
+    {id:'d16t3', text:'★手推 BPTT，指出梯度连乘项中易消失 / 爆炸的位置', min:60, type:'derive'}
+  ],
+  deliv:['RNN 从零实现','BPTT 推导'] },
+
+{ id:'d17', day:17, stage:'s3', title:'GRU 与 LSTM 门控机制', book:['9.1','9.2'], videos:['56','57'],
+  tags:['core','derive'], hrs:4, hl:true,
+  tasks:[
+    {id:'d17t1', text:'看视频 56–57：门控循环单元 GRU / 长短期记忆网络 LSTM', min:60, type:'video'},
+    {id:'d17t2', text:'★手推 LSTM 三门与候选记忆，解释门控如何构成梯度高速公路', min:80, type:'derive'},
+    {id:'d17t3', text:'从零实现 LSTM 并在小语料上训练', min:70, type:'code'}
+  ],
+  deliv:['门控公式推导图'] },
+
+{ id:'d18', day:18, stage:'s3', title:'深层与双向循环网络', book:['9.3','9.4'], videos:['58','59'],
+  tags:[], hrs:3,
+  tasks:[
+    {id:'d18t1', text:'看视频 58–59：深层循环神经网络 / 双向循环神经网络', min:60, type:'video'},
+    {id:'d18t2', text:'笔记：残差连接在深 RNN 中的作用；双向的信息泄漏问题', min:60, type:'note'},
+    {id:'d18t3', text:'跑一个小实验对比单向 / 双向效果', min:60, type:'code'}
+  ],
+  deliv:['结构对比笔记'] },
+
+{ id:'d19', day:19, stage:'s3', title:'seq2seq 全链路', book:['9.5','9.6','9.7'], videos:['60','61','62'],
+  tags:[], hrs:4,
+  tasks:[
+    {id:'d19t1', text:'看视频 60–62：机器翻译数据集 / 编码器-解码器 / seq2seq', min:80, type:'video'},
+    {id:'d19t2', text:'跑通 seq2seq 小规模中英翻译 demo（约 1000 句），记录 BLEU', min:110, type:'code'},
+    {id:'d19t3', text:'理解 teacher forcing 的利弊', min:40, type:'derive'}
+  ],
+  deliv:['seq2seq 翻译 demo'] },
+
+{ id:'d20', day:20, stage:'s3', title:'束搜索 + 目标检测概念', book:['9.8','13.3','13.4','13.5','13.6','13.7','13.8'], videos:['63'],
+  tags:['skip'], hrs:3.5,
+  tasks:[
+    {id:'d20t1', text:'看视频 63：束搜索', min:40, type:'video'},
+    {id:'d20t2', text:'实现束搜索解码并与贪心解码对比', min:80, type:'code'},
+    {id:'d20t3', text:'⏭ 13.3–13.8 目标检测 / 锚框 / SSD / R-CNN 仅做概念级了解', min:60, type:'skim'}
+  ],
+  deliv:['束搜索 demo','检测概念卡'] },
+
+{ id:'d21', day:21, stage:'s3', title:'W3 复盘', book:[], videos:[],
+  tags:['review'], hrs:3, review:true,
+  tasks:[
+    {id:'d21t1', text:'完成 W3 自测（全部不看资料）', min:60, type:'check'},
+    {id:'d21t2', text:'记录卡点，集中解决', min:60, type:'note'},
+    {id:'d21t3', text:'回看 RNN / LSTM / seq2seq notebook 并补注释', min:60, type:'code'}
+  ],
+  deliv:['第 3 周自测卷'] },
+
+/* ---------------- S4 ---------------- */
+{ id:'d22', day:22, stage:'s4', title:'注意力机制基础', book:['10.1','10.2','10.3'], videos:['64','65'],
+  tags:['core','derive'], hrs:4, hl:true,
+  tasks:[
+    {id:'d22t1', text:'看视频 64–65：注意力机制 / 注意力分数', min:70, type:'video'},
+    {id:'d22t2', text:'手推 Nadaraya-Watson 核回归，理解注意力池化', min:70, type:'derive'},
+    {id:'d22t3', text:'实现加性注意力与点积注意力两种评分函数', min:70, type:'code'}
+  ],
+  deliv:['核回归手推笔记'] },
+
+{ id:'d23', day:23, stage:'s4', title:'Bahdanau 注意力与多头注意力', book:['10.4','10.5'], videos:['66'],
+  tags:['core','derive'], hrs:4, hl:true,
+  tasks:[
+    {id:'d23t1', text:'看视频 66：使用注意力机制的 seq2seq', min:60, type:'video'},
+    {id:'d23t2', text:'把 Bahdanau 注意力接入 seq2seq，观察 BLEU 提升', min:90, type:'code'},
+    {id:'d23t3', text:'笔记：多头注意力的子空间动机与维度变换', min:60, type:'derive'}
+  ],
+  deliv:['多头注意力维度推导'] },
+
+{ id:'d24', day:24, stage:'s4', title:'自注意力与位置编码', book:['10.6'], videos:[],
+  tags:['core','paper','derive'], hrs:4, hl:true, paper:true, paperIds:['p-transformer'],
+  tasks:[
+    {id:'d24t1', text:'★手推自注意力 Q/K/V，逐项解释缩放因子 √d_k 的作用', min:70, type:'derive'},
+    {id:'d24t2', text:'理解位置编码为何用 sin/cos，能否被学习替代', min:60, type:'derive'},
+    {id:'d24t3', text:'📄 精读 Transformer 论文（上）：模型结构与多头机制', min:80, type:'paper'}
+  ],
+  deliv:['自注意力手推','论文上半笔记'] },
+
+{ id:'d25', day:25, stage:'s4', title:'Transformer 完整结构', book:['10.7'], videos:['67','68'],
+  tags:['core','paper','derive'], hrs:4, hl:true, paper:true, paperIds:['p-transformer'],
+  tasks:[
+    {id:'d25t1', text:'★★看视频 67–68：自注意力和位置编码 / Transformer', min:80, type:'video'},
+    {id:'d25t2', text:'★★逐层拆解 Encoder/Decoder：残差 + LayerNorm、FFN、掩码', min:90, type:'derive'},
+    {id:'d25t3', text:'📄 精读 Transformer 论文（下）：训练、复杂度与实验', min:80, type:'paper'}
+  ],
+  deliv:['Transformer 张量维度图','论文下半笔记'] },
+
+{ id:'d26', day:26, stage:'s4', title:'优化算法精读', book:['11.3','11.4','11.5','11.6','11.7','11.8','11.9','11.10'], videos:['72'],
+  tags:['skip','derive'], hrs:3.5,
+  tasks:[
+    {id:'d26t1', text:'看视频 72：优化算法', min:60, type:'video'},
+    {id:'d26t2', text:'手推 Momentum / AdaGrad / RMSProp / Adam 更新式并对比', min:80, type:'derive'},
+    {id:'d26t3', text:'整理优化器对比表；⏭ 第 12 章计算性能整章跳过', min:50, type:'note'}
+  ],
+  deliv:['优化器对比表','Adam 推导'] },
+
+{ id:'d27', day:27, stage:'s4', title:'词嵌入与预训练思想', book:['14.1','14.2','14.3','14.4','14.5','14.6','14.7'], videos:[],
+  tags:['derive'], hrs:4,
+  tasks:[
+    {id:'d27t1', text:'精读 14.1–14.4：word2vec 跳字模型 / CBOW 与负采样', min:80, type:'derive'},
+    {id:'d27t2', text:'推导负采样目标函数及其梯度', min:70, type:'derive'},
+    {id:'d27t3', text:'过 14.5–14.7：GloVe 全局向量与子词嵌入', min:60, type:'skim'}
+  ],
+  deliv:['负采样目标函数推导'] },
+
+{ id:'d28', day:28, stage:'s4', title:'W4 复盘', book:[], videos:[],
+  tags:['review'], hrs:3, review:true,
+  tasks:[
+    {id:'d28t1', text:'完成 W4 自测（全部不看资料）', min:70, type:'check'},
+    {id:'d28t2', text:'白板复现 Transformer 数据流，限时 15 分钟', min:50, type:'derive'},
+    {id:'d28t3', text:'汇总第 4 周卡点', min:60, type:'note'}
+  ],
+  deliv:['第 4 周自测卷'] },
+
+/* ---------------- S5 ---------------- */
+{ id:'d29', day:29, stage:'s5', title:'BERT 预训练', book:['14.8','14.9','14.10'], videos:['69'],
+  tags:['core','paper'], hrs:4, hl:true, paper:true, paperIds:['p-bert'],
+  tasks:[
+    {id:'d29t1', text:'看视频 69：BERT 预训练', min:60, type:'video'},
+    {id:'d29t2', text:'★精读 14.8–14.10：MLM + NSP 目标与双向编码器', min:80, type:'derive'},
+    {id:'d29t3', text:'📄 精读 BERT 论文（45:49），写论文卡', min:80, type:'paper'}
+  ],
+  deliv:['BERT 预训练流程笔记','论文卡'] },
+
+{ id:'d30', day:30, stage:'s5', title:'BERT 微调 · 复现 · 总复盘', book:['15.5','15.6','15.7'], videos:['70'],
+  tags:['paper','review'], hrs:4, hl:true, paper:true, review:true, paperIds:['p-gpt','p-vit'],
+  tasks:[
+    {id:'d30t1', text:'看视频 70：BERT 微调', min:50, type:'video'},
+    {id:'d30t2', text:'微调 BERT 做文本分类或 NLI，跑通并记录指标', min:90, type:'code'},
+    {id:'d30t3', text:'📄 选读 GPT 系列 / ViT，补教材未覆盖的前沿', min:60, type:'paper'},
+    {id:'d30t4', text:'30 天总复盘：论文卡清点 + 完成总自测', min:40, type:'check'}
+  ],
+  deliv:['BERT 复现报告','9 张论文卡','总自测'] }
+];
+
+const PAPERS = [
+  { id:'p-howto', name:'How to Read a Paper', cn:'如何读论文（方法论）', year:2021, venue:'李沐分享', dur:'6:39',
+    d2lRef:[], day:[7], pri:'P0',
+    q:['三遍读法各自的时间预算与目的是什么？','什么情况下应该果断放弃一篇论文？','如何建立论文之间的引用脉络？'] },
+
+  { id:'p-alexnet', name:'AlexNet', cn:'ImageNet Classification with Deep CNNs', year:2012, venue:'NeurIPS', dur:'55:21 + 19:59',
+    d2lRef:['7.1'], day:[10], pri:'P1', url:'https://papers.nips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html',
+    q:['为什么 ReLU 比 sigmoid 训练更快？（饱和区梯度）','Dropout 与 D2L 4.6 的表述是否一致？','当年靠 GPU 并行 + 数据增广解决了什么？','相比 LeNet，结构性突破到底在哪？'] },
+
+  { id:'p-vgg', name:'VGG', cn:'Very Deep Convolutional Networks', year:2014, venue:'ICLR', dur:'选读',
+    d2lRef:['7.2'], day:[11], pri:'P2', url:'https://arxiv.org/abs/1409.1556',
+    q:['为什么 3×3 堆叠等价于更大感受野但参数更少？','感受野的递归计算式如何推导？','它为何是「最规整」的 CNN 基线？'] },
+
+  { id:'p-resnet', name:'ResNet', cn:'Deep Residual Learning for Image Recognition', year:2015, venue:'CVPR', dur:'53:46 + 11:50',
+    d2lRef:['7.5','7.6'], day:[12], pri:'P1', url:'https://arxiv.org/abs/1512.03385',
+    q:['残差连接为何缓解梯度消失？链式求导多出的 +1 项意义？','「退化问题」与「过拟合」有何本质区别？','identity mapping 为什么比学习 H(x) 更容易优化？','BN 在 ResNet 中扮演什么角色？'] },
+
+  { id:'p-transformer', name:'Attention Is All You Need', cn:'Transformer', year:2017, venue:'NeurIPS', dur:'1:27:05',
+    d2lRef:['10.5','10.6','10.7'], day:[24,25], pri:'P0', url:'https://arxiv.org/abs/1706.03762',
+    q:['为什么用 scaled dot-product 而非加性注意力？1/√d_k 的方差动机？','多头注意力相对单头的表征增益如何论证？','位置编码为何用正弦函数？能否被学习替代？','复杂度 O(n²d) 与 RNN 的 O(nd²) 各自优劣与并行性差异？','残差 + LayerNorm 的组合为何对大深度关键？'] },
+
+  { id:'p-bert', name:'BERT', cn:'Pre-training of Deep Bidirectional Transformers', year:2018, venue:'NAACL', dur:'45:49',
+    d2lRef:['14.8','14.9','14.10'], day:[29], pri:'P0', url:'https://arxiv.org/abs/1810.04805',
+    q:['MLM 的 mask 比例、80/10/10 替换策略的动机是什么？','为什么 NSP 后来被证明价值有限？（延伸 RoBERTa）','双向性与 Transformer Encoder 的关系？','预训练-微调范式的成本收益账怎么算？'] },
+
+  { id:'p-gpt', name:'GPT / GPT-2 / GPT-3', cn:'自回归预训练与上下文学习', year:2018, venue:'OpenAI', dur:'1:29:58',
+    d2lRef:[], day:[30], pri:'P1', url:'https://arxiv.org/abs/2005.14165', note:'教材未覆盖，靠论文补',
+    q:['自回归解码器与 BERT 编码器的目标差异？','zero-shot / few-shot / in-context learning 的机制解释？','scaling law 的经验结论是什么？'] },
+
+  { id:'p-vit', name:'ViT', cn:'An Image is Worth 16x16 Words', year:2020, venue:'ICLR', dur:'1:11:30',
+    d2lRef:['6.1','10.6'], day:[30], pri:'P1', url:'https://arxiv.org/abs/2010.11929', note:'教材未覆盖，靠论文补',
+    q:['把图像切成 16×16 patch 当 token 的动机？','为什么 ViT 需要大数据预训练才超过 CNN？','归纳偏置从 CNN 到 ViT 的迁移/削弱意味着什么？'] },
+
+  { id:'p-algn', name:'InstructGPT 或 CLIP', cn:'RLHF 对齐 / 多模态对比学习（任选一）', year:2022, venue:'OpenAI', dur:'1:07:10 / 1:38:25',
+    d2lRef:[], day:[30], pri:'P2', url:'https://arxiv.org/abs/2203.02155', note:'加分项，选做',
+    q:['（InstructGPT）RLHF 三阶段如何对齐？为什么 SFT 后还需奖励模型？','（CLIP）对比学习的正负样本构造与双塔结构？','（CLIP）zero-shot 分类为何可行？'] }
+];
+
+const SELF_CHECKS = [
+  { wk:'W1', day:7, label:'基础：反传与正则',
+    items:[
+      {id:'w1c1', t:'不看资料手推 softmax + 交叉熵梯度，写出 ∂L/∂z = p − y'},
+      {id:'w1c2', t:'手推两层 MLP 的 ∂L/∂W1、∂L/∂W2，说清各维度'},
+      {id:'w1c3', t:'解释自动微分「计算图 + 反向模式」相比数值/符号微分的优势'},
+      {id:'w1c4', t:'说明为什么 Dropout 等价于一种模型集成'},
+      {id:'w1c5', t:'用一句话说清权重衰退（L2）如何抑制过拟合'}
+    ]},
+  { wk:'W2', day:14, label:'卷积：归纳偏置与残差',
+    items:[
+      {id:'w2c1', t:'逐项解释 CNN 的两大归纳偏置（局部性、平移等变性）'},
+      {id:'w2c2', t:'手算一个 5×5 输入、3×3 卷积核的填充/步幅输出尺寸'},
+      {id:'w2c3', t:'解释感受野递归公式 R_l = R_{l−1} + (k−1)·∏s'},
+      {id:'w2c4', t:'说明 BN 在训练/推理时行为差异及其数学原因'},
+      {id:'w2c5', t:'解释 ResNet 残差连接为何不加剧梯度消失'}
+    ]},
+  { wk:'W3', day:21, label:'循环：BPTT 与门控',
+    items:[
+      {id:'w3c1', t:'手推 BPTT，指出梯度连乘项中易消失/爆炸的位置'},
+      {id:'w3c2', t:'写出 LSTM 三个门与候选记忆公式并解释各自作用'},
+      {id:'w3c3', t:'解释 GRU 相对 LSTM 的简化'},
+      {id:'w3c4', t:'说清 teacher forcing 的利弊'},
+      {id:'w3c5', t:'解释束搜索为何优于贪心解码'}
+    ]},
+  { wk:'W4', day:28, label:'注意力：自注意力与优化',
+    items:[
+      {id:'w4c1', t:'用 Q/K/V 手写 scaled dot-product attention 公式并解释 √d_k'},
+      {id:'w4c2', t:'画出多头注意力完整张量维度变换（batch/head/seq/dim）'},
+      {id:'w4c3', t:'解释位置编码为何必要（自注意力本身无位置信息）'},
+      {id:'w4c4', t:'逐组件拆解一个 Transformer Encoder Block'},
+      {id:'w4c5', t:'手推 Adam 更新式并对比 Momentum'},
+      {id:'w4c6', t:'推导 word2vec 负采样目标函数'}
+    ]},
+  { wk:'总复盘', day:30, label:'收官：能讲清才算会',
+    items:[
+      {id:'fnc1', t:'白板 15 分钟内画出并讲清 Transformer 全部数据流'},
+      {id:'fnc2', t:'说清 BERT 预训练目标与微调流程'},
+      {id:'fnc3', t:'完成 1 个端到端复现（含数据、训练、评估、结论）'},
+      {id:'fnc4', t:'9 篇论文卡全部完成且能复述核心贡献'},
+      {id:'fnc5', t:'能指出 D2L 未覆盖、需靠论文补的前沿方向（ViT/大模型/多模态）'}
+    ]}
+];
+
+const FAQ = [
+  { q:'进度落后了怎么办？——压缩优先级',
+    html:`<table>
+      <tr><th>落后程度</th><th>可跳 / 可合并</th></tr>
+      <tr><td>1–2 天</td><td>D8（第 5 章深度学习计算）、D18（深层/双向 RNN）、D20 目标检测部分</td></tr>
+      <tr><td>3–5 天</td><td>第 12 章计算性能整章、第 13 章 13.3–13.14、第 16 章附录、第 11 章除 SGD/Adam 外</td></tr>
+      <tr><td>6–8 天</td><td>合并 D11+D12（现代 CNN）、合并 D22+D23（注意力基础）</td></tr>
+      <tr><td>极端情况</td><td>「从零实现」降级为「读代码 + 改参数复现」，牺牲手写深度，保住论文精读</td></tr>
+    </table>
+    <div class="rule"><b>铁律：</b>S4（注意力 / Transformer）与 S5（BERT / 论文）永不压缩 —— 这是科研导向的目标核心。</div>` },
+
+  { q:'卡住了怎么排查？——常见故障路径',
+    html:`<table>
+      <tr><th>症状</th><th>排查步骤</th></tr>
+      <tr><td>环境装不上</td><td>① Python 用 3.9–3.11；② CUDA 版本与 torch 匹配（torch.cuda.is_available()）；③ 无 GPU 改 CPU 或 Colab / Kaggle</td></tr>
+      <tr><td>显存不足 OOM</td><td>① 减 batch_size；② 减模型宽度/层数；③ torch.cuda.empty_cache()；④ 用 Kaggle/Colab 免费 GPU</td></tr>
+      <tr><td>不收敛 / 爆炸</td><td>① 学习率降 10×；② 加梯度裁剪 clip_grad_norm_；③ 检查初始化；④ 检查数据是否归一化</td></tr>
+      <tr><td>acc 卡住不动</td><td>① 先做单 batch 过拟合测试（能否 100% 拟合一个 batch）；② 检查 loss 实现；③ 检查标签对齐</td></tr>
+      <tr><td>论文读不下去</td><td>① 先用三遍读法只看标题/摘要/图；② 先看精读视频再回读原文；③ 只记 3 个问题，不求全懂</td></tr>
+      <tr><td>时间不够</td><td>启用上面的压缩表；把「从零实现」降级为「跑通 + 改一个组件观察差异」</td></tr>
+    </table>` },
+
+  { q:'关于这份计划的三个已知前提',
+    html:`<p style="margin:0 0 8px"><b>1. 视频讲次编号仅作跳转锚点。</b>B 站各搬运版把 v2 系列切成 73 / 171 / 191 / 236 集不等，编号存在分歧。所有链接统一指向官方空间，不写死单集 BV 号。</p>
+      <p style="margin:0 0 8px"><b>2. 中文教材没有 ViT / 大模型章节。</b>英文版已扩到 19 章（含 Transformers for Vision、Large-Scale Pretraining），中文第二版为 15 章正文 + 附录。这部分由 Day 30 的论文精读取代。</p>
+      <p style="margin:0"><b>3. 开工日期可配置。</b>顶部日期选择器决定「今天学什么」的推算，默认从今天开始，可随时改成别的日期。</p>` }
+];
+
+const RESOURCES = [
+  { n:'教材 · 动手学深度学习（中文第二版）', u:'https://zh.d2l.ai/', d:'在线电子书，可切换 PyTorch / TF / MXNet / Paddle 实现' },
+  { n:'课程主页 · D2L v2', u:'https://courses.d2l.ai/zh-v2', d:'官方课程安排与课件（Jupyter）下载' },
+  { n:'B 站 · 跟李沐学AI', u:'https://space.bilibili.com/1567748478', d:'动手学深度学习 v2 系列 + 论文精读系列' },
+  { n:'论文精读仓库', u:'https://github.com/mli/paper-reading', d:'67 篇论文清单，已录制 32 篇，含逐段精读视频索引' },
+  { n:'D2L 官方代码仓库', u:'https://github.com/d2l-ai/d2l-zh', d:'全部 notebook 源码，可 clone 到本地跑' },
+  { n:'讨论区', u:'https://discuss.d2l.ai/', d:'中英文问答社区，卡住时先搜这里' },
+  { n:'PyTorch 文档', u:'https://pytorch.org/docs/stable/index.html', d:'手写实现时的 API 参考' },
+  { n:'Papers with Code', u:'https://paperswithcode.com/', d:'找论文的复现实现与基准排名' }
+];
+
+/* =====================================================================
+   状态层
+   ===================================================================== */
+
+const LS_KEY = 'd2l30.progress.v1';
+let memFallback = null;
+
+const blankState = () => ({
+  version:1,
+  startDate: todayISO(),
+  theme: document.documentElement.getAttribute('data-theme') || 'light',
+  view: 'cards',
+  done: {},          // taskId -> true
+  paperRead: {},     // paperId -> true
+  paperQ: {},        // paperId:qi -> true
+  selfCheck: {},     // itemId -> true
+  openDays: {}       // dayId -> true
+});
+
+function todayISO(){
+  const d = new Date();
+  const p = n => String(n).padStart(2,'0');
+  return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate());
+}
+
+let state;
+try {
+  const raw = localStorage.getItem(LS_KEY);
+  state = raw ? Object.assign(blankState(), JSON.parse(raw)) : blankState();
+} catch(e){
+  state = blankState();
+}
+
+function save(){
+  state.version = 1;
+  state.lastUpdated = new Date().toISOString();
+  try { localStorage.setItem(LS_KEY, JSON.stringify(state)); }
+  catch(e){ memFallback = JSON.stringify(state); }
+}
+
+/* =====================================================================
+   工具
+   ===================================================================== */
+
+const $  = (s, r) => (r||document).querySelector(s);
+const $$ = (s, r) => Array.from((r||document).querySelectorAll(s));
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const stageOf = id => STAGES.find(s => s.id === id);
+
+function dayDone(d){ return d.tasks.every(t => state.done[t.id]); }
+function dayProgress(d){ return d.tasks.filter(t => state.done[t.id]).length / d.tasks.length; }
+function stageDays(s){ return DAYS.filter(d => d.stage === s.id); }
+function stageDone(s){ return stageDays(s).filter(dayDone).length; }
+
+/* 今日推算 */
+function currentDayNum(){
+  const sd = new Date(state.startDate + 'T00:00:00');
+  if (isNaN(sd)) return null;
+  const now = new Date(); now.setHours(0,0,0,0);
+  const diff = Math.floor((now - sd) / 86400000);
+  return diff + 1;
+}
+
+const MARK = {
+  core:   { cls:'core',   text:'★ 核心精读' },
+  skip:   { cls:'skip',   text:'⏭ 可略读' },
+  paper:  { cls:'paper',  text:'📄 论文精读日' },
+  review: { cls:'review', text:'🔄 复盘日' },
+  derive: { cls:'derive', text:'✍ 需手推' }
+};
+const TTYPE = { video:'视频', code:'代码', derive:'推导', paper:'论文', note:'笔记', check:'自测', skim:'略读' };
+
+/* =====================================================================
+   渲染 · Hero
+   ===================================================================== */
+
+const RING_C = 395.84;
+
+function renderHero(){
+  const totalDays = DAYS.length;
+  const doneDays = DAYS.filter(dayDone).length;
+  const pct = Math.round(doneDays / totalDays * 100);
+
+  $('#ringPct').textContent = pct + '%';
+  $('#ringSub').textContent = doneDays + ' / ' + totalDays + ' 天';
+  $('#ringBar').setAttribute('stroke-dashoffset', String(RING_C * (1 - doneDays/totalDays)));
+
+  // 已投入时长
+  let mins = 0;
+  DAYS.forEach(d => d.tasks.forEach(t => { if (state.done[t.id]) mins += t.min; }));
+  const papersRead = PAPERS.filter(p => state.paperRead[p.id]).length;
+  const scTotal = SELF_CHECKS.reduce((a,w) => a + w.items.length, 0);
+  const scDone = Object.keys(state.selfCheck).filter(k => state.selfCheck[k]).length;
+
+  $('#stats').innerHTML = [
+    ['完成天数', doneDays + '<small> / ' + totalDays + '</small>'],
+    ['已投入', Math.round(mins/6)/10 + '<small> h</small>'],
+    ['论文卡', papersRead + '<small> / ' + PAPERS.length + '</small>'],
+    ['自测通过', scDone + '<small> / ' + scTotal + '</small>']
+  ].map(([k,v]) => '<div class="stat"><div class="k">'+k+'</div><div class="v">'+v+'</div></div>').join('');
+
+  // 今天
+  const n = currentDayNum();
+  const tEl = $('#todayTitle'), mEl = $('#todayMeta');
+  if (n === null){ tEl.textContent = '请先设定开工日期'; mEl.textContent = ''; }
+  else if (n < 1){ tEl.textContent = '还没到开工日（Day 1）'; mEl.textContent = '距离 Day 1 还有 ' + (1 - n) + ' 天'; }
+  else if (n > totalDays){ tEl.textContent = '30 天计划已走完 🎉'; mEl.textContent = '建议进入第二轮：挑一个方向做完整复现'; }
+  else {
+    const d = DAYS.find(x => x.day === n);
+    const p = Math.round(dayProgress(d)*100);
+    tEl.innerHTML = 'Day ' + d.day + ' · ' + esc(d.title) +
+      (dayDone(d) ? ' <span style="color:var(--accent)">✓ 已完成</span>' : '');
+    mEl.textContent = [stageOf(d.stage).name, d.book.length ? '教材 ' + d.book.join('/') : '', '约 ' + d.hrs + 'h', '进度 ' + p + '%']
+      .filter(Boolean).join(' ｜ ');
+  }
+  $('#startDate').value = state.startDate;
+}
+
+/* =====================================================================
+   渲染 · 阶段时间轴
+   ===================================================================== */
+
+function renderTimeline(){
+  $('#timeline').innerHTML = STAGES.map(s => {
+    const ds = stageDays(s);
+    const done = stageDone(s);
+    const pct = Math.round(done / ds.length * 100);
+    return `<div class="tl" data-stage="${s.id}" style="--c:${s.color}">
+      <div class="n">${s.id.toUpperCase()} · DAY ${s.days[0]}–${s.days[1]}</div>
+      <div class="nm">${esc(s.name)}</div>
+      <div class="rg">${esc(s.book)} ｜ 视频 ${esc(s.video)}</div>
+      <div class="ms">🎯 ${esc(s.milestone)}</div>
+      <div class="pbar"><i style="width:${pct}%"></i></div>
+      <div class="pct">${done} / ${ds.length} 天 · ${pct}%</div>
+    </div>`;
+  }).join('');
+
+  $$('#timeline .tl').forEach(el => el.onclick = () => {
+    const sid = el.dataset.stage;
+    const first = DAYS.find(d => d.stage === sid);
+    setFilter('all');
+    switchView('cards');
+    const node = document.querySelector('[data-day="'+first.id+'"]');
+    if (node) node.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+}
+
+/* =====================================================================
+   视图 · 卡片 / 甘特 / 表格
+   ===================================================================== */
+
+let curView = state.view || 'cards';
+let curFilter = 'all';
+
+function passFilter(d){
+  if (curFilter === 'undone') return !dayDone(d);
+  if (curFilter === 'paper')  return !!d.paper;
+  if (curFilter === 'review') return !!d.review;
+  if (curFilter === 'core')   return (d.tags||[]).includes('core');
+  return true;
+}
+
+function renderView(){
+  const host = $('#viewHost');
+  if (curView === 'gantt'){ host.innerHTML = ganttHTML(); bindGantt(); }
+  else if (curView === 'table'){ host.innerHTML = tableHTML(); bindTable(); }
+  else { host.innerHTML = cardsHTML(); bindCards(); }
+}
+
+function cardsHTML(){
+  const list = DAYS.filter(passFilter);
+  if (!list.length) return '<div class="empty">该筛选条件下没有日程</div>';
+  return '<div class="days">' + list.map(d => {
+    const s = stageOf(d.stage);
+    const full = dayDone(d);
+    const n = currentDayNum();
+    const isToday = (n === d.day);
+    return `<div class="day${d.hl?' hl':''}${full?' full':''}" data-day="${d.id}" style="--c:${s.color}">
+      <div class="day-head">
+        <button class="day-chk${full?' on':''}" data-daychk="${d.id}" aria-label="标记 Day ${d.day} 完成"></button>
+        <div class="day-title">
+          <div class="dnum">DAY ${d.day}${isToday ? ' · 今天' : ''} · ${esc(s.name)}</div>
+          <div class="tt">${esc(d.title)}</div>
+          <div class="refs">
+            ${d.book.length ? '<span>教材 '+esc(d.book.join(' / '))+'</span>' : ''}
+            ${d.videos.length ? '<span>视频 '+esc(d.videos.join(','))+'</span>' : ''}
+          </div>
+        </div>
+        <div class="day-hrs">${d.hrs}h</div>
+      </div>
+      ${d.tags && d.tags.length ? '<div class="tags">' + d.tags.map(t => MARK[t] ? '<span class="tag '+MARK[t].cls+'">'+MARK[t].text+'</span>' : '').join('') + '</div>' : ''}
+      <div class="tasks">
+        ${d.tasks.map(t => {
+          const on = !!state.done[t.id];
+          return `<div class="task${on?' on':''}" data-task="${t.id}" role="checkbox" tabindex="0" aria-checked="${on}">
+            <span class="box"></span>
+            <span class="tx">${esc(t.text)}</span>
+            <span class="tm">${TTYPE[t.type]||''} ${t.min}′</span>
+          </div>`;
+        }).join('')}
+      </div>
+      <div class="deliv"><b>当日产出：</b>${esc((d.deliv||[]).join(' · '))}</div>
+      ${d.note ? '<div class="dnote">💡 '+esc(d.note)+'</div>' : ''}
+    </div>`;
+  }).join('') + '</div>';
+}
+
+function bindCards(){
+  $$('#viewHost .task').forEach(el => {
+    const toggle = () => { toggleTask(el.dataset.task); };
+    el.onclick = toggle;
+    el.onkeydown = e => { if (e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); toggle(); } };
+  });
+  $$('#viewHost .day-chk').forEach(el => {
+    el.onclick = e => { e.stopPropagation(); toggleDay(el.dataset.daychk); };
+  });
+}
+
+function ganttHTML(){
+  const n = currentDayNum();
+  const axis = '<div class="g-row g-axis"><span></span>' +
+    Array.from({length:30}, (_,i)=>'<span>'+(i+1)+'</span>').join('') + '</div>';
+  const rows = STAGES.map(s => {
+    const cells = Array.from({length:30}, (_,i) => {
+      const dayNo = i+1;
+      const d = DAYS.find(x => x.day === dayNo);
+      const inStage = dayNo >= s.days[0] && dayNo <= s.days[1];
+      if (!inStage) return '<div class="g-cell" style="--c:'+s.color+'"></div>';
+      const done = dayDone(d);
+      const cls = 'g-cell on' + (done?' done':'') + (n===dayNo?' today':'');
+      const mark = d.paper ? '📄' : (d.review ? '🔄' : '');
+      return '<div class="'+cls+'" style="--c:'+s.color+'" data-gday="'+d.id+'" title="Day '+dayNo+' · '+esc(d.title)+'">'
+           + '<div class="g-mark">'+mark+'</div></div>';
+    }).join('');
+    return '<div class="g-row"><div class="g-name" style="--c:'+s.color+'"><i></i>'+esc(s.name)+'</div>'+cells+'</div>';
+  }).join('');
+  return '<div class="gantt"><div class="gantt-grid">'+axis+rows+'</div></div>'
+       + '<div style="font-size:12px;color:var(--muted);margin-top:10px">绿=已完成 · 灰=未开始 · 黑框=今天 ｜ 点击色块跳到对应日卡片</div>';
+}
+
+function bindGantt(){
+  $$('#viewHost .g-cell[data-gday]').forEach(el => el.onclick = () => {
+    switchView('cards');
+    const node = document.querySelector('[data-day="'+el.dataset.gday+'"]');
+    if (node) node.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+}
+
+function tableHTML(){
+  const list = DAYS.filter(passFilter);
+  if (!list.length) return '<div class="empty">该筛选条件下没有日程</div>';
+  return '<div class="tblwrap"><table class="tbl"><thead><tr>' +
+    '<th>Day</th><th>阶段</th><th>主题</th><th>教材</th><th>视频</th><th>任务</th><th>时长</th><th>状态</th>' +
+    '</tr></thead><tbody>' +
+    list.map(d => {
+      const s = stageOf(d.stage), full = dayDone(d);
+      const p = Math.round(dayProgress(d)*100);
+      return '<tr class="'+(full?'done-row':'')+'" style="--c:'+s.color+'" data-day="'+d.id+'">' +
+        '<td class="dcol">'+(full?'✓ ':'')+'D'+d.day+'</td>' +
+        '<td>'+esc(s.name)+'</td>' +
+        '<td>'+esc(d.title)+(d.paper?' 📄':'')+(d.review?' 🔄':'')+'</td>' +
+        '<td class="mono">'+(d.book.length?esc(d.book.join('/')):'—')+'</td>' +
+        '<td class="mono">'+(d.videos.length?esc(d.videos.join(',')):'—')+'</td>' +
+        '<td>'+d.tasks.length+' 项</td>' +
+        '<td class="mono">'+d.hrs+'h</td>' +
+        '<td><span class="mini-chk'+(full?' on':'')+'" data-tchk="'+d.id+'" title="'+p+'%"></span></td>' +
+      '</tr>';
+    }).join('') + '</tbody></table></div>';
+}
+
+function bindTable(){
+  $$('#viewHost .mini-chk').forEach(el => el.onclick = () => toggleDay(el.dataset.tchk));
+}
+
+/* =====================================================================
+   渲染 · 论文
+   ===================================================================== */
+
+function renderPapers(){
+  $('#papers').innerHTML = PAPERS.map(p => {
+    const read = !!state.paperRead[p.id];
+    const qDone = p.q.filter((_,i) => state.paperQ[p.id+':'+i]).length;
+    return `<div class="paper${read?' read':''}" data-paper="${p.id}">
+      <div class="paper-top">
+        <button class="day-chk pchk${read?' on':''}" data-pchk="${p.id}" aria-label="标记已读完"></button>
+        <div class="paper-name">${esc(p.name)}<span class="cn">${esc(p.cn||'')}</span></div>
+      </div>
+      <div class="paper-meta">
+        <span class="${p.pri==='P0'?'pm-p0':''}">${p.pri}</span>
+        <span>${p.year}</span><span>${esc(p.venue)}</span>
+        <span>精读 ${esc(p.dur)}</span>
+        <span>Day ${p.day.join(',')}</span>
+      </div>
+      ${p.d2lRef.length ? '<div class="paper-meta"><span>呼应 D2L '+esc(p.d2lRef.join(' / '))+'</span>'+(p.note?'<span>'+esc(p.note)+'</span>':'')+'</div>' : (p.note?'<div class="paper-meta"><span>'+esc(p.note)+'</span></div>':'')}
+      <ul class="qlist">
+        ${p.q.map((q,i) => {
+          const on = !!state.paperQ[p.id+':'+i];
+          return '<li class="'+(on?'on':'')+'" data-pq="'+p.id+':'+i+'"><span class="box"></span><span>'+esc(q)+'</span></li>';
+        }).join('')}
+      </ul>
+      <div class="paper-acts">
+        <a class="plink" href="${p.url || 'https://space.bilibili.com/1567748478'}" target="_blank" rel="noopener">${p.url ? '原文' : '看精读'}</a>
+        <a class="plink" href="https://space.bilibili.com/1567748478" target="_blank" rel="noopener">B站精读</a>
+        <button class="expand" data-expand="${p.id}">${qDone}/${p.q.length} 问题 · 展开 ▾</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  $$('#papers .expand').forEach(el => el.onclick = e => {
+    e.stopPropagation();
+    const card = el.closest('.paper');
+    card.classList.toggle('open');
+    el.textContent = el.textContent.replace(/展开|收起/, m => m === '展开' ? '收起' : '展开');
+  });
+  $$('#papers .pchk').forEach(el => el.onclick = e => {
+    e.stopPropagation();
+    const id = el.dataset.pchk;
+    state.paperRead[id] = !state.paperRead[id];
+    save(); renderPapers(); renderHero();
+  });
+  $$('#papers .qlist li').forEach(el => el.onclick = () => {
+    const k = el.dataset.pq;
+    state.paperQ[k] = !state.paperQ[k];
+    save(); renderPapers(); renderHero();
+  });
+}
+
+/* =====================================================================
+   渲染 · 自测
+   ===================================================================== */
+
+function renderSelfChecks(){
+  $('#selfchecks').innerHTML = SELF_CHECKS.map(w => {
+    const done = w.items.filter(i => state.selfCheck[i.id]).length;
+    const ok = done === w.items.length;
+    return `<div class="sc">
+      <div class="sc-head">
+        <span class="wk">${w.wk}</span>
+        <span class="dd">Day ${w.day} · ${esc(w.label)}</span>
+        <span class="pass${ok?' ok':''}">${ok ? '✓ 通过' : done+'/'+w.items.length}</span>
+      </div>
+      <ul class="sc-items">
+        ${w.items.map(i => {
+          const on = !!state.selfCheck[i.id];
+          return '<li class="'+(on?'on':'')+'" data-sc="'+i.id+'"><span class="box"></span><span>'+esc(i.t)+'</span></li>';
+        }).join('')}
+      </ul>
+    </div>`;
+  }).join('');
+
+  $$('#selfchecks .sc-items li').forEach(el => el.onclick = () => {
+    const id = el.dataset.sc;
+    state.selfCheck[id] = !state.selfCheck[id];
+    save(); renderSelfChecks(); renderHero();
+  });
+}
+
+/* =====================================================================
+   渲染 · FAQ / 资源
+   ===================================================================== */
+
+function renderFaq(){
+  $('#faq').innerHTML = FAQ.map((f,i) =>
+    '<details class="faq"'+(i===0?' open':'')+'><summary>'+esc(f.q)+'</summary><div class="body">'+f.html+'</div></details>'
+  ).join('');
+}
+
+function renderResources(){
+  $('#resources').innerHTML = RESOURCES.map(r =>
+    '<a class="rc" href="'+r.u+'" target="_blank" rel="noopener">'+
+      '<span class="rn">'+esc(r.n)+'</span>'+
+      '<span class="ru">'+esc(r.u.replace(/^https?:\/\//,''))+'</span>'+
+      '<span class="rd">'+esc(r.d)+'</span>'+
+    '</a>'
+  ).join('');
+}
+
+/* =====================================================================
+   交互
+   ===================================================================== */
+
+function toggleTask(tid){
+  state.done[tid] = !state.done[tid];
+  if (!state.done[tid]) delete state.done[tid];
+  save(); renderAll();
+}
+
+function toggleDay(did){
+  const d = DAYS.find(x => x.id === did);
+  const full = dayDone(d);
+  d.tasks.forEach(t => { if (full) delete state.done[t.id]; else state.done[t.id] = true; });
+  save(); renderAll();
+}
+
+function setFilter(f){
+  curFilter = f;
+  $$('#filters .chip').forEach(c => c.classList.toggle('on', c.dataset.f === f));
+  renderView();
+}
+
+function switchView(v){
+  curView = v;
+  state.view = v; save();
+  $$('#viewSeg button').forEach(b => b.classList.toggle('on', b.dataset.view === v));
+  renderView();
+}
+
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  state.theme = t; save();
+  $('#btnTheme').textContent = t === 'dark' ? '☀️ 浅色' : '🌙 深色';
+}
+
+function renderAll(){
+  renderHero(); renderTimeline(); renderView();
+  renderPapers(); renderSelfChecks();
+}
+
+/* =====================================================================
+   绑定
+   ===================================================================== */
+
+$('#viewSeg').onclick = e => { const b = e.target.closest('button'); if (b) switchView(b.dataset.view); };
+$('#filters').onclick = e => { const c = e.target.closest('.chip'); if (c) setFilter(c.dataset.f); };
+$('#btnTheme').onclick = () => applyTheme(state.theme === 'dark' ? 'light' : 'dark');
+$('#btnPrint').onclick = () => window.print();
+
+$('#startDate').oninput = e => {
+  state.startDate = e.target.value; save(); renderHero(); renderView();
+};
+
+$('#btnCollapse').onclick = e => {
+  const btn = e.currentTarget;
+  const box = $('#viewHost .days');
+  if (!box) return;              // 甘特图 / 表格视图下不可折叠
+  const collapsed = box.classList.toggle('collapsed');
+  btn.textContent = collapsed ? '全部展开' : '全部收起';
+};
+
+$('#btnExpandAll').onclick = e => {
+  const btn = e.currentTarget;
+  const open = $$('#papers .paper.open').length > 0;
+  $$('#papers .paper').forEach(p => p.classList.toggle('open', !open));
+  $$('#papers .expand').forEach(x => {
+    const pid = x.dataset.expand;
+    const p = PAPERS.find(q => q.id === pid);
+    const done = p.q.filter((_,i) => state.paperQ[pid+':'+i]).length;
+    x.textContent = done + '/' + p.q.length + ' 问题 · ' + (open ? '展开' : '收起') + (open ? ' ▾' : ' ▴');
+  });
+  btn.textContent = open ? '全部展开问题' : '全部收起问题';
+};
+
+$('#btnExport').onclick = () => {
+  const blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'd2l30-progress-' + todayISO() + '.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+};
+
+$('#btnImport').onclick = () => $('#fileInput').click();
+$('#fileInput').onchange = e => {
+  const f = e.target.files[0]; if (!f) return;
+  const rd = new FileReader();
+  rd.onload = () => {
+    try {
+      const obj = JSON.parse(rd.result);
+      state = Object.assign(blankState(), obj);
+      save(); applyTheme(state.theme || 'light');
+      switchView(state.view || 'cards');
+      renderAll();
+      alert('进度已导入');
+    } catch(err){ alert('导入失败：文件不是有效的进度 JSON'); }
+  };
+  rd.readAsText(f);
+  e.target.value = '';
+};
+
+$('#btnReset').onclick = () => {
+  if (!confirm('确定要清空全部进度吗？此操作不可撤销。')) return;
+  const keepDate = state.startDate;
+  state = blankState();
+  state.startDate = keepDate;
+  save(); renderAll();
+};
+
+/* 键盘无障碍：任务卡上的空格/回车已在 bindCards 处理 */
+
+/* =====================================================================
+   启动
+   ===================================================================== */
+
+(function init(){
+  applyTheme(state.theme === 'dark' ? 'dark' : 'light');
+  switchView(state.view || 'cards');
+  renderResources();
+  renderFaq();
+  renderHero();
+  renderTimeline();
+  renderPapers();
+  renderSelfChecks();
+  // switchView 内已 renderView，但需在 timeline 之后确保顺序
+  renderView();
+})();
+</script>
+</body>
+</html>

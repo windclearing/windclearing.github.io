@@ -217,6 +217,40 @@
   .task .tx{font-size:13px;line-height:1.5;flex:1}
   .task.on .tx{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--faint)}
   .task .tm{font-size:10.5px;color:var(--faint);font-family:ui-monospace,monospace;white-space:nowrap;padding-top:2px}
+  /* ---------- 自建计划：行内操作 ---------- */
+  .task .tacts{display:flex;gap:1px;flex:none;opacity:.42;transition:.12s}
+  .task:hover .tacts,.task:focus-within .tacts{opacity:1}
+  .task .tact{
+    border:0;background:transparent;color:var(--faint);cursor:pointer;
+    font:inherit;font-size:12px;line-height:1;padding:4px 5px;border-radius:6px;
+  }
+  .task .tact:hover{background:var(--border);color:var(--text)}
+  .task .tact.del:hover{color:var(--danger-text,#c0392b)}
+  .task.mine .box{border-style:dashed}
+  .task.mine .tx{font-weight:500}
+  .tedit{
+    display:flex;gap:6px;align-items:center;flex-wrap:wrap;padding:7px 8px;
+    background:var(--surface2);border-radius:8px;border:1px dashed var(--border);width:100%;
+  }
+  .tedit input,.tedit select{
+    border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:7px;padding:5px 8px;font-size:12.5px;font-family:inherit;
+  }
+  .tedit input[type=text]{flex:1;min-width:130px}
+  .tedit input[type=number]{width:64px}
+  .tedit .sbtn{
+    border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:7px;padding:5px 10px;font-size:12px;cursor:pointer;font-family:inherit;
+  }
+  .tedit .sbtn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+  .task-foot{display:flex;gap:12px;align-items:center;margin-top:5px;padding:0 7px}
+  .task-add{
+    border:1px dashed var(--border);background:transparent;color:var(--muted);
+    border-radius:8px;padding:5px 11px;font-size:12.5px;cursor:pointer;font-family:inherit;
+  }
+  .task-add:hover{border-color:var(--primary);color:var(--primary)}
+  .task-reset{border:0;background:transparent;color:var(--faint);cursor:pointer;font-size:11.5px;font-family:inherit;padding:0}
+  .task-reset:hover{color:var(--primary);text-decoration:underline}
   .deliv{
     margin:0 15px 13px;padding:9px 12px;border-radius:9px;background:var(--surface2);
     font-size:12px;color:var(--muted);border:1px dashed var(--border);
@@ -427,7 +461,7 @@
   <section>
     <div class="sec-head">
       <h2>30 天日程</h2>
-      <span class="desc">★精读深挖 ｜ ⏭可略读 ｜ 📄论文日 ｜ 🔄复盘日</span>
+      <span class="desc">★精读深挖 ｜ ⏭可略读 ｜ 📄论文日 ｜ 🔄复盘日 ｜ 计划可自行增删改</span>
       <div class="spacer"></div>
       <div class="seg" id="viewSeg">
         <button data-view="cards" class="on">卡片</button>
@@ -895,7 +929,12 @@ const FAQ = [
     html:`<p style="margin:0 0 8px"><b>1. 视频讲次编号仅作跳转锚点。</b>B 站各搬运版把 v2 系列切成 73 / 171 / 191 / 236 集不等，编号存在分歧。所有链接统一指向官方空间，不写死单集 BV 号。</p>
       <p style="margin:0 0 8px"><b>2. 中文教材没有 ViT / 大模型章节。</b>英文版已扩到 19 章（含 Transformers for Vision、Large-Scale Pretraining），中文第二版为 15 章正文 + 附录。这部分由 Day 30 的论文精读取代。</p>
       <p style="margin:0 0 8px"><b>3. 两个日期各管一件事。</b>顶栏的<b>「开工日」</b>就是 Day 1 的日期，改它则全站日期一起重算——Day 2 = 开工日 +1 天，往后顺延，<b>日期与 Day 序号永远同向递增</b>。面板里的<b>「查看日期」</b>只决定你在看哪一天，不会改动开工日。</p>
-      <p style="margin:0"><b>4. 面板默认跟真实日期走。</b>「今天学什么」默认显示今天该学第几天。要看别的日子，在「查看日期」里选一天即可，选完点「回到今天」返回。刷新页面会自动回到今天。</p>` }
+      <p style="margin:0"><b>4. 面板默认跟真实日期走。</b>「今天学什么」默认显示今天该学第几天。要看别的日子，在「查看日期」里选一天即可，选完点「回到今天」返回。刷新页面会自动回到今天。</p>` },
+
+  { q:'每日计划可以自己改吗？——可以，不用改代码',
+    html:`<p style="margin:0 0 8px">每张日程卡的任务列表底部有 <b>「＋ 添加计划」</b>；把鼠标移到任意一条任务上，右侧会出现 <b>✎ 编辑</b> 和 <b>✕ 删除</b>。内置任务和自建任务都能改、都能删。</p>
+      <p style="margin:0 0 8px">改动只存在你自己的浏览器里（localStorage），不动原始计划文件。某一天改乱了，点该卡片底部的 <b>「恢复本日默认」</b> 还原这一天；顶栏 <b>「重置」</b> 则把所有天一起还原。</p>
+      <p style="margin:0">自建任务的复选框是<b>虚线</b>，与内置任务区分。卡片右上角的「约 Xh」= 原计划时长 + 你新增任务的时长。勾选、进度环、完成天数、表格里的任务数都会把自建任务算进去；导出进度时它们也一并存进 JSON。</p>` }
 ];
 
 const RESOURCES = [
@@ -925,7 +964,8 @@ const blankState = () => ({
   paperRead: {},     // paperId -> true
   paperQ: {},        // paperId:qi -> true
   selfCheck: {},     // itemId -> true
-  openDays: {}       // dayId -> true
+  openDays: {},      // dayId -> true
+  dayTasks: {}       // dayId -> 该天自定义后的完整任务数组（有键=已覆盖内置计划）
 });
 
 function todayISO(){
@@ -991,6 +1031,9 @@ function save(){
 
 /* 面板正在查看的日期。默认今天，刷新即回到今天（不写入 localStorage，避免"看不到今天"） */
 let viewDate = todayISO();
+/* 计划编辑态：editTask = 正在编辑的任务 id；addDay = 正在新增任务的 dayId */
+let editTask = null;
+let addDay = null;
 
 /* =====================================================================
    工具
@@ -999,10 +1042,26 @@ let viewDate = todayISO();
 const $  = (s, r) => (r||document).querySelector(s);
 const $$ = (s, r) => Array.from((r||document).querySelectorAll(s));
 const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const escAttr = s => esc(s).replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 const stageOf = id => STAGES.find(s => s.id === id);
 
-function dayDone(d){ return d.tasks.every(t => state.done[t.id]); }
-function dayProgress(d){ return d.tasks.filter(t => state.done[t.id]).length / d.tasks.length; }
+/* 某一天「实际生效」的任务列表：用户改过该天就用自己的，否则用内置计划 */
+function tasksOf(d){ return (state.dayTasks && state.dayTasks[d.id]) || d.tasks; }
+function customized(d){ return !!(state.dayTasks && state.dayTasks[d.id]); }
+
+function dayDone(d){
+  const ts = tasksOf(d);
+  return ts.length > 0 && ts.every(t => state.done[t.id]);
+}
+function dayProgress(d){
+  const ts = tasksOf(d);
+  return ts.length ? ts.filter(t => state.done[t.id]).length / ts.length : 0;
+}
+/* 当日时长 = 内置基准时长 + 你新增任务的时长 */
+function dayHours(d){
+  const extra = tasksOf(d).reduce((a,t) => a + (t.src === 'custom' ? (t.min||0) : 0), 0);
+  return extra ? Math.round((d.hrs + extra/60) * 10) / 10 : d.hrs;
+}
 function stageDays(s){ return DAYS.filter(d => d.stage === s.id); }
 function stageDone(s){ return stageDays(s).filter(dayDone).length; }
 
@@ -1042,7 +1101,7 @@ function renderHero(){
 
   // 已投入时长
   let mins = 0;
-  DAYS.forEach(d => d.tasks.forEach(t => { if (state.done[t.id]) mins += t.min; }));
+  DAYS.forEach(d => tasksOf(d).forEach(t => { if (state.done[t.id]) mins += (t.min||0); }));
   const papersRead = PAPERS.filter(p => state.paperRead[p.id]).length;
   const scTotal = SELF_CHECKS.reduce((a,w) => a + w.items.length, 0);
   const scDone = Object.keys(state.selfCheck).filter(k => state.selfCheck[k]).length;
@@ -1080,7 +1139,7 @@ function renderHero(){
     tEl.innerHTML = 'Day ' + d.day + ' · ' + esc(d.title) +
       (dayDone(d) ? ' <span style="color:var(--accent)">✓ 已完成</span>' : '');
     mEl.textContent = [stageOf(d.stage).name,
-      d.book.length ? '教材 ' + d.book.join('/') : '', '约 ' + d.hrs + 'h', '进度 ' + p + '%']
+      d.book.length ? '教材 ' + d.book.join('/') : '', '约 ' + dayHours(d) + 'h', '进度 ' + p + '%']
       .filter(Boolean).join(' ｜ ');
   }
   $('#viewDate').value = viewDate;
@@ -1140,6 +1199,47 @@ function renderView(){
   else { host.innerHTML = cardsHTML(); bindCards(); }
 }
 
+/* 任务行：普通态 = 复选框 + 文本 + 时长 + 编辑/删除；编辑态 = 行内表单 */
+function taskRowHTML(t){
+  if (editTask === t.id){
+    return `<div class="task editing">
+      <div class="tedit">
+        <input type="text" class="e-text" value="${escAttr(t.text)}" placeholder="计划内容">
+        <input type="number" class="e-min" min="0" step="5" value="${t.min||0}" title="预计分钟">
+        <select class="e-type" title="类型">${typeOpts(t.type)}</select>
+        <button class="sbtn pri" data-save="${t.id}">保存</button>
+        <button class="sbtn" data-cancel="1">取消</button>
+      </div>
+    </div>`;
+  }
+  const on = !!state.done[t.id];
+  return `<div class="task${on?' on':''}${t.src==='custom'?' mine':''}" data-task="${t.id}" role="checkbox" tabindex="0" aria-checked="${on}">
+    <span class="box"></span>
+    <span class="tx">${esc(t.text)}</span>
+    <span class="tm">${TTYPE[t.type]||''} ${t.min}′</span>
+    <span class="tacts">
+      <button class="tact" data-edittask="${t.id}" title="编辑这条计划" aria-label="编辑">✎</button>
+      <button class="tact del" data-deltask="${t.id}" title="删除这条计划" aria-label="删除">✕</button>
+    </span>
+  </div>`;
+}
+
+const typeOpts = cur => Object.keys(TTYPE)
+  .map(k => '<option value="'+k+'"'+(cur===k?' selected':'')+'>'+TTYPE[k]+'</option>').join('');
+
+/* 新增计划的行内表单 */
+function addFormHTML(did){
+  return `<div class="task editing">
+    <div class="tedit">
+      <input type="text" class="e-text" placeholder="新计划，例如：补做 BatchNorm 对比实验">
+      <input type="number" class="e-min" min="0" step="5" value="30" title="预计分钟">
+      <select class="e-type" title="类型">${typeOpts('note')}</select>
+      <button class="sbtn pri" data-newday="${did}">添加</button>
+      <button class="sbtn" data-cancel="1">取消</button>
+    </div>
+  </div>`;
+}
+
 function cardsHTML(){
   const list = DAYS.filter(passFilter);
   if (!list.length) return '<div class="empty">该筛选条件下没有日程</div>';
@@ -1161,18 +1261,16 @@ function cardsHTML(){
             ${d.videos.length ? '<span>视频 '+esc(d.videos.join(','))+'</span>' : ''}
           </div>
         </div>
-        <div class="day-hrs">${d.hrs}h</div>
+        <div class="day-hrs">${dayHours(d)}h</div>
       </div>
       ${d.tags && d.tags.length ? '<div class="tags">' + d.tags.map(t => MARK[t] ? '<span class="tag '+MARK[t].cls+'">'+MARK[t].text+'</span>' : '').join('') + '</div>' : ''}
       <div class="tasks">
-        ${d.tasks.map(t => {
-          const on = !!state.done[t.id];
-          return `<div class="task${on?' on':''}" data-task="${t.id}" role="checkbox" tabindex="0" aria-checked="${on}">
-            <span class="box"></span>
-            <span class="tx">${esc(t.text)}</span>
-            <span class="tm">${TTYPE[t.type]||''} ${t.min}′</span>
-          </div>`;
-        }).join('')}
+        ${tasksOf(d).map(taskRowHTML).join('')}
+        ${addDay === d.id ? addFormHTML(d.id) : ''}
+        <div class="task-foot">
+          <button class="task-add" data-add="${d.id}">＋ 添加计划</button>
+          ${customized(d) ? '<button class="task-reset" data-resetday="'+d.id+'">恢复本日默认</button>' : ''}
+        </div>
       </div>
       <div class="deliv"><b>当日产出：</b>${esc((d.deliv||[]).join(' · '))}</div>
       ${d.note ? '<div class="dnote">💡 '+esc(d.note)+'</div>' : ''}
@@ -1182,14 +1280,52 @@ function cardsHTML(){
 
 function bindCards(){
   $$('#viewHost .task').forEach(el => {
-    const toggle = () => { toggleTask(el.dataset.task); };
-    el.onclick = toggle;
+    if (el.classList.contains('editing') || !el.dataset.task) return;
+    const toggle = () => toggleTask(el.dataset.task);
+    el.onclick = e => { if (e.target.closest('.tact')) return; toggle(); };
     el.onkeydown = e => { if (e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); toggle(); } };
   });
   $$('#viewHost .day-chk').forEach(el => {
     el.onclick = e => { e.stopPropagation(); toggleDay(el.dataset.daychk); };
   });
+
+  /* ---- 自建计划：编辑 / 删除 / 新增 / 恢复 ---- */
+  $$('#viewHost [data-edittask]').forEach(b => b.onclick = e => {
+    e.stopPropagation(); editTask = b.dataset.edittask; addDay = null; renderView();
+  });
+  $$('#viewHost [data-deltask]').forEach(b => b.onclick = e => {
+    e.stopPropagation(); deleteTask(b.dataset.deltask);
+  });
+  $$('#viewHost [data-add]').forEach(b => b.onclick = e => {
+    e.stopPropagation(); addDay = b.dataset.add; editTask = null; renderView();
+  });
+  $$('#viewHost [data-resetday]').forEach(b => b.onclick = e => {
+    e.stopPropagation(); resetDay(b.dataset.resetday);
+  });
+
+  /* 编辑器：保存 / 添加 / 取消 */
+  const submit = box => {
+    const sv = box.querySelector('[data-save]'), ad = box.querySelector('[data-newday]');
+    if (sv) saveTaskEdit(sv.dataset.save, box);
+    else if (ad) addTask(ad.dataset.newday, box);
+  };
+  $$('#viewHost .tedit').forEach(box => {
+    const ok = box.querySelector('[data-save],[data-newday]');
+    const no = box.querySelector('[data-cancel]');
+    const ip = box.querySelector('.e-text');
+    if (ok) ok.onclick = e => { e.stopPropagation(); submit(box); };
+    if (no) no.onclick = e => { e.stopPropagation(); closeEditor(); };
+    if (ip){
+      ip.onkeydown = e => {
+        if (e.key === 'Enter'){ e.preventDefault(); submit(box); }
+        if (e.key === 'Escape'){ closeEditor(); }
+      };
+      if (document.activeElement !== ip) ip.focus();
+    }
+  });
 }
+
+function closeEditor(){ editTask = null; addDay = null; renderView(); }
 
 function ganttHTML(){
   const vd = isoToDate(viewDate);
@@ -1240,8 +1376,8 @@ function tableHTML(){
         '<td>'+esc(d.title)+(d.paper?' 📄':'')+(d.review?' 🔄':'')+'</td>' +
         '<td class="mono">'+(d.book.length?esc(d.book.join('/')):'—')+'</td>' +
         '<td class="mono">'+(d.videos.length?esc(d.videos.join(',')):'—')+'</td>' +
-        '<td>'+d.tasks.length+' 项</td>' +
-        '<td class="mono">'+d.hrs+'h</td>' +
+        '<td>'+tasksOf(d).length+' 项'+(customized(d)?' <span title="这一天你改过计划">✎</span>':'')+'</td>' +
+        '<td class="mono">'+dayHours(d)+'h</td>' +
         '<td><span class="mini-chk'+(full?' on':'')+'" data-tchk="'+d.id+'" title="'+p+'%"></span></td>' +
       '</tr>';
     }).join('') + '</tbody></table></div>';
@@ -1367,8 +1503,66 @@ function toggleTask(tid){
 function toggleDay(did){
   const d = DAYS.find(x => x.id === did);
   const full = dayDone(d);
-  d.tasks.forEach(t => { if (full) delete state.done[t.id]; else state.done[t.id] = true; });
+  tasksOf(d).forEach(t => { if (full) delete state.done[t.id]; else state.done[t.id] = true; });
   save(); renderAll();
+}
+
+/* =====================================================================
+   自建计划：某天一旦被改动，就把该天任务整体存进 state.dayTasks 作为准据
+   ===================================================================== */
+
+// 把内置任务复制一份进 state（保留原 id，勾选状态不丢）
+function materialize(d){
+  if (!state.dayTasks[d.id]){
+    state.dayTasks[d.id] = d.tasks.map(t => ({ id:t.id, text:t.text, min:t.min, type:t.type, src:'builtin' }));
+  }
+  return state.dayTasks[d.id];
+}
+function dayOfTask(tid){ return DAYS.find(d => tasksOf(d).some(t => t.id === tid)); }
+const newTaskId = did => did + 'c' + Date.now().toString(36) + Math.random().toString(36).slice(2,5);
+
+function readForm(box){
+  const text = box.querySelector('.e-text').value.trim();
+  if (!text){ alert('计划内容不能为空'); return null; }
+  return {
+    text,
+    min: Math.max(0, parseInt(box.querySelector('.e-min').value, 10) || 0),
+    type: box.querySelector('.e-type').value
+  };
+}
+
+function addTask(did, box){
+  const d = DAYS.find(x => x.id === did); if (!d) return;
+  const v = readForm(box); if (!v) return;
+  materialize(d).push(Object.assign({ id:newTaskId(did), src:'custom' }, v));
+  addDay = null; save(); renderAll();
+}
+
+function saveTaskEdit(tid, box){
+  const v = readForm(box); if (!v) return;
+  const d = dayOfTask(tid); if (!d) return;
+  materialize(d);
+  const t = state.dayTasks[d.id].find(x => x.id === tid); if (!t) return;
+  t.text = v.text; t.min = v.min; t.type = v.type;
+  editTask = null; save(); renderAll();
+}
+
+function deleteTask(tid){
+  const d = dayOfTask(tid); if (!d) return;
+  const t = tasksOf(d).find(x => x.id === tid);
+  if (!confirm('删除这条计划？\n' + (t ? t.text : ''))) return;
+  materialize(d);
+  state.dayTasks[d.id] = state.dayTasks[d.id].filter(x => x.id !== tid);
+  delete state.done[tid];          // 同时清掉它的勾选记录
+  editTask = null; save(); renderAll();
+}
+
+function resetDay(did){
+  const d = DAYS.find(x => x.id === did); if (!d || !customized(d)) return;
+  if (!confirm('把 Day ' + d.day + ' 恢复成默认计划？\n你在这一天新增 / 修改的计划会被清除，内置任务的勾选保留。')) return;
+  state.dayTasks[did].filter(t => t.src === 'custom').forEach(t => delete state.done[t.id]);
+  delete state.dayTasks[did];
+  editTask = null; addDay = null; save(); renderAll();
 }
 
 function setFilter(f){
@@ -1467,11 +1661,12 @@ $('#fileInput').onchange = e => {
 };
 
 $('#btnReset').onclick = () => {
-  if (!confirm('确定要清空全部进度吗？此操作不可撤销。')) return;
+  if (!confirm('确定要清空全部进度吗？\n包括你自建的每日计划与所有勾选记录，此操作不可撤销。')) return;
   const keepDate = state.startDate;
   state = blankState();
   state.startDate = keepDate;
   viewDate = todayISO();
+  editTask = null; addDay = null;
   save(); renderAll();
 };
 
